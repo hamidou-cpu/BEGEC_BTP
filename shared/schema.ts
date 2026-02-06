@@ -43,10 +43,19 @@ export const testimonials = pgTable("testimonials", {
   rating: integer("rating").default(5),
 });
 
+export const teamMembers = pgTable("team_members", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  role: varchar("role", { length: 100 }).notNull(),
+  bio: text("bio"),
+  imageUrl: text("image_url").notNull(),
+});
+
 export const insertContactSchema = createInsertSchema(contactMessages).omit({ id: true, createdAt: true });
 export const insertQuoteSchema = createInsertSchema(quoteRequests).omit({ id: true, createdAt: true });
 export const insertProjectSchema = createInsertSchema(projects).omit({ id: true });
 export const insertTestimonialSchema = createInsertSchema(testimonials).omit({ id: true });
+export const insertTeamMemberSchema = createInsertSchema(teamMembers).omit({ id: true });
 
 export type ContactMessage = typeof contactMessages.$inferSelect;
 export type InsertContactMessage = z.infer<typeof insertContactSchema>;
@@ -56,3 +65,6 @@ export type InsertQuoteRequest = z.infer<typeof insertQuoteSchema>;
 
 export type Project = typeof projects.$inferSelect;
 export type Testimonial = typeof testimonials.$inferSelect;
+
+export type TeamMember = typeof teamMembers.$inferSelect;
+export type InsertTeamMember = z.infer<typeof insertTeamMemberSchema>;

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertContactSchema, insertQuoteSchema, projects, testimonials } from './schema';
+import { insertContactSchema, insertQuoteSchema, projects, testimonials, teamMembers } from './schema';
 
 export { insertContactSchema, insertQuoteSchema } from './schema';
 export type { InsertContactMessage, InsertQuoteRequest } from './schema';
@@ -52,6 +52,15 @@ export const api = {
       path: '/api/testimonials',
       responses: {
         200: z.array(z.custom<typeof testimonials.$inferSelect>()),
+      },
+    },
+  },
+  team: {
+    list: {
+      method: 'GET' as const,
+      path: '/api/team',
+      responses: {
+        200: z.array(z.custom<typeof teamMembers.$inferSelect>()),
       },
     },
   },

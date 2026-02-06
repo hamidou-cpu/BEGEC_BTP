@@ -3,7 +3,7 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import { projects, testimonials } from "@shared/schema";
+import { projects, testimonials, teamMembers } from "@shared/schema";
 import { db } from "./db";
 
 export async function registerRoutes(
@@ -50,6 +50,12 @@ export async function registerRoutes(
   app.get(api.testimonials.list.path, async (_req, res) => {
     const testimonialsList = await storage.getTestimonials();
     res.json(testimonialsList);
+  });
+
+  // Team
+  app.get(api.team.list.path, async (_req, res) => {
+    const teamList = await storage.getTeamMembers();
+    res.json(teamList);
   });
 
   // Seed Data (if empty)
@@ -114,6 +120,36 @@ export async function registerRoutes(
         company: "ArchiDesign",
         content: "Collaboration fluide et résultats conformes à nos attentes techniques élevées.",
         rating: 4
+      }
+    ]);
+  }
+
+  const existingTeam = await storage.getTeamMembers();
+  if (existingTeam.length === 0) {
+    await db.insert(teamMembers).values([
+      {
+        name: "Marc Durand",
+        role: "Directeur Général",
+        bio: "20 ans d'expérience dans les travaux publics. Marc dirige BEGEC TP avec une vision centrée sur la qualité et la sécurité.",
+        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Sophie Leclerc",
+        role: "Responsable Bureau d'Études",
+        bio: "Ingénieure de formation, Sophie supervise la conception et la planification de tous nos projets.",
+        imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Thomas Moreau",
+        role: "Chef de Chantier Principal",
+        bio: "Expert du terrain, Thomas veille au bon déroulement des opérations et au respect des délais.",
+        imageUrl: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&q=80"
+      },
+       {
+        name: "Lucas Dubois",
+        role: "Conducteur d'Engins",
+        bio: "Passionné par la mécanique et la précision, Lucas maîtrise notre flotte d'engins avec expertise.",
+        imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
       }
     ]);
   }

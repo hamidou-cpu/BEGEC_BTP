@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Users, Target, Shield } from "lucide-react";
+import { useTeam } from "@/hooks/use-team";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function About() {
+  const { data: team, isLoading } = useTeam();
+
   return (
     <div className="pt-24 min-h-screen pb-24">
       <div className="container mx-auto px-4">
@@ -97,6 +101,58 @@ export default function About() {
             </motion.div>
           ))}
         </div>
+
+        {/* Team Section */}
+        <div className="mt-24">
+          <div className="text-center mb-12">
+            <Badge className="bg-secondary text-secondary-foreground mb-4">Notre Équipe</Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary">Les Experts du Terrain</h2>
+          </div>
+          
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="space-y-4">
+                  <Skeleton className="h-64 w-full rounded-xl" />
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {team?.map((member, index) => (
+                <motion.div
+                  key={member.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="overflow-hidden h-full hover:shadow-xl transition-all duration-300 border-none bg-muted/30 group">
+                    <div className="relative aspect-[3/4] overflow-hidden">
+                      <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+                      <img 
+                        src={member.imageUrl} 
+                        alt={member.name}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <CardContent className="p-6 text-center relative">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-1 bg-secondary rounded-full" />
+                      <h3 className="text-xl font-bold mb-1 text-primary">{member.name}</h3>
+                      <p className="text-sm font-bold text-secondary uppercase tracking-wider mb-4">{member.role}</p>
+                      <p className="text-muted-foreground text-sm line-clamp-3">
+                        {member.bio}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   );
