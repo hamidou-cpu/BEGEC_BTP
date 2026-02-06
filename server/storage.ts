@@ -1,38 +1,48 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import {
+  contactMessages,
+  quoteRequests,
+  projects,
+  testimonials,
+  type ContactMessage,
+  type InsertContactMessage,
+  type QuoteRequest,
+  type InsertQuoteRequest,
+  type Project,
+  type Testimonial,
+} from "@shared/schema";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
+  createQuoteRequest(request: InsertQuoteRequest): Promise<QuoteRequest>;
+  getProjects(): Promise<Project[]>;
+  getTestimonials(): Promise<Testimonial[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
+    const [newMessage] = await db
+      .insert(contactMessages)
+      .values(message)
+      .returning();
+    return newMessage;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async createQuoteRequest(request: InsertQuoteRequest): Promise<QuoteRequest> {
+    const [newRequest] = await db
+      .insert(quoteRequests)
+      .values(request)
+      .returning();
+    return newRequest;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getProjects(): Promise<Project[]> {
+    return await db.select().from(projects);
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
