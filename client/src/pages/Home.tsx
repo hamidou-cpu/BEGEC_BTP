@@ -13,10 +13,12 @@ import {
 } from "@/components/ui/carousel";
 import { useProjects } from "@/hooks/use-projects";
 import { useTestimonials } from "@/hooks/use-testimonials";
+import { usePartners } from "@/hooks/use-partners";
 
 export default function Home() {
   const { data: projects, isLoading: projectsLoading } = useProjects();
   const { data: testimonials, isLoading: testimonialsLoading } = useTestimonials();
+  const { data: partners } = usePartners();
 
   return (
     <div className="min-h-screen">
@@ -243,6 +245,40 @@ export default function Home() {
               <CarouselPrevious className="hidden md:flex" />
               <CarouselNext className="hidden md:flex" />
             </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Carousel Section */}
+      <section className="py-16 bg-muted/30 overflow-hidden">
+        <div className="container mx-auto px-4 mb-8 text-center">
+          <h2 className="text-primary font-bold tracking-widest uppercase mb-3 text-sm">Nos Partenaires</h2>
+          <h3 className="text-2xl font-heading font-bold">Ils nous font confiance</h3>
+        </div>
+        
+        <div className="relative flex overflow-x-hidden group">
+          <div className="py-8 animate-marquee whitespace-nowrap flex items-center">
+            {partners?.concat(partners || []).map((partner, i) => (
+              <div key={`${partner.id}-${i}`} className="mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center">
+                <img 
+                  src={partner.logoUrl} 
+                  alt={partner.name} 
+                  className="h-12 md:h-16 w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="absolute top-0 py-8 animate-marquee2 whitespace-nowrap flex items-center">
+            {partners?.concat(partners || []).map((partner, i) => (
+              <div key={`${partner.id}-clone-${i}`} className="mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center">
+                <img 
+                  src={partner.logoUrl} 
+                  alt={partner.name} 
+                  className="h-12 md:h-16 w-auto object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>

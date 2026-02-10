@@ -46,9 +46,9 @@ export default function Contact() {
 
             <div className="grid gap-8">
               {[
-                { icon: <MapPin className="w-6 h-6" />, title: "Adresse", lines: ["123 Rue de la Construction", "75000 Paris, France"] },
-                { icon: <Phone className="w-6 h-6" />, title: "Téléphone", lines: ["+33 1 23 45 67 89", "Du lundi au vendredi"] },
-                { icon: <Mail className="w-6 h-6" />, title: "Email", lines: ["contact@begectp.fr", "Réponse sous 24h"] },
+                { icon: <MapPin className="w-6 h-6" />, title: "Adresse", lines: ["CARREFOUR IPS, KIPE", "COMMUNE DE RATOMA"] },
+                { icon: <Phone className="w-6 h-6" />, title: "Téléphone", lines: ["(+224) 622 21 34 67"] },
+                { icon: <Mail className="w-6 h-6" />, title: "Email", lines: ["contact@begecgroup.com"] },
                 { icon: <Clock className="w-6 h-6" />, title: "Horaires", lines: ["Lun - Ven: 8h00 - 18h00", "Samedi: Sur rendez-vous"] },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">

@@ -3,7 +3,7 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import { projects, testimonials, teamMembers } from "@shared/schema";
+import { projects, testimonials, teamMembers, partners } from "@shared/schema";
 import { db } from "./db";
 
 export async function registerRoutes(
@@ -56,6 +56,12 @@ export async function registerRoutes(
   app.get(api.team.list.path, async (_req, res) => {
     const teamList = await storage.getTeamMembers();
     res.json(teamList);
+  });
+
+  // Partners
+  app.get(api.partners.list.path, async (_req, res) => {
+    const partnersList = await storage.getPartners();
+    res.json(partnersList);
   });
 
   // Seed Data (if empty)
@@ -125,32 +131,69 @@ export async function registerRoutes(
   }
 
   const existingTeam = await storage.getTeamMembers();
-  if (existingTeam.length === 0) {
-    await db.insert(teamMembers).values([
-      {
-        name: "Marc Durand",
-        role: "Directeur Général",
-        bio: "20 ans d'expérience dans les travaux publics. Marc dirige BEGEC TP avec une vision centrée sur la qualité et la sécurité.",
-        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
-      },
-      {
-        name: "Sophie Leclerc",
-        role: "Responsable Bureau d'Études",
-        bio: "Ingénieure de formation, Sophie supervise la conception et la planification de tous nos projets.",
-        imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80"
-      },
-      {
-        name: "Thomas Moreau",
-        role: "Chef de Chantier Principal",
-        bio: "Expert du terrain, Thomas veille au bon déroulement des opérations et au respect des délais.",
-        imageUrl: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&q=80"
-      },
-       {
-        name: "Lucas Dubois",
-        role: "Conducteur d'Engins",
-        bio: "Passionné par la mécanique et la précision, Lucas maîtrise notre flotte d'engins avec expertise.",
-        imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
-      }
+  if (existingTeam.length > 0) {
+    await db.delete(teamMembers);
+  }
+  await db.insert(teamMembers).values([
+    {
+      name: "Lancinet DABO",
+      role: "Administrateur Général",
+      bio: "Visionnaire et leader stratégique de BEGEC TP.",
+      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Abdourahmane Bella KEITA",
+      role: "Directeur Général",
+      bio: "Expert en gestion opérationnelle et développement.",
+      imageUrl: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Moustapha KABA",
+      role: "Directeur Admin. Financier",
+      bio: "Garant de la stabilité financière et administrative.",
+      imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Hassan Aboufiras",
+      role: "Coordinateur des projets",
+      bio: "Maître d'œuvre de la coordination inter-projets.",
+      imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Ibrahima Pépé TRAORE",
+      role: "Directeur Technique",
+      bio: "Expert technique supervisant l'excellence métier.",
+      imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Sidate DIAW",
+      role: "Directeur de la logistique",
+      bio: "Expert en flux et gestion du matériel.",
+      imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Moribinet SYLLA",
+      role: "Directeur RH",
+      bio: "En charge du capital humain de l'entreprise.",
+      imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Manuel Antonio Ferreira Cabral",
+      role: "Dir. D'exploitation de la production",
+      bio: "Superviseur de la production sur le terrain.",
+      imageUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80"
+    }
+  ]);
+
+  const existingPartners = await storage.getPartners();
+  if (existingPartners.length === 0) {
+    await db.insert(partners).values([
+      { name: "Partner 1", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
+      { name: "Partner 2", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
+      { name: "Partner 3", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" },
+      { name: "Partner 4", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Apple_logo_grey.svg" },
+      { name: "Partner 5", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
+      { name: "Partner 6", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg" },
     ]);
   }
 

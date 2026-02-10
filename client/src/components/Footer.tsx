@@ -49,18 +49,20 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-secondary shrink-0 mt-1" />
-                <span className="text-primary-foreground/80">123 Rue de la Construction, 75000 Paris, France</span>
+                <span className="text-primary-foreground/80">CARREFOUR IPS, KIPE, COMMUNE DE RATOMA</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-secondary shrink-0" />
-                <a href="tel:+33123456789" className="text-primary-foreground/80 hover:text-white transition-colors">
-                  +33 1 23 45 67 89
-                </a>
+              <li className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-secondary shrink-0" />
+                  <a href="tel:+224622213467" className="text-primary-foreground/80 hover:text-white transition-colors">
+                    (+224) 622 21 34 67
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
-                <a href="mailto:contact@begectp.fr" className="text-primary-foreground/80 hover:text-white transition-colors">
-                  contact@begectp.fr
+                <a href="mailto:contact@begecgroup.com" className="text-primary-foreground/80 hover:text-white transition-colors">
+                  contact@begecgroup.com
                 </a>
               </li>
             </ul>

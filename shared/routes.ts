@@ -64,4 +64,13 @@ export const api = {
       },
     },
   },
+  partners: {
+    list: {
+      method: 'GET' as const,
+      path: '/api/partners',
+      responses: {
+        200: z.array(z.custom<typeof teamMembers.$inferSelect>()),
+      },
+    },
+  },
 };

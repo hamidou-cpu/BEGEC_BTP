@@ -5,6 +5,7 @@ import {
   projects,
   testimonials,
   teamMembers,
+  partners,
   type ContactMessage,
   type InsertContactMessage,
   type QuoteRequest,
@@ -12,6 +13,7 @@ import {
   type Project,
   type Testimonial,
   type TeamMember,
+  type Partner,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -20,6 +22,7 @@ export interface IStorage {
   getProjects(): Promise<Project[]>;
   getTestimonials(): Promise<Testimonial[]>;
   getTeamMembers(): Promise<TeamMember[]>;
+  getPartners(): Promise<Partner[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -49,6 +52,10 @@ export class DatabaseStorage implements IStorage {
 
   async getTeamMembers(): Promise<TeamMember[]> {
     return await db.select().from(teamMembers);
+  }
+
+  async getPartners(): Promise<Partner[]> {
+    return await db.select().from(partners);
   }
 }
 
