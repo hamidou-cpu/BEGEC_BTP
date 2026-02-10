@@ -250,38 +250,40 @@ export default function Home() {
       </section>
 
       {/* Partners Carousel Section */}
-      <section className="py-16 bg-muted/30 overflow-hidden">
-        <div className="container mx-auto px-4 mb-8 text-center">
-          <h2 className="text-primary font-bold tracking-widest uppercase mb-3 text-sm">Nos Partenaires</h2>
-          <h3 className="text-2xl font-heading font-bold">Ils nous font confiance</h3>
-        </div>
-        
-        <div className="relative flex overflow-x-hidden group">
-          <div className="py-8 animate-marquee whitespace-nowrap flex items-center">
-            {partners?.concat(partners || []).map((partner, i) => (
-              <div key={`${partner.id}-${i}`} className="mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center">
-                <img 
-                  src={partner.logoUrl} 
-                  alt={partner.name} 
-                  className="h-12 md:h-16 w-auto object-contain"
-                />
-              </div>
-            ))}
+      {partners && partners.length > 0 && (
+        <section className="py-16 bg-muted/30 overflow-hidden">
+          <div className="container mx-auto px-4 mb-8 text-center">
+            <h2 className="text-primary font-bold tracking-widest uppercase mb-3 text-sm">Nos Partenaires</h2>
+            <h3 className="text-2xl font-heading font-bold">Ils nous font confiance</h3>
           </div>
+          
+          <div className="relative flex overflow-x-hidden group">
+            <div className="py-8 animate-marquee whitespace-nowrap flex items-center">
+              {partners.concat(partners).map((partner, i) => (
+                <div key={`${partner.id}-${i}`} className="mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center">
+                  <img 
+                    src={partner.logoUrl} 
+                    alt={partner.name} 
+                    className="h-12 md:h-16 w-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
 
-          <div className="absolute top-0 py-8 animate-marquee2 whitespace-nowrap flex items-center">
-            {partners?.concat(partners || []).map((partner, i) => (
-              <div key={`${partner.id}-clone-${i}`} className="mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center">
-                <img 
-                  src={partner.logoUrl} 
-                  alt={partner.name} 
-                  className="h-12 md:h-16 w-auto object-contain"
-                />
-              </div>
-            ))}
+            <div className="absolute top-0 py-8 animate-marquee2 whitespace-nowrap flex items-center">
+              {partners.concat(partners).map((partner, i) => (
+                <div key={`${partner.id}-clone-${i}`} className="mx-8 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center">
+                  <img 
+                    src={partner.logoUrl} 
+                    alt={partner.name} 
+                    className="h-12 md:h-16 w-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 bg-primary relative overflow-hidden">

@@ -10,11 +10,19 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Fermer le menu mobile lors du changement de page
+  useEffect(() => {
+    setIsOpen(false);
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -90,7 +98,7 @@ export function Navbar() {
             {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </Button>
           
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
                 <Menu className="w-6 h-6" />
