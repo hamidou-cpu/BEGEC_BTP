@@ -5,21 +5,55 @@ import { api } from "@shared/routes";
 import { z } from "zod";
 import { projects, testimonials, teamMembers, partners } from "@shared/schema";
 import { db } from "./db";
+import nodemailer from "nodemailer";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Configuration du transporteur d'e-mails
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: Number(process.env.SMTP_PORT) === 465,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
   // Contact Form
   app.post(api.contact.submit.path, async (req, res) => {
     try {
       const input = api.contact.submit.input.parse(req.body);
       await storage.createContactMessage(input);
+
+      // Envoi de l'e-mail si configuré
+      if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+        await transporter.sendMail({
+          from: `"Site Web BEGEC TP" <${process.env.SMTP_USER}>`,
+          to: "contact@begecgroup.com",
+          subject: `Nouveau message: ${input.subject}`,
+          text: `Nom: ${input.name}\nEmail: ${input.email}\nTéléphone: ${input.phone || "N/A"}\n\nMessage:\n${input.message}`,
+          html: `
+            <h3>Nouveau message de contact</h3>
+            <p><strong>Nom:</strong> ${input.name}</p>
+            <p><strong>Email:</strong> ${input.email}</p>
+            <p><strong>Téléphone:</strong> ${input.phone || "N/A"}</p>
+            <p><strong>Sujet:</strong> ${input.subject}</p>
+            <hr />
+            <p><strong>Message:</strong></p>
+            <p>${input.message.replace(/\n/g, "<br>")}</p>
+          `,
+        });
+      }
+
       res.json({ success: true, message: "Message reçu avec succès." });
     } catch (error) {
        if (error instanceof z.ZodError) {
         res.status(400).json({ message: "Données invalides", field: error.errors[0].path.join('.') });
       } else {
+        console.error("Email error:", error);
         res.status(500).json({ message: "Erreur serveur interne" });
       }
     }
@@ -30,11 +64,34 @@ export async function registerRoutes(
     try {
       const input = api.quotes.submit.input.parse(req.body);
       await storage.createQuoteRequest(input);
+
+      // Envoi de l'e-mail de devis si configuré
+      if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+        await transporter.sendMail({
+          from: `"Site Web BEGEC TP" <${process.env.SMTP_USER}>`,
+          to: "contact@begecgroup.com",
+          subject: `Nouvelle demande de devis: ${input.projectType}`,
+          text: `Nom: ${input.name}\nEmail: ${input.email}\nTéléphone: ${input.phone}\nProjet: ${input.projectType}\nLocalisation: ${input.location || "N/A"}\n\nDescription:\n${input.description}`,
+          html: `
+            <h3>Nouvelle demande de devis</h3>
+            <p><strong>Nom:</strong> ${input.name}</p>
+            <p><strong>Email:</strong> ${input.email}</p>
+            <p><strong>Téléphone:</strong> ${input.phone}</p>
+            <p><strong>Type de projet:</strong> ${input.projectType}</p>
+            <p><strong>Localisation:</strong> ${input.location || "N/A"}</p>
+            <hr />
+            <p><strong>Description:</strong></p>
+            <p>${input.description.replace(/\n/g, "<br>")}</p>
+          `,
+        });
+      }
+
       res.json({ success: true, message: "Demande de devis reçue avec succès." });
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ message: "Données invalides", field: error.errors[0].path.join('.') });
       } else {
+         console.error("Email error:", error);
          res.status(500).json({ message: "Erreur serveur interne" });
       }
     }
