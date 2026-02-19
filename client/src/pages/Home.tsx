@@ -193,10 +193,17 @@ export default function Home() {
               { number: "50", label: "Experts Qualifiés" },
               { number: "98%", label: "Clients Satisfaits" }
             ].map((stat, i) => (
-              <div key={i} className="p-4">
+              <motion.div 
+                key={i} 
+                className="p-4"
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <div className="text-4xl md:text-5xl font-heading font-extrabold text-secondary mb-2">{stat.number}</div>
                 <div className="text-primary-foreground/80 font-medium">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

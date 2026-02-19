@@ -73,7 +73,13 @@ export default function Expertise() {
   return (
     <div className="pt-24 min-h-screen pb-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <Badge className="bg-secondary text-secondary-foreground mb-4">Nos Services</Badge>
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-primary">
             Domaines d'Intervention
@@ -81,7 +87,7 @@ export default function Expertise() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Une expertise technique complète pour accompagner vos projets du sol au plafond.
           </p>
-        </div>
+        </motion.div>
 
         <Tabs defaultValue="terrassement" className="max-w-5xl mx-auto">
           <TabsList className="grid grid-cols-2 md:grid-cols-4 h-auto p-1 bg-muted/50 rounded-xl mb-12">

@@ -12,7 +12,13 @@ export default function About() {
     <div className="pt-24 min-h-screen pb-24">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="max-w-4xl mb-16">
+        <motion.div 
+          className="max-w-4xl mb-16"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <Badge className="bg-secondary text-secondary-foreground mb-4">À Propos</Badge>
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-primary">
             Notre Histoire & Nos Valeurs
@@ -21,11 +27,17 @@ export default function About() {
             Depuis plus de 15 ans, BEGEC TP s'engage à fournir des services de travaux publics d'excellence, 
             en alliant innovation technique et respect des délais.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content Section */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          <div className="relative">
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <div className="absolute -inset-4 bg-secondary/20 rounded-2xl transform rotate-3"></div>
             {/* Construction team meeting */}
             <img 
@@ -33,9 +45,15 @@ export default function About() {
               alt="Construction team meeting" 
               className="relative rounded-2xl shadow-2xl w-full object-cover aspect-video"
             />
-          </div>
+          </motion.div>
           
-          <div className="space-y-8">
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl font-heading font-bold">Une Expertise Reconnue</h2>
             <p className="text-muted-foreground">
               Né de la passion pour le bâtiment et les travaux publics, BEGEC TP a grandi pour devenir 
@@ -54,13 +72,20 @@ export default function About() {
                 "Respect de l'Environnement",
                 "Délais Garantis"
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
+                <motion.div 
+                  key={i} 
+                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                >
                   <CheckCircle className="w-5 h-5 text-secondary" />
                   <span className="font-medium">{item}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Values Cards */}
