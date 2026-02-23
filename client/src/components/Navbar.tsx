@@ -51,7 +51,7 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
         isScrolled
           ? "bg-background/95 backdrop-blur-md border-border shadow-md py-2"
-          : "bg-background border-transparent py-4"
+          : "bg-background border-transparent py-4",
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -73,16 +73,27 @@ export function Navbar() {
               <span
                 className={cn(
                   "cursor-pointer text-sm font-semibold transition-colors hover:text-primary uppercase tracking-wide",
-                  location === link.href ? "text-primary border-b-2 border-primary" : "text-muted-foreground"
+                  location === link.href
+                    ? "text-primary border-b-2 border-primary"
+                    : "text-muted-foreground",
                 )}
               >
                 {link.label}
               </span>
             </Link>
           ))}
-          
-          <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
-            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="ml-2"
+          >
+            {theme === "light" ? (
+              <Moon className="w-5 h-5" />
+            ) : (
+              <Sun className="w-5 h-5" />
+            )}
           </Button>
 
           <Link href="/devis">
@@ -95,9 +106,13 @@ export function Navbar() {
         {/* Mobile Nav */}
         <div className="lg:hidden flex items-center gap-4">
           <Button variant="ghost" size="icon" onClick={toggleTheme}>
-            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            {theme === "light" ? (
+              <Moon className="w-5 h-5" />
+            ) : (
+              <Sun className="w-5 h-5" />
+            )}
           </Button>
-          
+
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
@@ -108,10 +123,14 @@ export function Navbar() {
               <div className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
                   <Link key={link.href} href={link.href}>
-                    <div className={cn(
-                      "text-lg font-semibold cursor-pointer py-2 hover:text-primary transition-colors border-b border-border/50",
-                      location === link.href ? "text-primary" : "text-foreground"
-                    )}>
+                    <div
+                      className={cn(
+                        "text-lg font-semibold cursor-pointer py-2 hover:text-primary transition-colors border-b border-border/50",
+                        location === link.href
+                          ? "text-primary"
+                          : "text-foreground",
+                      )}
+                    >
                       {link.label}
                     </div>
                   </Link>
