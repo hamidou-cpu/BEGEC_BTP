@@ -319,9 +319,7 @@ export async function registerRoutes(
   }
 
   const existingTeam = await storage.getTeamMembers();
-  if (existingTeam.length > 0) {
-    await db.delete(teamMembers);
-  }
+  if (existingTeam.length === 0) {
   await db.insert(teamMembers).values([
     {
       name: "Lancinet DABO",
@@ -372,6 +370,7 @@ export async function registerRoutes(
       imageUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80"
     }
   ]);
+  }
 
   const existingPartners = await storage.getPartners();
   if (existingPartners.length === 0) {
