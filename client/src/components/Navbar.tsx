@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, HardHat, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -57,11 +57,12 @@ export function Navbar() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/">
           <div className="flex items-center gap-2 cursor-pointer group">
-            <img
-              src="/logo.png"
-              alt="BEGEC TP Logo"
-              className="h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
-            />
+            <div className="bg-primary p-2 rounded text-white group-hover:bg-primary/90 transition-colors">
+              <HardHat className="w-6 h-6" />
+            </div>
+            <span className="text-2xl font-heading font-extrabold tracking-tighter text-primary">
+              BEGEC <span className="text-secondary">TP</span>
+            </span>
           </div>
         </Link>
 
