@@ -5,7 +5,7 @@ import { Menu, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useQuery } from "@tanstack/react-query";
-import logoImg from "@assets/logo_1771842670816.png";
+import logoImg from "@assets/begec_logo_v2.png";
 
 export function Navbar() {
   const [location] = useLocation();
@@ -64,8 +64,11 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2 cursor-pointer group">
+          <div className="flex items-center gap-3 cursor-pointer group">
             <img src={logoSrc} className="h-10 w-auto object-contain" alt="BEGEC TP Logo" />
+            <span className="text-xl font-heading font-extrabold tracking-tight text-primary hidden sm:block">
+              BEGEC <span className="text-secondary">TP</span>
+            </span>
           </div>
         </Link>
 
