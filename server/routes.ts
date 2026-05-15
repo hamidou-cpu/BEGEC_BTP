@@ -1,4 +1,4 @@
-import type { Express, Request, Response, NextFunction } from "express";
+import type { Express } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
@@ -6,60 +6,12 @@ import { z } from "zod";
 import { projects, testimonials, teamMembers, partners } from "@shared/schema";
 import { db } from "./db";
 import nodemailer from "nodemailer";
-import multer from "multer";
-import path from "path";
-import fs from "fs";
-
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "BEP123";
-const ADMIN_TOKEN = "begec-admin-secret-token-2024";
-
-// Configure multer for file uploads
-const uploadsDir = path.join(process.cwd(), "uploads");
-try {
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-} catch (e) {
-  console.warn("Could not create uploads directory:", e);
-}
-
-const uploadStorage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, uploadsDir);
-  },
-  filename: (_req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({
-  storage: uploadStorage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
-  fileFilter: (_req, file, cb) => {
-    const allowed = /jpeg|jpg|png|gif|webp|svg/;
-    const ext = allowed.test(path.extname(file.originalname).toLowerCase());
-    const mime = allowed.test(file.mimetype);
-    if (ext || mime) cb(null, true);
-    else cb(new Error("Only image files are allowed"));
-  },
-});
-
-// Admin auth middleware
-function requireAdmin(req: Request, res: Response, next: NextFunction) {
-  const token = req.headers["x-admin-token"];
-  if (token !== ADMIN_TOKEN) {
-    return res.status(401).json({ message: "Non autorisé" });
-  }
-  next();
-}
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Email transporter
+  // Configuration du transporteur d'e-mails
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT) || 587,
@@ -75,17 +27,30 @@ export async function registerRoutes(
     try {
       const input = api.contact.submit.input.parse(req.body);
       await storage.createContactMessage(input);
+
+      // Envoi de l'e-mail si configuré
       if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         await transporter.sendMail({
           from: `"Site Web BEGEC TP" <${process.env.SMTP_USER}>`,
           to: "contact@begecgroup.com",
           subject: `Nouveau message: ${input.subject}`,
-          html: `<h3>Nouveau message de contact</h3><p><strong>Nom:</strong> ${input.name}</p><p><strong>Email:</strong> ${input.email}</p><p><strong>Téléphone:</strong> ${input.phone || "N/A"}</p><p><strong>Sujet:</strong> ${input.subject}</p><hr /><p><strong>Message:</strong></p><p>${input.message.replace(/\n/g, "<br>")}</p>`,
+          text: `Nom: ${input.name}\nEmail: ${input.email}\nTéléphone: ${input.phone || "N/A"}\n\nMessage:\n${input.message}`,
+          html: `
+            <h3>Nouveau message de contact</h3>
+            <p><strong>Nom:</strong> ${input.name}</p>
+            <p><strong>Email:</strong> ${input.email}</p>
+            <p><strong>Téléphone:</strong> ${input.phone || "N/A"}</p>
+            <p><strong>Sujet:</strong> ${input.subject}</p>
+            <hr />
+            <p><strong>Message:</strong></p>
+            <p>${input.message.replace(/\n/g, "<br>")}</p>
+          `,
         });
       }
+
       res.json({ success: true, message: "Message reçu avec succès." });
     } catch (error) {
-      if (error instanceof z.ZodError) {
+       if (error instanceof z.ZodError) {
         res.status(400).json({ message: "Données invalides", field: error.errors[0].path.join('.') });
       } else {
         console.error("Email error:", error);
@@ -99,262 +64,133 @@ export async function registerRoutes(
     try {
       const input = api.quotes.submit.input.parse(req.body);
       await storage.createQuoteRequest(input);
+
+      // Envoi de l'e-mail de devis si configuré
       if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         await transporter.sendMail({
           from: `"Site Web BEGEC TP" <${process.env.SMTP_USER}>`,
           to: "contact@begecgroup.com",
           subject: `Nouvelle demande de devis: ${input.projectType}`,
-          html: `<h3>Nouvelle demande de devis</h3><p><strong>Nom:</strong> ${input.name}</p><p><strong>Email:</strong> ${input.email}</p><p><strong>Téléphone:</strong> ${input.phone}</p><p><strong>Type de projet:</strong> ${input.projectType}</p><p><strong>Localisation:</strong> ${input.location || "N/A"}</p><hr /><p><strong>Description:</strong></p><p>${input.description.replace(/\n/g, "<br>")}</p>`,
+          text: `Nom: ${input.name}\nEmail: ${input.email}\nTéléphone: ${input.phone}\nProjet: ${input.projectType}\nLocalisation: ${input.location || "N/A"}\n\nDescription:\n${input.description}`,
+          html: `
+            <h3>Nouvelle demande de devis</h3>
+            <p><strong>Nom:</strong> ${input.name}</p>
+            <p><strong>Email:</strong> ${input.email}</p>
+            <p><strong>Téléphone:</strong> ${input.phone}</p>
+            <p><strong>Type de projet:</strong> ${input.projectType}</p>
+            <p><strong>Localisation:</strong> ${input.location || "N/A"}</p>
+            <hr />
+            <p><strong>Description:</strong></p>
+            <p>${input.description.replace(/\n/g, "<br>")}</p>
+          `,
         });
       }
+
       res.json({ success: true, message: "Demande de devis reçue avec succès." });
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ message: "Données invalides", field: error.errors[0].path.join('.') });
       } else {
-        console.error("Email error:", error);
-        res.status(500).json({ message: "Erreur serveur interne" });
+         console.error("Email error:", error);
+         res.status(500).json({ message: "Erreur serveur interne" });
       }
     }
   });
 
-  // Public GET routes
+  // Projects
   app.get(api.projects.list.path, async (_req, res) => {
-    res.json(await storage.getProjects());
+    const projectsList = await storage.getProjects();
+    res.json(projectsList);
   });
 
+  // Testimonials
   app.get(api.testimonials.list.path, async (_req, res) => {
-    res.json(await storage.getTestimonials());
+    const testimonialsList = await storage.getTestimonials();
+    res.json(testimonialsList);
   });
 
+  // Team
   app.get(api.team.list.path, async (_req, res) => {
-    res.json(await storage.getTeamMembers());
+    const teamList = await storage.getTeamMembers();
+    res.json(teamList);
   });
 
+  // Partners
   app.get(api.partners.list.path, async (_req, res) => {
-    res.json(await storage.getPartners());
+    const partnersList = await storage.getPartners();
+    res.json(partnersList);
   });
 
-  app.get("/api/settings/:key", async (req, res) => {
-    const value = await storage.getSetting(req.params.key);
-    res.json({ key: req.params.key, value });
-  });
-
-  // ==================== ADMIN ROUTES ====================
-
-  // Admin login
-  app.post("/api/admin/login", (req, res) => {
-    const { username, password } = req.body;
-    if (username === ADMIN_USER && password === ADMIN_PASS) {
-      res.json({ token: ADMIN_TOKEN });
-    } else {
-      res.status(401).json({ message: "Identifiants incorrects" });
-    }
-  });
-
-  // Upload image
-  app.post("/api/admin/upload", requireAdmin, upload.single("file"), (req, res) => {
-    if (!req.file) {
-      return res.status(400).json({ message: "Aucun fichier reçu" });
-    }
-    const url = `/uploads/${req.file.filename}`;
-    res.json({ url });
-  });
-
-  // Admin - Site settings (logo, etc.)
-  app.put("/api/admin/settings/:key", requireAdmin, async (req, res) => {
-    try {
-      const { value } = req.body;
-      await storage.setSetting(req.params.key, value);
-      res.json({ success: true });
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  // Admin - Projects CRUD
-  app.post("/api/admin/projects", requireAdmin, async (req, res) => {
-    try {
-      const project = await storage.createProject(req.body);
-      res.json(project);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  app.put("/api/admin/projects/:id", requireAdmin, async (req, res) => {
-    try {
-      const project = await storage.updateProject(Number(req.params.id), req.body);
-      res.json(project);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  app.delete("/api/admin/projects/:id", requireAdmin, async (req, res) => {
-    try {
-      await storage.deleteProject(Number(req.params.id));
-      res.json({ success: true });
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  // Admin - Team CRUD
-  app.post("/api/admin/team", requireAdmin, async (req, res) => {
-    try {
-      const member = await storage.createTeamMember(req.body);
-      res.json(member);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  app.put("/api/admin/team/:id", requireAdmin, async (req, res) => {
-    try {
-      const member = await storage.updateTeamMember(Number(req.params.id), req.body);
-      res.json(member);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  app.delete("/api/admin/team/:id", requireAdmin, async (req, res) => {
-    try {
-      await storage.deleteTeamMember(Number(req.params.id));
-      res.json({ success: true });
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  // Admin - Partners CRUD
-  app.post("/api/admin/partners", requireAdmin, async (req, res) => {
-    try {
-      const partner = await storage.createPartner(req.body);
-      res.json(partner);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  app.put("/api/admin/partners/:id", requireAdmin, async (req, res) => {
-    try {
-      const partner = await storage.updatePartner(Number(req.params.id), req.body);
-      res.json(partner);
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  app.delete("/api/admin/partners/:id", requireAdmin, async (req, res) => {
-    try {
-      await storage.deletePartner(Number(req.params.id));
-      res.json({ success: true });
-    } catch (error) {
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  });
-
-  // ==================== SEED DATA ====================
-  try { await runSeedData(); } catch (e) { console.error("[seed] error during seeding (non-fatal):", e); }
-
-  return httpServer;
-}
-
-async function runSeedData() {
-
+  // Seed Data (if empty)
   const existingProjects = await storage.getProjects();
-  const hasOldProjectLocations = existingProjects.some(p => p.location?.includes("France"));
-  if (existingProjects.length === 0 || hasOldProjectLocations) {
-    for (const p of existingProjects) {
-      await storage.deleteProject(p.id);
-    }
+  if (existingProjects.length === 0) {
     await db.insert(projects).values([
       {
-        title: "Aménagement Lotissement Kipé",
+        title: "Aménagement Lotissement Les Chênes",
         category: "VRD",
-        description: "Création complète de la voirie et des réseaux divers pour un lotissement résidentiel de 20 parcelles à Kipé.",
+        description: "Création complète de la voirie et des réseaux divers pour un lotissement de 15 parcelles.",
         imageUrl: "https://images.unsplash.com/photo-1590486803833-1c5dc8ce2ac6?auto=format&fit=crop&q=80",
-        location: "Conakry, Guinée",
+        location: "Lyon, France",
         completionDate: "2024"
       },
       {
-        title: "Terrassement Zone Commerciale",
+        title: "Terrassement Centre Commercial",
         category: "Terrassement",
-        description: "Nivellement et préparation de terrain de 8000m² pour la construction d'une zone commerciale.",
+        description: "Nivellement de terrain de 5000m² pour la construction d'une zone commerciale.",
         imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80",
-        location: "Kindia, Guinée",
+        location: "Grenoble, France",
         completionDate: "2023"
       },
       {
         title: "Réseau Assainissement Communal",
         category: "Assainissement",
-        description: "Rénovation et extension du réseau d'eaux usées sur 3km pour la commune.",
+        description: "Rénovation et extension du réseau d'eaux usées sur 2km.",
         imageUrl: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80",
-        location: "Labé, Guinée",
+        location: "Valence, France",
         completionDate: "2024"
       },
       {
-        title: "Aménagement Route Nationale",
-        category: "Voirie",
-        description: "Réhabilitation et élargissement de 5km de route nationale avec pose de bordures et marquage.",
-        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80",
-        location: "Mamou, Guinée",
-        completionDate: "2023"
-      },
-      {
-        title: "Construction Dalles et Caniveaux",
-        category: "Assainissement",
-        description: "Pose de dalles en béton et création de caniveaux pour la gestion des eaux pluviales en milieu urbain.",
-        imageUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80",
-        location: "N'Zérékoré, Guinée",
-        completionDate: "2024"
-      },
-      {
-        title: "Aménagement Parc Industriel",
+        title: "Aménagement Parc Urbain",
         category: "Aménagement Extérieur",
-        description: "Aménagement complet d'une zone industrielle : voirie interne, réseaux, éclairage et espaces verts.",
+        description: "Création de sentiers, pose de bordures et aménagement paysager.",
         imageUrl: "https://images.unsplash.com/photo-1558435186-d31d14341926?auto=format&fit=crop&q=80",
-        location: "Conakry, Guinée",
+        location: "Chambéry, France",
         completionDate: "2023"
       }
     ]);
   }
 
   const existingTestimonials = await storage.getTestimonials();
-  const hasOldTestimonials = existingTestimonials.some(t => t.clientName === "Jean Dupont");
-  if (existingTestimonials.length === 0 || hasOldTestimonials) {
-    for (const t of existingTestimonials) {
-      await storage.deleteTestimonial(t.id);
-    }
+  if (existingTestimonials.length === 0) {
     await db.insert(testimonials).values([
       {
-        clientName: "Mamadou Bah",
+        clientName: "Jean Dupont",
         role: "Directeur de Projet",
-        company: "Société Immobilière de Guinée",
-        content: "BEGEC TP a fait preuve d'un professionnalisme exemplaire sur notre chantier. Délais respectés, qualité irréprochable — je les recommande vivement.",
+        company: "ImmoBuild",
+        content: "BEGEC TP a fait preuve d'un professionnalisme exemplaire sur notre chantier. Délais respectés et qualité au rendez-vous.",
         rating: 5
       },
       {
-        clientName: "Fatoumata Diallo",
+        clientName: "Marie Martin",
         role: "Maire",
-        company: "Commune de Ratoma",
-        content: "Une équipe réactive et compétente pour nos travaux de voirie. Les délais ont été tenus et le résultat dépasse nos attentes.",
+        company: "Mairie de Saint-Clair",
+        content: "Une équipe réactive et compétente pour nos travaux de voirie. Je recommande vivement.",
         rating: 5
       },
       {
-        clientName: "Ibrahim Kouyaté",
+        clientName: "Pierre Durand",
         role: "Architecte",
-        company: "Cabinet d'Architecture de Conakry",
-        content: "Collaboration fluide et résultats conformes à nos exigences techniques. BEGEC TP est un partenaire fiable pour des projets de grande envergure.",
+        company: "ArchiDesign",
+        content: "Collaboration fluide et résultats conformes à nos attentes techniques élevées.",
         rating: 4
       }
     ]);
   }
 
   const existingTeam = await storage.getTeamMembers();
-  if (existingTeam.length === 0) {
+  if (existingTeam.length > 0) {
+    await db.delete(teamMembers);
+  }
   await db.insert(teamMembers).values([
     {
       name: "Lancinet DABO",
@@ -405,30 +241,18 @@ async function runSeedData() {
       imageUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80"
     }
   ]);
-  }
 
   const existingPartners = await storage.getPartners();
-  const hasPlaceholders = existingPartners.some(p => p.name.startsWith("Partner "));
-  if (existingPartners.length === 0 || hasPlaceholders) {
-    for (const p of existingPartners) {
-      await storage.deletePartner(p.id);
-    }
+  if (existingPartners.length === 0) {
     await db.insert(partners).values([
-      { name: "Caterpillar", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Caterpillar_logo.svg" },
-      { name: "Komatsu", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/42/Komatsu_logo.svg" },
-      { name: "Holcim", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/be/Holcim-Logo.svg" },
-      { name: "JCB", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4b/JCB_logo.svg" },
-      { name: "World Bank", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/8/87/The_World_Bank_logo.svg" },
-      { name: "TotalEnergies", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/07/TotalEnergies_logo.svg" },
+      { name: "Partner 1", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
+      { name: "Partner 2", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
+      { name: "Partner 3", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" },
+      { name: "Partner 4", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Apple_logo_grey.svg" },
+      { name: "Partner 5", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
+      { name: "Partner 6", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg" },
     ]);
   }
 
-  // Seed contact info settings
-  const existingPhone = await storage.getSetting("phone");
-  if (!existingPhone) {
-    await storage.setSetting("phone", "(+224) 622 21 34 67");
-    await storage.setSetting("email", "contact@begecgroup.com");
-    await storage.setSetting("address", "CARREFOUR IPS, KIPE, COMMUNE DE RATOMA");
-    await storage.setSetting("hours", "Lun - Ven: 8h00 - 18h00\nSamedi: Sur rendez-vous");
-  }
+  return httpServer;
 }

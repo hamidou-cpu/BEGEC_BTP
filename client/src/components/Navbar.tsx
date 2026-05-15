@@ -1,22 +1,14 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useQuery } from "@tanstack/react-query";
-import logoImg from "@assets/begec_logo_v2.png";
 
 export function Navbar() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  const { data: logoSetting } = useQuery<{ key: string; value: string | null }>({
-    queryKey: ["/api/settings/logo"],
-    staleTime: 30000,
-  });
-  const logoSrc = logoSetting?.value || logoImg;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -64,11 +56,12 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-3 cursor-pointer group">
-            <img src={logoSrc} className="h-10 w-auto object-contain" alt="BEGEC TP Logo" />
-            <span className="text-xl font-heading font-extrabold tracking-tight text-primary hidden sm:block">
-              BEGEC <span className="text-secondary">TP</span>
-            </span>
+          <div className="flex items-center gap-2 cursor-pointer group">
+            <img
+              src="/logo.png"
+              alt="BEGEC TP Logo"
+              className="h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
+            />
           </div>
         </Link>
 

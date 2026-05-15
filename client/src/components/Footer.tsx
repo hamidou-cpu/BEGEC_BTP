@@ -1,14 +1,7 @@
 import { Link } from "wouter";
 import { HardHat, Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from "lucide-react";
-import { useSetting } from "@/hooks/use-settings";
 
 export function Footer() {
-  const phone = useSetting("phone", "(+224) 622 21 34 67");
-  const email = useSetting("email", "contact@begecgroup.com");
-  const address = useSetting("address", "CARREFOUR IPS, KIPE, COMMUNE DE RATOMA");
-  const hours = useSetting("hours", "Lun - Ven: 8h00 - 18h00\nSamedi: Sur rendez-vous");
-  const hoursLines = hours.split("\n");
-
   return (
     <footer className="bg-primary text-primary-foreground pt-16 pb-8">
       <div className="container mx-auto px-4">
@@ -56,43 +49,44 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-secondary shrink-0 mt-1" />
-                <span className="text-primary-foreground/80">{address}</span>
+                <span className="text-primary-foreground/80">CARREFOUR IPS, KIPE, COMMUNE DE RATOMA</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-secondary shrink-0" />
-                <a href={`tel:${phone.replace(/\s/g, "")}`} className="text-primary-foreground/80 hover:text-white transition-colors">
-                  {phone}
-                </a>
+              <li className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-secondary shrink-0" />
+                  <a href="tel:+224622213467" className="text-primary-foreground/80 hover:text-white transition-colors">
+                    (+224) 622 21 34 67
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
-                <a href={`mailto:${email}`} className="text-primary-foreground/80 hover:text-white transition-colors">
-                  {email}
+                <a href="mailto:contact@begecgroup.com" className="text-primary-foreground/80 hover:text-white transition-colors">
+                  contact@begecgroup.com
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Social & Hours */}
+          {/* Social & Legal */}
           <div>
             <h3 className="text-lg font-heading font-bold mb-4 text-white">Suivez-nous</h3>
             <div className="flex gap-4 mb-8">
-              <a href="#" className="bg-primary-foreground/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition-all" aria-label="Facebook">
+              <a href="#" className="bg-primary-foreground/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition-all">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-primary-foreground/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition-all" aria-label="LinkedIn">
+              <a href="#" className="bg-primary-foreground/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition-all">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-primary-foreground/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition-all" aria-label="Instagram">
+              <a href="#" className="bg-primary-foreground/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition-all">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
             <h3 className="text-lg font-heading font-bold mb-2 text-white">Horaires</h3>
-            <div className="text-primary-foreground/80 text-sm space-y-1">
-              {hoursLines.map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
-            </div>
+            <p className="text-primary-foreground/80 text-sm">
+              Lun - Ven: 8h00 - 18h00<br />
+              Samedi: Sur rendez-vous
+            </p>
           </div>
         </div>
 
