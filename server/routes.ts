@@ -16,8 +16,12 @@ const ADMIN_TOKEN = "begec-admin-secret-token-2024";
 
 // Configure multer for file uploads
 const uploadsDir = path.join(process.cwd(), "uploads");
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+try {
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+} catch (e) {
+  console.warn("Could not create uploads directory:", e);
 }
 
 const uploadStorage = multer.diskStorage({
@@ -254,20 +258,24 @@ export async function registerRoutes(
 
   // ==================== SEED DATA ====================
   const existingProjects = await storage.getProjects();
-  if (existingProjects.length === 0) {
+  const hasOldProjectLocations = existingProjects.some(p => p.location?.includes("France"));
+  if (existingProjects.length === 0 || hasOldProjectLocations) {
+    for (const p of existingProjects) {
+      await storage.deleteProject(p.id);
+    }
     await db.insert(projects).values([
       {
-        title: "Aménagement Lotissement Les Chênes",
+        title: "Aménagement Lotissement Kipé",
         category: "VRD",
-        description: "Création complète de la voirie et des réseaux divers pour un lotissement de 15 parcelles.",
+        description: "Création complète de la voirie et des réseaux divers pour un lotissement résidentiel de 20 parcelles à Kipé.",
         imageUrl: "https://images.unsplash.com/photo-1590486803833-1c5dc8ce2ac6?auto=format&fit=crop&q=80",
         location: "Conakry, Guinée",
         completionDate: "2024"
       },
       {
-        title: "Terrassement Centre Commercial",
+        title: "Terrassement Zone Commerciale",
         category: "Terrassement",
-        description: "Nivellement de terrain de 5000m² pour la construction d'une zone commerciale.",
+        description: "Nivellement et préparation de terrain de 8000m² pour la construction d'une zone commerciale.",
         imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80",
         location: "Kindia, Guinée",
         completionDate: "2023"
@@ -275,15 +283,31 @@ export async function registerRoutes(
       {
         title: "Réseau Assainissement Communal",
         category: "Assainissement",
-        description: "Rénovation et extension du réseau d'eaux usées sur 2km.",
+        description: "Rénovation et extension du réseau d'eaux usées sur 3km pour la commune.",
         imageUrl: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80",
         location: "Labé, Guinée",
         completionDate: "2024"
       },
       {
-        title: "Aménagement Parc Urbain",
+        title: "Aménagement Route Nationale",
+        category: "Voirie",
+        description: "Réhabilitation et élargissement de 5km de route nationale avec pose de bordures et marquage.",
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80",
+        location: "Mamou, Guinée",
+        completionDate: "2023"
+      },
+      {
+        title: "Construction Dalles et Caniveaux",
+        category: "Assainissement",
+        description: "Pose de dalles en béton et création de caniveaux pour la gestion des eaux pluviales en milieu urbain.",
+        imageUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80",
+        location: "N'Zérékoré, Guinée",
+        completionDate: "2024"
+      },
+      {
+        title: "Aménagement Parc Industriel",
         category: "Aménagement Extérieur",
-        description: "Création de sentiers, pose de bordures et aménagement paysager.",
+        description: "Aménagement complet d'une zone industrielle : voirie interne, réseaux, éclairage et espaces verts.",
         imageUrl: "https://images.unsplash.com/photo-1558435186-d31d14341926?auto=format&fit=crop&q=80",
         location: "Conakry, Guinée",
         completionDate: "2023"
@@ -292,27 +316,31 @@ export async function registerRoutes(
   }
 
   const existingTestimonials = await storage.getTestimonials();
-  if (existingTestimonials.length === 0) {
+  const hasOldTestimonials = existingTestimonials.some(t => t.clientName === "Jean Dupont");
+  if (existingTestimonials.length === 0 || hasOldTestimonials) {
+    for (const t of existingTestimonials) {
+      await storage.deleteTestimonial(t.id);
+    }
     await db.insert(testimonials).values([
       {
         clientName: "Mamadou Bah",
         role: "Directeur de Projet",
         company: "Société Immobilière de Guinée",
-        content: "BEGEC TP a fait preuve d'un professionnalisme exemplaire sur notre chantier. Délais respectés et qualité au rendez-vous.",
+        content: "BEGEC TP a fait preuve d'un professionnalisme exemplaire sur notre chantier. Délais respectés, qualité irréprochable — je les recommande vivement.",
         rating: 5
       },
       {
         clientName: "Fatoumata Diallo",
         role: "Maire",
         company: "Commune de Ratoma",
-        content: "Une équipe réactive et compétente pour nos travaux de voirie. Je recommande vivement.",
+        content: "Une équipe réactive et compétente pour nos travaux de voirie. Les délais ont été tenus et le résultat dépasse nos attentes.",
         rating: 5
       },
       {
         clientName: "Ibrahim Kouyaté",
         role: "Architecte",
         company: "Cabinet d'Architecture de Conakry",
-        content: "Collaboration fluide et résultats conformes à nos attentes techniques élevées.",
+        content: "Collaboration fluide et résultats conformes à nos exigences techniques. BEGEC TP est un partenaire fiable pour des projets de grande envergure.",
         rating: 4
       }
     ]);
@@ -373,15 +401,28 @@ export async function registerRoutes(
   }
 
   const existingPartners = await storage.getPartners();
-  if (existingPartners.length === 0) {
+  const hasPlaceholders = existingPartners.some(p => p.name.startsWith("Partner "));
+  if (existingPartners.length === 0 || hasPlaceholders) {
+    for (const p of existingPartners) {
+      await storage.deletePartner(p.id);
+    }
     await db.insert(partners).values([
-      { name: "Partner 1", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
-      { name: "Partner 2", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
-      { name: "Partner 3", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" },
-      { name: "Partner 4", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Apple_logo_grey.svg" },
-      { name: "Partner 5", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
-      { name: "Partner 6", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg" },
+      { name: "Caterpillar", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Caterpillar_logo.svg" },
+      { name: "Komatsu", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/42/Komatsu_logo.svg" },
+      { name: "Holcim", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/be/Holcim-Logo.svg" },
+      { name: "JCB", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4b/JCB_logo.svg" },
+      { name: "World Bank", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/8/87/The_World_Bank_logo.svg" },
+      { name: "TotalEnergies", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/07/TotalEnergies_logo.svg" },
     ]);
+  }
+
+  // Seed contact info settings
+  const existingPhone = await storage.getSetting("phone");
+  if (!existingPhone) {
+    await storage.setSetting("phone", "(+224) 622 21 34 67");
+    await storage.setSetting("email", "contact@begecgroup.com");
+    await storage.setSetting("address", "CARREFOUR IPS, KIPE, COMMUNE DE RATOMA");
+    await storage.setSetting("hours", "Lun - Ven: 8h00 - 18h00\nSamedi: Sur rendez-vous");
   }
 
   return httpServer;

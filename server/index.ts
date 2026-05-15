@@ -10,8 +10,12 @@ const httpServer = createServer(app);
 
 // Serve uploaded files statically
 const uploadsDir = path.join(process.cwd(), "uploads");
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+try {
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+} catch (e) {
+  console.warn("Could not create uploads directory:", e);
 }
 app.use("/uploads", express.static(uploadsDir));
 
