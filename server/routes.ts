@@ -257,6 +257,13 @@ export async function registerRoutes(
   });
 
   // ==================== SEED DATA ====================
+  try { await runSeedData(); } catch (e) { console.error("[seed] error during seeding (non-fatal):", e); }
+
+  return httpServer;
+}
+
+async function runSeedData() {
+
   const existingProjects = await storage.getProjects();
   const hasOldProjectLocations = existingProjects.some(p => p.location?.includes("France"));
   if (existingProjects.length === 0 || hasOldProjectLocations) {
@@ -424,6 +431,4 @@ export async function registerRoutes(
     await storage.setSetting("address", "CARREFOUR IPS, KIPE, COMMUNE DE RATOMA");
     await storage.setSetting("hours", "Lun - Ven: 8h00 - 18h00\nSamedi: Sur rendez-vous");
   }
-
-  return httpServer;
 }
