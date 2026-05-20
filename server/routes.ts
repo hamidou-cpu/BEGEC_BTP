@@ -59,6 +59,10 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Serve uploaded files statically
+  const { default: express } = await import("express");
+  app.use("/uploads", express.static(uploadsDir));
+
   // Email transporter
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
