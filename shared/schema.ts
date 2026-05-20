@@ -57,6 +57,12 @@ export const partners = pgTable("partners", {
   logoUrl: text("logo_url").notNull(),
 });
 
+export const siteSettings = pgTable("site_settings", {
+  id: serial("id").primaryKey(),
+  key: varchar("key", { length: 100 }).notNull().unique(),
+  value: text("value").notNull(),
+});
+
 export const insertContactSchema = createInsertSchema(contactMessages).omit({ id: true, createdAt: true });
 export const insertQuoteSchema = createInsertSchema(quoteRequests).omit({ id: true, createdAt: true });
 export const insertProjectSchema = createInsertSchema(projects).omit({ id: true });
@@ -74,10 +80,11 @@ export type Project = typeof projects.$inferSelect;
 export type InsertProject = z.infer<typeof insertProjectSchema>;
 
 export type Testimonial = typeof testimonials.$inferSelect;
-export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
 
 export type TeamMember = typeof teamMembers.$inferSelect;
 export type InsertTeamMember = z.infer<typeof insertTeamMemberSchema>;
 
 export type Partner = typeof partners.$inferSelect;
 export type InsertPartner = z.infer<typeof insertPartnerSchema>;
+
+export type SiteSetting = typeof siteSettings.$inferSelect;
