@@ -17,7 +17,7 @@ export const quoteRequests = pgTable("quote_requests", {
   name: varchar("name", { length: 100 }).notNull(),
   email: varchar("email", { length: 255 }).notNull(),
   phone: varchar("phone", { length: 20 }).notNull(),
-  projectType: varchar("project_type", { length: 100 }).notNull(), // e.g., Terrassement, VRD
+  projectType: varchar("project_type", { length: 100 }).notNull(),
   description: text("description").notNull(),
   location: varchar("location", { length: 255 }),
   estimatedStartDate: varchar("estimated_start_date", { length: 50 }),
@@ -27,7 +27,7 @@ export const quoteRequests = pgTable("quote_requests", {
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
   title: varchar("title", { length: 200 }).notNull(),
-  category: varchar("category", { length: 100 }).notNull(), // Terrassement, VRD, Assainissement, etc.
+  category: varchar("category", { length: 100 }).notNull(),
   description: text("description").notNull(),
   imageUrl: text("image_url").notNull(),
   location: varchar("location", { length: 100 }),
@@ -71,7 +71,10 @@ export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertQuoteRequest = z.infer<typeof insertQuoteSchema>;
 
 export type Project = typeof projects.$inferSelect;
+export type InsertProject = z.infer<typeof insertProjectSchema>;
+
 export type Testimonial = typeof testimonials.$inferSelect;
+export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
 
 export type TeamMember = typeof teamMembers.$inferSelect;
 export type InsertTeamMember = z.infer<typeof insertTeamMemberSchema>;
