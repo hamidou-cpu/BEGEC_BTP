@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
+// Pages
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Expertise from "@/pages/Expertise";
@@ -15,7 +16,21 @@ import Quote from "@/pages/Quote";
 import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 
-function PublicLayout() {
+function AppContent() {
+  const [location] = useLocation();
+  const isAdmin = location.startsWith("/admin");
+
+  if (isAdmin) {
+    return (
+      <>
+        <Switch>
+          <Route path="/admin" component={Admin} />
+        </Switch>
+        <Toaster />
+      </>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -31,24 +46,16 @@ function PublicLayout() {
         </Switch>
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
-}
-
-function Router() {
-  const [location] = useLocation();
-  if (location.startsWith("/admin")) {
-    return <Admin />;
-  }
-  return <PublicLayout />;
 }
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Router />
-        <Toaster />
+        <AppContent />
       </TooltipProvider>
     </QueryClientProvider>
   );
