@@ -4,17 +4,31 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useProjects } from "@/hooks/use-projects";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MapPin, Calendar } from "lucide-react";
+import { MapPin, Calendar, X, ChevronLeft, ChevronRight } from "lucide-react";
+import type { Project } from "@shared/schema";
 
 export default function Portfolio() {
   const { data: projects, isLoading } = useProjects();
   const [filter, setFilter] = useState("Tous");
+  const [lightbox, setLightbox] = useState<Project | null>(null);
 
   const categories = ["Tous", "Terrassement", "VRD", "Assainissement", "Aménagement"];
 
   const filteredProjects = projects?.filter(p => 
     filter === "Tous" || p.category.includes(filter)
   );
+
+  const openLightbox = (project: Project) => setLightbox(project);
+  const closeLightbox = () => setLightbox(null);
+
+  const navigateLightbox = (dir: "prev" | "next") => {
+    if (!lightbox || !filteredProjects) return;
+    const idx = filteredProjects.findIndex(p => p.id === lightbox.id);
+    const next = dir === "next"
+      ? filteredProjects[(idx + 1) % filteredProjects.length]
+      : filteredProjects[(idx - 1 + filteredProjects.length) % filteredProjects.length];
+    setLightbox(next);
+  };
 
   return (
     <div className="pt-24 min-h-screen pb-24 bg-background">
@@ -70,12 +84,20 @@ export default function Portfolio() {
                   transition={{ duration: 0.3 }}
                   className="group"
                 >
-                  <div className="relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] mb-4 bg-muted">
+                  <div
+                    className="relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] mb-4 bg-muted cursor-pointer"
+                    onClick={() => openLightbox(project)}
+                  >
                     <img
                       src={project.imageUrl}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                      <span className="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 rounded-full">
+                        Voir en grand
+                      </span>
+                    </div>
                     <div className="absolute top-4 right-4">
                       <Badge className="bg-white/90 text-primary hover:bg-white backdrop-blur-sm shadow-sm">
                         {project.category}
@@ -117,6 +139,79 @@ export default function Portfolio() {
           </div>
         )}
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={closeLightbox}
+          >
+            {/* Close button */}
+            <button
+              className="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors z-10"
+              onClick={closeLightbox}
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Prev */}
+            <button
+              className="absolute left-4 text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors z-10"
+              onClick={(e) => { e.stopPropagation(); navigateLightbox("prev"); }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Next */}
+            <button
+              className="absolute right-4 text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors z-10"
+              onClick={(e) => { e.stopPropagation(); navigateLightbox("next"); }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Image panel */}
+            <motion.div
+              key={lightbox.id}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="max-w-5xl w-full mx-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={lightbox.imageUrl}
+                  alt={lightbox.title}
+                  className="w-full max-h-[70vh] object-contain bg-black"
+                />
+              </div>
+              <div className="mt-4 text-center text-white">
+                <div className="flex items-center justify-center gap-4 text-sm text-white/60 mb-2">
+                  <Badge className="bg-primary/80 text-white">{lightbox.category}</Badge>
+                  {lightbox.location && (
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3" /> {lightbox.location}
+                    </span>
+                  )}
+                  {lightbox.completionDate && (
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" /> {lightbox.completionDate}
+                    </span>
+                  )}
+                </div>
+                <h2 className="text-2xl font-bold">{lightbox.title}</h2>
+                <p className="text-white/70 mt-2 max-w-2xl mx-auto text-sm">{lightbox.description}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
