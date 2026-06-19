@@ -202,8 +202,8 @@ function ImageUploader({
   return (
     <div className="space-y-2">
       {currentUrl && (
-        <div className="relative w-full h-32 rounded-lg overflow-hidden border border-[#1F3C88]/30">
-          <img src={currentUrl} alt="preview" className="w-full h-full object-cover" />
+        <div className="w-full bg-white rounded-lg border border-[#1F3C88]/30 flex items-center justify-center p-3" style={{ minHeight: "96px" }}>
+          <img src={currentUrl} alt="preview" className="max-h-20 max-w-full object-contain" />
         </div>
       )}
       <input
@@ -224,6 +224,9 @@ function ImageUploader({
         <Upload className="w-4 h-4 mr-2" />
         {uploading ? "Upload en cours..." : label}
       </Button>
+      {currentUrl && !uploading && (
+        <p className="text-emerald-400 text-xs text-center">✓ Logo prêt — cliquez sur Sauvegarder pour confirmer</p>
+      )}
     </div>
   );
 }
