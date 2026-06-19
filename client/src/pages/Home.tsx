@@ -267,11 +267,11 @@ export default function Home() {
           <div className="relative flex overflow-x-hidden group">
             <div className="py-8 animate-marquee whitespace-nowrap flex items-center">
               {partners.concat(partners).map((partner, i) => (
-                <div key={`${partner.id}-${i}`} className="mx-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 flex items-center justify-center">
+                <div key={`${partner.id}-${i}`} className="mx-14 flex items-center justify-center">
                   <img 
                     src={partner.logoUrl} 
                     alt={partner.name} 
-                    className="h-20 md:h-28 w-auto object-contain"
+                    className="h-24 md:h-32 w-auto object-contain"
                   />
                 </div>
               ))}
@@ -279,11 +279,11 @@ export default function Home() {
 
             <div className="absolute top-0 py-8 animate-marquee2 whitespace-nowrap flex items-center">
               {partners.concat(partners).map((partner, i) => (
-                <div key={`${partner.id}-clone-${i}`} className="mx-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 flex items-center justify-center">
+                <div key={`${partner.id}-clone-${i}`} className="mx-14 flex items-center justify-center">
                   <img 
                     src={partner.logoUrl} 
                     alt={partner.name} 
-                    className="h-20 md:h-28 w-auto object-contain"
+                    className="h-24 md:h-32 w-auto object-contain"
                   />
                 </div>
               ))}
