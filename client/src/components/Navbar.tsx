@@ -48,6 +48,7 @@ export function Navbar() {
   const navLinks = [
     { href: "/", label: "Accueil" },
     { href: "/a-propos", label: "À Propos" },
+    { href: "/equipe", label: "Notre Équipe" },
     { href: "/expertises", label: "Expertises" },
     { href: "/realisations", label: "Réalisations" },
     { href: "/contact", label: "Contact" },

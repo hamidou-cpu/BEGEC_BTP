@@ -14,6 +14,7 @@ import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
 import Quote from "@/pages/Quote";
 import Admin from "@/pages/Admin";
+import Team from "@/pages/Team";
 import NotFound from "@/pages/not-found";
 
 function AppContent() {
@@ -38,6 +39,7 @@ function AppContent() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/a-propos" component={About} />
+          <Route path="/equipe" component={Team} />
           <Route path="/expertises" component={Expertise} />
           <Route path="/realisations" component={Portfolio} />
           <Route path="/contact" component={Contact} />
