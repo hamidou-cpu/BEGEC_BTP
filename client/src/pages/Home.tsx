@@ -274,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* ── Stats / Animated Counters ─────────────────────────────────────── */}
-      <section className="py-20 text-primary-foreground relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #3a5687 0%, #4569a8 50%, #5a7bb8 100%)' }}>
+      <section className="py-20 text-primary-foreground relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f2461 0%, #1F3C88 50%, #1a3580 100%)' }}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -344,7 +344,7 @@ export default function Home() {
 
       {/* ── Partners Carousel — pause on hover ───────────────────────────── */}
       {partners && partners.length > 0 && (
-        <section className="py-16 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(69,105,168,0.08) 0%, rgba(69,105,168,0.03) 100%)' }}>
+        <section className="py-16 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(31,60,136,0.07) 0%, rgba(31,60,136,0.03) 100%)' }}>
           <motion.div
             className="container mx-auto px-4 mb-8 text-center"
             initial={{ opacity: 0, y: 16 }}
@@ -393,7 +393,7 @@ export default function Home() {
       )}
 
       {/* ── CTA Section ───────────────────────────────────────────────────── */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #34507e 0%, #4569a8 40%, #6485c2 75%, #4a6ba5 100%)' }}>
+      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1d52 0%, #1F3C88 40%, #2d57c7 75%, #1a3474 100%)' }}>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
