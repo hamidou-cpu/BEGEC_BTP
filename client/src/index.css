@@ -9,7 +9,7 @@
   --background: 0 0% 90%; /* #E5E5E5 - Light Concrete */
   --foreground: 222 47% 11%; /* #0F172A - Dark Slate */
   
-  --primary: 224 63% 33%; /* #1F3C88 - Deep Blue */
+  --primary: 217 44% 48%; /* #4569A8 - Soft Blue */
   --primary-foreground: 0 0% 100%;
   
   --secondary: 37 91% 55%; /* #F5A623 - Construction Yellow */
@@ -39,7 +39,7 @@
   --background: 222 47% 11%; /* #0F172A - Dark Slate */
   --foreground: 210 40% 98%;
   
-  --primary: 224 63% 45%; /* Slightly lighter blue for contrast */
+  --primary: 217 50% 60%; /* Soft lighter blue for dark mode contrast */
   --primary-foreground: 0 0% 100%;
   
   --secondary: 37 91% 55%;

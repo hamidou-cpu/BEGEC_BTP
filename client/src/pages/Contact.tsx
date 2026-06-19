@@ -43,7 +43,7 @@ export default function Contact() {
       {/* ── Hero Banner ─────────────────────────────────────────────────────── */}
       <section
         className="relative pt-36 pb-24 overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #0a1d52 0%, #1F3C88 50%, #2d57c7 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #34507e 0%, #4569a8 50%, #6485c2 100%)' }}
       >
         {/* Dot grid overlay */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '36px 36px' }} />
@@ -104,7 +104,7 @@ export default function Contact() {
                     >
                       <div
                         className="flex items-center justify-center w-11 h-11 rounded-xl shrink-0 text-white"
-                        style={{ background: 'linear-gradient(135deg, #1F3C88, #2d57c7)' }}
+                        style={{ background: 'linear-gradient(135deg, #4569a8, #6485c2)' }}
                       >
                         {item.icon}
                       </div>
@@ -123,12 +123,12 @@ export default function Contact() {
               <ScrollReveal direction="up" delay={0.45}>
                 <div
                   className="h-56 rounded-2xl overflow-hidden relative"
-                  style={{ background: 'linear-gradient(135deg, rgba(31,60,136,0.08) 0%, rgba(31,60,136,0.04) 100%)', border: '1px solid rgba(31,60,136,0.15)' }}
+                  style={{ background: 'linear-gradient(135deg, rgba(69,105,168,0.10) 0%, rgba(69,105,168,0.04) 100%)', border: '1px solid rgba(69,105,168,0.18)' }}
                 >
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
-                      style={{ background: 'linear-gradient(135deg, #1F3C88, #2d57c7)' }}
+                      style={{ background: 'linear-gradient(135deg, #4569a8, #6485c2)' }}
                     >
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
@@ -143,7 +143,7 @@ export default function Contact() {
             <ScrollReveal direction="right" delay={0.1}>
               <div
                 className="rounded-3xl overflow-hidden shadow-2xl"
-                style={{ background: 'linear-gradient(135deg, #0f2461 0%, #1F3C88 100%)' }}
+                style={{ background: 'linear-gradient(135deg, #3a5687 0%, #4d72ac 100%)' }}
               >
                 {/* Form header */}
                 <div className="px-8 pt-8 pb-6 border-b border-white/10">
