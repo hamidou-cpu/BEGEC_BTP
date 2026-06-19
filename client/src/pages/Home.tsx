@@ -362,22 +362,27 @@ export default function Home() {
             onMouseLeave={() => setPaused(false)}
           >
             <div
-              className="py-8 flex items-center animate-partners-scroll"
+              className="py-6 flex items-center animate-partners-scroll"
               style={{ animationPlayState: paused ? "paused" : "running" }}
             >
               {/* Render twice — animation moves by -50% for seamless loop */}
               {[...partners, ...partners].map((partner, i) => (
                 <div
                   key={`${partner.id}-${i}`}
-                  className="mx-12 flex-shrink-0 flex items-center justify-center"
-                  style={{ width: "160px" }}
+                  className="mx-6 flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-md border border-gray-100 px-6 py-4"
+                  style={{ width: "180px", height: "100px" }}
                 >
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="h-16 md:h-20 w-auto max-w-[140px] object-contain"
+                    className="w-full h-full object-contain"
                     onError={(e) => {
-                      e.currentTarget.style.display = "none";
+                      const el = e.currentTarget;
+                      el.style.display = "none";
+                      const parent = el.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<span style="font-size:12px;font-weight:600;color:#333;text-align:center">${partner.name}</span>`;
+                      }
                     }}
                   />
                 </div>
