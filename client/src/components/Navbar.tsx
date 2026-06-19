@@ -71,13 +71,17 @@ export function Navbar() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/">
           <div className="flex items-center gap-3 cursor-pointer group">
-            <motion.img
-              src={logoSrc}
-              className="h-10 w-auto object-contain"
-              alt="BEGEC TP Logo"
+            <motion.div
+              className="bg-white dark:bg-white rounded-lg px-2 py-1 shadow-sm"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
-            />
+            >
+              <img
+                src={logoSrc}
+                className="h-14 w-auto object-contain"
+                alt="BEGEC TP Logo"
+              />
+            </motion.div>
             <span className="text-xl font-heading font-extrabold tracking-tight text-primary hidden sm:block">
               BEGEC <span className="text-secondary">TP</span>
             </span>
