@@ -357,35 +357,28 @@ export default function Home() {
           </motion.div>
 
           <div
-            className="relative flex overflow-x-hidden"
+            className="overflow-x-hidden"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
             <div
-              className="py-8 animate-marquee whitespace-nowrap flex items-center"
+              className="py-8 flex items-center animate-partners-scroll"
               style={{ animationPlayState: paused ? "paused" : "running" }}
             >
-              {partners.concat(partners).map((partner, i) => (
-                <div key={`${partner.id}-${i}`} className="mx-14 flex items-center justify-center">
+              {/* Render twice — animation moves by -50% for seamless loop */}
+              {[...partners, ...partners].map((partner, i) => (
+                <div
+                  key={`${partner.id}-${i}`}
+                  className="mx-12 flex-shrink-0 flex items-center justify-center"
+                  style={{ width: "160px" }}
+                >
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="h-24 md:h-32 w-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div
-              className="absolute top-0 py-8 animate-marquee2 whitespace-nowrap flex items-center"
-              style={{ animationPlayState: paused ? "paused" : "running" }}
-            >
-              {partners.concat(partners).map((partner, i) => (
-                <div key={`${partner.id}-clone-${i}`} className="mx-14 flex items-center justify-center">
-                  <img
-                    src={partner.logoUrl}
-                    alt={partner.name}
-                    className="h-24 md:h-32 w-auto object-contain"
+                    className="h-16 md:h-20 w-auto max-w-[140px] object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
                   />
                 </div>
               ))}
