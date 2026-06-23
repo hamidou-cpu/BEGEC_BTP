@@ -9,6 +9,7 @@ import nodemailer from "nodemailer";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { ObjectStorageService } from "./replit_integrations/object_storage";
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "BEP123";
@@ -24,24 +25,16 @@ try {
   console.warn("Could not create uploads directory:", e);
 }
 
-const uploadStorage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, uploadsDir);
-  },
-  filename: (_req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
+const objectStorageService = new ObjectStorageService();
 
 const upload = multer({
-  storage: uploadStorage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
   fileFilter: (_req, file, cb) => {
     const allowed = /jpeg|jpg|png|gif|webp|svg/;
     const ext = allowed.test(path.extname(file.originalname).toLowerCase());
-    const mime = allowed.test(file.mimetype);
-    if (ext || mime) cb(null, true);
+    const mime = /^image\//.test(file.mimetype) && allowed.test(file.mimetype);
+    if (ext && mime) cb(null, true);
     else cb(new Error("Only image files are allowed"));
   },
 });
@@ -59,9 +52,24 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Serve uploaded files statically
+  // Serve legacy uploaded files (committed dev assets) statically
   const { default: express } = await import("express");
   app.use("/uploads", express.static(uploadsDir));
+
+  // Serve public objects from persistent object storage
+  app.get(/^\/public-objects\/(.+)$/, async (req, res) => {
+    try {
+      const filePath = (req.params as Record<string, string>)[0];
+      const file = await objectStorageService.searchPublicObject(filePath);
+      if (!file) {
+        return res.status(404).json({ message: "Fichier introuvable" });
+      }
+      await objectStorageService.downloadObject(file, res);
+    } catch (error) {
+      console.error("Error serving public object:", error);
+      res.status(500).json({ message: "Erreur serveur" });
+    }
+  });
 
   // Email transporter
   const transporter = nodemailer.createTransport({
@@ -156,13 +164,24 @@ export async function registerRoutes(
     }
   });
 
-  // Upload image
-  app.post("/api/admin/upload", requireAdmin, upload.single("file"), (req, res) => {
+  // Upload image to persistent object storage
+  app.post("/api/admin/upload", requireAdmin, upload.single("file"), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ message: "Aucun fichier reçu" });
     }
-    const url = `/uploads/${req.file.filename}`;
-    res.json({ url });
+    try {
+      const ext = path.extname(req.file.originalname) || "";
+      const fileName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+      await objectStorageService.uploadPublicFile(
+        fileName,
+        req.file.buffer,
+        req.file.mimetype || "application/octet-stream"
+      );
+      res.json({ url: `/public-objects/${fileName}` });
+    } catch (error) {
+      console.error("Upload error:", error);
+      res.status(500).json({ message: "Échec de l'upload" });
+    }
   });
 
   // Admin - Site settings (logo, etc.)
