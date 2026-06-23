@@ -143,17 +143,29 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.05 }}
           >
-            <Link href="/devis" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 h-14 shadow-lg shadow-secondary/30">
-                Demander un devis
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-            <Link href="/realisations" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary font-bold text-lg px-8 h-14">
-                Nos Réalisations
-              </Button>
-            </Link>
+            <motion.div
+              className="w-full sm:w-auto"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+            >
+              <Link href="/devis" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 h-14 shadow-lg shadow-secondary/30">
+                  Demander un devis
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </motion.div>
+            <motion.div
+              className="w-full sm:w-auto"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, delay: 0.5 }}
+            >
+              <Link href="/realisations" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary font-bold text-lg px-8 h-14">
+                  Nos Réalisations
+                </Button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
