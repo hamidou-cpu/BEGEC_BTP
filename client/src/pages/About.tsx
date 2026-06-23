@@ -44,10 +44,12 @@ export default function About() {
           >
             <div className="absolute -inset-4 bg-secondary/20 rounded-2xl transform rotate-3"></div>
             {/* Construction team meeting */}
-            <img
+            <motion.img
               src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
               alt="Construction team meeting"
               className="relative rounded-2xl shadow-2xl w-full object-cover aspect-video"
+              animate={{ y: [0, -16, 0] }}
+              transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
             />
           </motion.div>
 
