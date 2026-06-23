@@ -70,7 +70,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* ── Hero Section ──────────────────────────────────────────────────── */}
-      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-28 md:py-32">
         {/* Parallax background */}
         <motion.div
           className="absolute inset-0 z-0 scale-110"
@@ -85,7 +85,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30" />
         </motion.div>
 
-        <div className="container relative z-10 px-4 max-w-3xl pt-24 md:pt-28">
+        <div className="container relative z-10 px-4 max-w-3xl">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -143,14 +143,14 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.05 }}
           >
-            <Link href="/devis">
-              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 h-14">
+            <Link href="/devis" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 h-14 shadow-lg shadow-secondary/30">
                 Demander un devis
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/realisations">
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 font-bold text-lg px-8 h-14">
+            <Link href="/realisations" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary font-bold text-lg px-8 h-14">
                 Nos Réalisations
               </Button>
             </Link>
