@@ -69,7 +69,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-
       {/* ── Hero Section ──────────────────────────────────────────────────── */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Parallax background */}
@@ -86,7 +85,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30" />
         </motion.div>
 
-        <div className="container relative z-10 px-4 pt-20 max-w-3xl">
+        <div className="container relative z-10 px-4 max-w-3xl pt-[20px]">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -158,7 +157,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
       {/* ── Expertise Summary ─────────────────────────────────────────────── */}
       <section className="py-24 bg-gradient-to-b from-background via-background to-primary/5 relative">
         <div className="container mx-auto px-4">
@@ -212,7 +210,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ── Recent Projects ───────────────────────────────────────────────── */}
       <section className="py-24 bg-gradient-to-br from-primary/10 via-primary/5 to-background clip-diagonal">
         <div className="container mx-auto px-4 pb-20">
@@ -272,7 +269,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ── Stats / Animated Counters ─────────────────────────────────────── */}
       <section className="py-20 text-primary-foreground relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f2461 0%, #1F3C88 50%, #1a3580 100%)' }}>
         <div className="container mx-auto px-4">
@@ -288,7 +284,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ── Testimonials ──────────────────────────────────────────────────── */}
       <section className="py-24 bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container mx-auto px-4">
@@ -341,7 +336,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ── Partners Carousel — pause on hover ───────────────────────────── */}
       {partners && partners.length > 0 && (
         <section className="py-16 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(31,60,136,0.07) 0%, rgba(31,60,136,0.03) 100%)' }}>
@@ -391,7 +385,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
       {/* ── CTA Section ───────────────────────────────────────────────────── */}
       <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1d52 0%, #1F3C88 40%, #2d57c7 75%, #1a3474 100%)' }}>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
@@ -417,7 +410,6 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
-
     </div>
   );
 }
