@@ -88,6 +88,67 @@ export default function About() {
           </motion.div>
         </div>
 
+        {/* Timeline — Notre Parcours */}
+        <div className="mb-24">
+          <div className="text-center mb-16">
+            <Badge className="bg-secondary text-secondary-foreground mb-4">Notre Parcours</Badge>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary">Les Étapes Clés</h2>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            {/* Animated vertical line */}
+            <motion.div
+              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 origin-top"
+              style={{ background: "linear-gradient(180deg, #1F3C88, #2d57c7, #1F3C88)" }}
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            />
+
+            {[
+              { year: "2015", title: "Création de BEGEC TP", desc: "Naissance de l'entreprise avec une vision claire : l'excellence dans les travaux publics en Guinée." },
+              { year: "2018", title: "Premier Grand Chantier", desc: "Réalisation de notre premier projet d'infrastructure d'envergure, posant les bases de notre réputation." },
+              { year: "2021", title: "Expansion Régionale", desc: "Renforcement de notre flotte d'équipements et extension de nos activités à de nouvelles régions." },
+              { year: "2025", title: "Nouveaux Marchés", desc: "Diversification vers les grands projets publics et partenariats avec des acteurs internationaux." },
+            ].map((step, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <motion.div
+                  key={step.year}
+                  className={`relative flex items-center mb-12 last:mb-0 pl-12 md:pl-0 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
+                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  {/* Dot */}
+                  <motion.div
+                    className="absolute left-4 md:left-1/2 w-5 h-5 rounded-full border-4 border-background md:-translate-x-1/2 z-10"
+                    style={{ background: "#F5A623" }}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.4, type: "spring", stiffness: 300 }}
+                  />
+
+                  {/* Content card */}
+                  <div className={`md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
+                    <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-card">
+                      <CardContent className="p-6">
+                        <div className="text-3xl font-heading font-extrabold text-secondary mb-2">{step.year}</div>
+                        <h3 className="text-xl font-bold mb-2 text-primary">{step.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div className="hidden md:block md:w-1/2" />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Values Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {[

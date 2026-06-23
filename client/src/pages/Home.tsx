@@ -190,12 +190,12 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
               >
-                <Card className="h-full hover:shadow-2xl hover:border-secondary transition-shadow duration-300 group cursor-default">
+                <Card className="h-full border-2 border-transparent hover:border-secondary hover:shadow-2xl transition-all duration-300 group cursor-default">
                   <CardContent className="p-8">
-                    <div className="bg-primary/5 p-4 rounded-xl w-fit mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                    <div className="bg-primary/5 p-4 rounded-xl w-fit mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
                       {item.icon}
                     </div>
-                    <h4 className="text-xl font-bold mb-3">{item.title}</h4>
+                    <h4 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{item.title}</h4>
                     <p className="text-muted-foreground">{item.desc}</p>
                   </CardContent>
                 </Card>

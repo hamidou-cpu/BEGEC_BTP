@@ -1,0 +1,173 @@
+1. Hero Section : donner une première impression plus forte
+Actuellement
+
+La plupart des sites BTP ont souvent un simple slider ou une image statique.
+
+Amélioration
+Effet Parallax léger sur l'image de fond.
+Apparition progressive du titre :
+Titre : fade + slide-up (0.8s)
+Sous-titre : fade + slide-up (1.0s)
+Bouton CTA : fade + scale (1.2s)
+
+Impact :
+
+Rend l'entreprise plus moderne.
+Dirige immédiatement l'attention vers l'action principale.
+2. Statistiques animées
+
+Si vous affichez :
+
+nombre de projets
+années d'expérience
+clients satisfaits
+kilomètres de routes réalisés
+
+Ajoutez un effet Counter Animation :
+
+0 → 150
+0 → 25
+0 → 300
+
+lorsque la section entre dans le viewport.
+
+Impact :
+
+Augmente la crédibilité.
+Donne une sensation de dynamisme.
+3. Animation des cartes de services
+
+Pour les sections :
+
+Génie civil
+Construction
+Voirie
+Études techniques
+Supervision
+
+Ajoutez :
+
+Au scroll
+Fade-in + montée légère (20px).
+Au survol
+Ombre plus marquée.
+Icône qui pivote légèrement.
+Bordure colorée qui apparaît.
+
+Impact :
+
+Rend les services plus interactifs.
+Améliore l'expérience utilisateur.
+4. Animation des projets réalisés
+
+C'est probablement l'amélioration la plus rentable pour un site BTP.
+
+Galerie de projets
+
+Ajouter :
+
+Zoom léger sur les images au survol.
+Overlay avec :
+nom du projet
+localisation
+année
+Au clic
+
+Ouvrir une galerie avec :
+
+transition fluide
+navigation latérale
+
+Impact :
+
+Met davantage en valeur le portefeuille de réalisations.
+5. Timeline animée pour l'entreprise
+
+Créer une section :
+
+2015 → Création
+2018 → Premier grand chantier
+2021 → Expansion
+2025 → Nouveaux marchés
+
+Animation :
+
+ligne qui se dessine progressivement
+points qui apparaissent un à un
+
+Impact :
+
+Renforce la confiance.
+6. Animation du formulaire de contact
+
+Souvent négligée.
+
+Ajouter :
+
+focus animé sur les champs
+validation visuelle en temps réel
+bouton avec micro-animation au hover
+
+Exemple :
+
+Envoyer →
+
+avec déplacement subtil de la flèche.
+
+7. Animation du menu de navigation
+Menu fixe (sticky)
+
+Lors du scroll :
+
+réduction de hauteur du header
+apparition d'un fond légèrement opaque
+transition douce
+
+Impact :
+
+Aspect premium.
+Meilleure navigation.
+8. Loader personnalisé BTP
+
+Au chargement du site :
+
+logo BEGEC
+ou silhouette de grue de chantier
+animation de progression
+
+Durée :
+
+1 à 1,5 seconde maximum.
+
+Attention :
+Ne jamais dépasser 2 secondes.
+
+9. Animation des témoignages clients
+
+Au lieu d'un simple carrousel :
+
+transition fluide
+léger effet de profondeur
+avatars qui apparaissent progressivement
+10. Animation de fond discrète
+
+Pour rester professionnel :
+
+particules très légères
+lignes techniques inspirées des plans d'ingénierie
+mouvement lent
+
+Éviter :
+
+effets flashy
+rotations excessives
+animations permanentes agressives
+Priorité des améliorations
+
+Hero section animée
+Apparition des sections au scroll (AOS / GSAP)
+Compteurs animés
+Galerie projets avec zoom
+Header sticky animé
+Timeline entreprise
+Loader personnalisé
