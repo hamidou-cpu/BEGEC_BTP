@@ -85,7 +85,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30" />
         </motion.div>
 
-        <div className="container relative z-10 px-4 max-w-3xl pt-[20px]">
+        <div className="container relative z-10 px-4 max-w-3xl pt-24 md:pt-28">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
