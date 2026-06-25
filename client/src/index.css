@@ -9,6 +9,12 @@
   --background: 0 0% 90%; /* #E5E5E5 - Light Concrete */
   --foreground: 222 47% 11%; /* #0F172A - Dark Slate */
   
+  --card: 0 0% 100%; /* White card surface */
+  --card-foreground: 222 47% 11%;
+  
+  --popover: 0 0% 100%; /* White dropdown/popover surface */
+  --popover-foreground: 222 47% 11%;
+  
   --primary: 224 63% 33%; /* #1F3C88 - Deep Blue */
   --primary-foreground: 0 0% 100%;
   
@@ -38,6 +44,12 @@
   /* Industrial Premium Palette - Dark Mode */
   --background: 222 47% 11%; /* #0F172A - Dark Slate */
   --foreground: 210 40% 98%;
+  
+  --card: 217.2 32.6% 17.5%; /* Dark card surface */
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 217.2 32.6% 17.5%; /* Dark dropdown/popover surface */
+  --popover-foreground: 210 40% 98%;
   
   --primary: 224 63% 45%; /* Slightly lighter blue for contrast */
   --primary-foreground: 0 0% 100%;
