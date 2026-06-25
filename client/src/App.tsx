@@ -8,7 +8,6 @@ import { Footer } from "@/components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
-import { Loader } from "@/components/Loader";
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -100,24 +99,9 @@ function AppContent() {
 }
 
 function App() {
-  const [loading, setLoading] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return !window.sessionStorage.getItem("begec-loaded");
-  });
-
-  useEffect(() => {
-    if (!loading) return;
-    const timer = setTimeout(() => {
-      setLoading(false);
-      window.sessionStorage.setItem("begec-loaded", "1");
-    }, 1400);
-    return () => clearTimeout(timer);
-  }, [loading]);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <AnimatePresence>{loading && <Loader key="loader" />}</AnimatePresence>
         <AppContent />
       </TooltipProvider>
     </QueryClientProvider>
