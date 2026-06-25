@@ -15,7 +15,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
-  const { data: logoSetting } = useQuery<{ key: string; value: string | null }>({
+  const { data: logoSetting, isLoading: isLogoLoading } = useQuery<{ key: string; value: string | null }>({
     queryKey: ["/api/settings/logo"],
     staleTime: 30000,
   });
@@ -78,7 +78,10 @@ export function Navbar() {
             >
               <img
                 src={logoSrc}
-                className="h-14 w-auto object-contain"
+                className={cn(
+                  "h-14 w-auto object-contain transition-opacity duration-300",
+                  isLogoLoading ? "opacity-0" : "opacity-100"
+                )}
                 alt="BEGEC TP Logo"
               />
             </motion.div>
