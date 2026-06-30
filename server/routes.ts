@@ -90,7 +90,7 @@ export async function registerRoutes(
       if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         await transporter.sendMail({
           from: `"Site Web BEGEC TP" <${process.env.SMTP_USER}>`,
-          to: "contact@begecgroup.com",
+          to: "hadibobo5ieme@gmail.com",
           subject: `Nouveau message: ${input.subject}`,
           html: `<h3>Nouveau message de contact</h3><p><strong>Nom:</strong> ${input.name}</p><p><strong>Email:</strong> ${input.email}</p><p><strong>Téléphone:</strong> ${input.phone || "N/A"}</p><p><strong>Sujet:</strong> ${input.subject}</p><hr /><p><strong>Message:</strong></p><p>${input.message.replace(/\n/g, "<br>")}</p>`,
         });
@@ -114,7 +114,7 @@ export async function registerRoutes(
       if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         await transporter.sendMail({
           from: `"Site Web BEGEC TP" <${process.env.SMTP_USER}>`,
-          to: "contact@begecgroup.com",
+          to: "hadibobo5ieme@gmail.com",
           subject: `Nouvelle demande de devis: ${input.projectType}`,
           html: `<h3>Nouvelle demande de devis</h3><p><strong>Nom:</strong> ${input.name}</p><p><strong>Email:</strong> ${input.email}</p><p><strong>Téléphone:</strong> ${input.phone}</p><p><strong>Type de projet:</strong> ${input.projectType}</p><p><strong>Localisation:</strong> ${input.location || "N/A"}</p><hr /><p><strong>Description:</strong></p><p>${input.description.replace(/\n/g, "<br>")}</p>`,
         });
