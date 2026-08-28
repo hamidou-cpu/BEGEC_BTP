@@ -13,6 +13,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { scrollYProgress } = useScroll();
+  const isHeroHeader = location === "/" && !isScrolled;
 
   const { data: logoSetting, isLoading: isLogoLoading } = useQuery<{ key: string; value: string | null }>({
     queryKey: ["/api/settings/logo"],
@@ -49,7 +50,9 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-400 border-b",
-        isScrolled
+        isHeroHeader
+          ? "bg-transparent border-transparent py-4"
+          : isScrolled
           ? "bg-background/70 backdrop-blur-lg border-border shadow-lg py-2"
           : "bg-background border-transparent py-4"
       )}
@@ -77,7 +80,10 @@ export function Navbar() {
                 alt="BEGEC TP Logo"
               />
             </motion.div>
-            <span className="text-xl font-heading font-extrabold tracking-tight text-primary hidden sm:block">
+            <span className={cn(
+              "text-xl font-heading font-extrabold tracking-tight hidden sm:block",
+              isHeroHeader ? "text-white" : "text-primary"
+            )}>
               BEGEC <span className="text-secondary">TP</span>
             </span>
           </div>
@@ -89,8 +95,13 @@ export function Navbar() {
             <Link key={link.href} href={link.href}>
               <span
                 className={cn(
-                  "cursor-pointer text-sm font-semibold transition-colors hover:text-primary uppercase tracking-wide relative",
-                  location === link.href ? "text-primary" : "text-muted-foreground"
+                  "cursor-pointer text-sm font-semibold transition-colors uppercase tracking-wide relative",
+                  isHeroHeader
+                    ? "text-white/85 hover:text-white"
+                    : "hover:text-primary",
+                  location === link.href
+                    ? isHeroHeader ? "text-white" : "text-primary"
+                    : isHeroHeader ? "text-white/85" : "text-muted-foreground"
                 )}
               >
                 {link.label}
@@ -116,7 +127,11 @@ export function Navbar() {
         <div className="lg:hidden flex items-center gap-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button
+                variant="outline"
+                size="icon"
+                className={isHeroHeader ? "border-white/70 text-white hover:bg-white/15 hover:text-white" : ""}
+              >
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
