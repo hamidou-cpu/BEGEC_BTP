@@ -22,7 +22,7 @@
   --secondary-foreground: 222 47% 11%;
   
   --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted-foreground: 0 0% 0%; /* Black body text */
   
   --accent: 37 91% 55%;
   --accent-foreground: 222 47% 11%;

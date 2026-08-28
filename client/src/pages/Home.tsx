@@ -328,7 +328,7 @@ export default function Home() {
                                 </svg>
                               ))}
                             </div>
-                            <p className="text-xl md:text-2xl font-medium italic text-foreground/80 mb-8">
+                            <p className="text-xl md:text-2xl font-medium italic text-black mb-8">
                               "{testimonial.content}"
                             </p>
                             <div>

@@ -149,7 +149,7 @@ export default function Expertise() {
                         {service.details.map((detail, idx) => (
                           <div key={idx} className="flex items-center gap-3">
                             <div className="h-2 w-2 rounded-full bg-secondary" />
-                            <span className="font-medium text-foreground/80">
+                            <span className="font-medium text-black">
                               {detail}
                             </span>
                           </div>
