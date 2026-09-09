@@ -71,7 +71,7 @@ const services = [
 
 export default function Expertise() {
   return (
-    <div className="pt-24 min-h-screen pb-24 bg-background">
+    <div className="pt-24 min-h-screen pb-24 bg-white">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-16"
@@ -90,7 +90,7 @@ export default function Expertise() {
         </motion.div>
 
         <Tabs defaultValue="terrassement" className="max-w-5xl mx-auto">
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 h-auto p-1 bg-muted/50 rounded-xl mb-12">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 h-auto p-1 bg-white border border-border rounded-xl mb-12">
             {services.map((service) => (
               <TabsTrigger 
                 key={service.id} 

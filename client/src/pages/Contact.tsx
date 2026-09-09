@@ -42,7 +42,7 @@ export default function Contact() {
 
       {/* ── Hero Banner ─────────────────────────────────────────────────────── */}
       <section
-        className="relative pt-36 pb-24 overflow-hidden bg-muted/30 border-b border-border"
+        className="relative pt-36 pb-24 overflow-hidden bg-white border-b border-border"
       >
         {/* Dot grid overlay */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '36px 36px' }} />
@@ -120,7 +120,7 @@ export default function Contact() {
 
               {/* Map placeholder */}
               <ScrollReveal direction="up" delay={0.45}>
-                <div className="h-56 rounded-2xl overflow-hidden relative bg-muted/40 border border-border">
+                <div className="h-56 rounded-2xl overflow-hidden relative bg-white border border-border">
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
@@ -160,7 +160,7 @@ export default function Contact() {
                                 <Input
                                   placeholder="Jean Dupont"
                                   {...field}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-name"
                                 />
                               </FormControl>
@@ -178,7 +178,7 @@ export default function Contact() {
                                 <Input
                                   placeholder="jean@exemple.fr"
                                   {...field}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-email"
                                 />
                               </FormControl>
@@ -200,7 +200,7 @@ export default function Contact() {
                                   placeholder="06 12 34 56 78"
                                   {...field}
                                   value={field.value || ""}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-phone"
                                 />
                               </FormControl>
@@ -218,7 +218,7 @@ export default function Contact() {
                                 <Input
                                   placeholder="Renseignement..."
                                   {...field}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-subject"
                                 />
                               </FormControl>
@@ -237,7 +237,7 @@ export default function Contact() {
                             <FormControl>
                               <Textarea
                                 placeholder="Détaillez votre demande ici..."
-                                 className="min-h-[140px] bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20 resize-none"
+                                 className="min-h-[140px] bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20 resize-none"
                                 {...field}
                                 data-testid="textarea-message"
                               />

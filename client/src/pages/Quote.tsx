@@ -66,7 +66,7 @@ export default function Quote() {
   }
 
   return (
-    <div className="pt-24 min-h-screen pb-24 bg-muted/30">
+    <div className="pt-24 min-h-screen pb-24 bg-white">
       <div className="container mx-auto px-4 max-w-3xl">
 
         <ScrollReveal direction="up">

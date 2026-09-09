@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight, Shovel, Truck, Hammer } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -59,8 +59,6 @@ const heroWords = ["Bâtir", "l'Avenir", "sur", "des"];
 const heroHighlight = ["Fondations", "Solides"];
 
 export default function Home() {
-  const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 700], ["0%", "22%"]);
   const [paused, setPaused] = useState(false);
 
   const { data: projects, isLoading: projectsLoading } = useProjects();
@@ -70,20 +68,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* ── Hero Section ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-28 md:py-32">
-        {/* Parallax background */}
-        <motion.div
-          className="absolute inset-0 z-0 scale-110"
-          style={{ y: bgY }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
-            alt="Chantier de construction"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </motion.div>
-
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-white py-28 md:py-32">
         <div className="container relative z-10 px-4 max-w-3xl">
           {/* Badge */}
           <motion.div
@@ -97,7 +82,7 @@ export default function Home() {
           </motion.div>
 
           {/* Word-by-word title */}
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-tight mb-6 text-white">
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-tight mb-6 text-foreground">
             {heroWords.map((word, i) => (
               <motion.span
                 key={word}
@@ -126,7 +111,7 @@ export default function Home() {
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed"
+            className="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
@@ -149,7 +134,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/realisations" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary font-bold text-lg px-8 h-14">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white font-bold text-lg px-8 h-14">
                 Nos Réalisations
               </Button>
             </Link>
@@ -210,7 +195,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Recent Projects ───────────────────────────────────────────────── */}
-      <section className="py-24 bg-muted/30 clip-diagonal">
+      <section className="py-24 bg-white clip-diagonal">
         <div className="container mx-auto px-4 pb-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <motion.div
@@ -269,7 +254,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Stats / Animated Counters ─────────────────────────────────────── */}
-      <section className="py-20 bg-muted/40 text-foreground border-y border-border relative overflow-hidden">
+      <section className="py-20 bg-white text-foreground border-y border-border relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -306,7 +291,7 @@ export default function Home() {
                   testimonials?.map((testimonial) => (
                     <CarouselItem key={testimonial.id}>
                       <div className="p-6">
-                        <Card className="bg-muted/30 border-none shadow-sm">
+                        <Card className="bg-white border-none shadow-sm">
                           <CardContent className="flex flex-col items-center text-center p-10">
                             <div className="flex gap-1 mb-6">
                               {[...Array(testimonial.rating)].map((_, i) => (
@@ -337,7 +322,7 @@ export default function Home() {
       </section>
       {/* ── Partners Carousel — pause on hover ───────────────────────────── */}
       {partners && partners.length > 0 && (
-        <section className="py-16 overflow-hidden bg-muted/30">
+        <section className="py-16 overflow-hidden bg-white">
           <motion.div
             className="container mx-auto px-4 mb-8 text-center"
             initial={{ opacity: 0, y: 16 }}
@@ -385,7 +370,7 @@ export default function Home() {
         </section>
       )}
       {/* ── CTA Section ───────────────────────────────────────────────────── */}
-      <section className="py-20 bg-muted/40 border-y border-border relative overflow-hidden">
+      <section className="py-20 bg-white border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
