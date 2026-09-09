@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, Sun, Moon } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +11,6 @@ import logoImg from "@assets/begec_logo_v2.png";
 export function Navbar() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [isOpen, setIsOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
@@ -31,19 +30,6 @@ export function Navbar() {
     setIsOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.classList.toggle("dark");
-  };
 
   const navLinks = [
     { href: "/", label: "Accueil" },
@@ -72,7 +58,7 @@ export function Navbar() {
         <Link href="/">
           <div className="flex items-center gap-3 cursor-pointer group">
             <motion.div
-              className="bg-white dark:bg-white rounded-lg px-2 py-1 shadow-sm"
+              className="bg-white rounded-lg px-2 py-1 shadow-sm"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
@@ -110,10 +96,6 @@ export function Navbar() {
             </Link>
           ))}
 
-          <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
-            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-          </Button>
-
           <Link href="/devis">
             <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
               Demander un Devis
@@ -123,10 +105,6 @@ export function Navbar() {
 
         {/* Mobile Nav */}
         <div className="lg:hidden flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={toggleTheme}>
-            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-          </Button>
-
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">

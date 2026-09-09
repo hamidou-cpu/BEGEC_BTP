@@ -98,7 +98,7 @@ export default function Contact() {
                 {contactItems.map((item, i) => (
                   <ScrollReveal key={i} direction="left" delay={0.05 + i * 0.1}>
                     <div
-                      className="flex gap-4 p-5 rounded-2xl border border-primary/10 bg-white dark:bg-card shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
+                      className="flex gap-4 p-5 rounded-2xl border border-primary/10 bg-white shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
                       data-testid={`contact-info-${i}`}
                     >
                       <div

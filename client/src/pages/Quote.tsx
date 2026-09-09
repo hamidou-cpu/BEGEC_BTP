@@ -50,8 +50,8 @@ export default function Quote() {
     return (
       <div className="pt-32 min-h-screen pb-24 container mx-auto px-4 max-w-2xl text-center">
         <ScrollReveal direction="scale">
-          <div className="bg-green-100 dark:bg-green-900/30 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8">
-            <Check className="w-12 h-12 text-green-600 dark:text-green-400" />
+          <div className="bg-green-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8">
+            <Check className="w-12 h-12 text-green-600" />
           </div>
           <h1 className="text-3xl font-heading font-bold mb-4">Demande Envoyée !</h1>
           <p className="text-muted-foreground text-lg mb-8">

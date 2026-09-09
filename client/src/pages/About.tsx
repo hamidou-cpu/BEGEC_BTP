@@ -178,7 +178,7 @@ export default function About() {
                   <div
                     className={`md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"}`}
                   >
-                    <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-card">
+                    <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
                       <CardContent className="p-6">
                         <div className="text-3xl font-heading font-extrabold text-secondary mb-2">
                           {step.year}

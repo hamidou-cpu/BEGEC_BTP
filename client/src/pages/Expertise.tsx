@@ -119,7 +119,7 @@ export default function Expertise() {
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     </div>
-                    <CardContent className="p-8 md:p-12 bg-white dark:bg-card">
+                    <CardContent className="p-8 md:p-12 bg-white">
                       <div className="mb-6 p-3 bg-primary/5 w-fit rounded-lg text-primary">
                         {service.icon}
                       </div>
