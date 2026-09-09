@@ -1,8 +1,0 @@
-uploads = []
-generated = []
-
-[[outputs]]
-id = "B_IKRx76BhJTUUV0h2FSi"
-uri = "file://attached_assets/Description_Site_BEGEC_TP.pdf"
-type = "pdf"
-title = "Description du site BEGEC TP (PDF)"

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useQuery } from "@tanstack/react-query";
@@ -11,11 +11,11 @@ import logoImg from "@assets/begec_logo_v2.png";
 export function Navbar() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [isOpen, setIsOpen] = useState(false);
   const { scrollYProgress } = useScroll();
-  const isHeroHeader = location === "/" && !isScrolled;
 
-  const { data: logoSetting, isLoading: isLogoLoading } = useQuery<{ key: string; value: string | null }>({
+  const { data: logoSetting } = useQuery<{ key: string; value: string | null }>({
     queryKey: ["/api/settings/logo"],
     staleTime: 30000,
   });
@@ -32,11 +32,18 @@ export function Navbar() {
     window.scrollTo(0, 0);
   }, [location]);
 
-  // The public site uses its natural light appearance on every device.
-  // Remove a previously selected dark-mode class as well.
   useEffect(() => {
-    document.documentElement.classList.remove("dark");
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    }
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.classList.toggle("dark");
+  };
 
   const navLinks = [
     { href: "/", label: "Accueil" },
@@ -50,9 +57,7 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-400 border-b",
-        isHeroHeader
-          ? "bg-transparent border-transparent py-4"
-          : isScrolled
+        isScrolled
           ? "bg-background/70 backdrop-blur-lg border-border shadow-lg py-2"
           : "bg-background border-transparent py-4"
       )}
@@ -73,17 +78,11 @@ export function Navbar() {
             >
               <img
                 src={logoSrc}
-                className={cn(
-                  "h-14 w-auto object-contain transition-opacity duration-300",
-                  isLogoLoading ? "opacity-0" : "opacity-100"
-                )}
+                className="h-14 w-auto object-contain"
                 alt="BEGEC TP Logo"
               />
             </motion.div>
-            <span className={cn(
-              "text-xl font-heading font-extrabold tracking-tight hidden sm:block",
-              isHeroHeader ? "text-white" : "text-primary"
-            )}>
+            <span className="text-xl font-heading font-extrabold tracking-tight text-primary hidden sm:block">
               BEGEC <span className="text-secondary">TP</span>
             </span>
           </div>
@@ -95,13 +94,8 @@ export function Navbar() {
             <Link key={link.href} href={link.href}>
               <span
                 className={cn(
-                  "cursor-pointer text-sm font-semibold transition-colors uppercase tracking-wide relative",
-                  isHeroHeader
-                    ? "text-white/85 hover:text-white"
-                    : "hover:text-primary",
-                  location === link.href
-                    ? isHeroHeader ? "text-white" : "text-primary"
-                    : isHeroHeader ? "text-white/85" : "text-muted-foreground"
+                  "cursor-pointer text-sm font-semibold transition-colors hover:text-primary uppercase tracking-wide relative",
+                  location === link.href ? "text-primary" : "text-muted-foreground"
                 )}
               >
                 {link.label}
@@ -116,6 +110,10 @@ export function Navbar() {
             </Link>
           ))}
 
+          <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
+            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </Button>
+
           <Link href="/devis">
             <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
               Demander un Devis
@@ -125,13 +123,13 @@ export function Navbar() {
 
         {/* Mobile Nav */}
         <div className="lg:hidden flex items-center gap-4">
+          <Button variant="ghost" size="icon" onClick={toggleTheme}>
+            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </Button>
+
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className={isHeroHeader ? "border-white/70 text-white hover:bg-white/15 hover:text-white" : ""}
-              >
+              <Button variant="outline" size="icon">
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
