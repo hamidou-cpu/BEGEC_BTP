@@ -6,7 +6,7 @@
 
 :root {
   /* Industrial Premium Palette - Light Mode */
-  --background: 0 0% 100%; /* #FFFFFF - Pure White */
+  --background: 0 0% 90%; /* #E5E5E5 - Light Concrete */
   --foreground: 222 47% 11%; /* #0F172A - Dark Slate */
   
   --primary: 224 63% 33%; /* #1F3C88 - Deep Blue */

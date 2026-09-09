@@ -225,7 +225,7 @@ export default function About() {
               transition={{ delay: i * 0.2 }}
               viewport={{ once: true }}
             >
-                      <Card className="h-full bg-white border border-border hover:shadow-lg transition-all duration-300">
+              <Card className="h-full bg-muted/30 border-none hover:bg-white hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-8 text-center">
                   <div className="bg-primary/5 p-4 rounded-full w-fit mx-auto mb-6">
                     {val.icon}
@@ -269,7 +269,7 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden h-full hover:shadow-xl transition-all duration-300 border border-border bg-white group">
+                  <Card className="overflow-hidden h-full hover:shadow-xl transition-all duration-300 border-none bg-muted/30 group">
                     <div className="relative aspect-[3/4] overflow-hidden">
                       <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
                       <img
