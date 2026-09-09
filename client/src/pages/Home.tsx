@@ -49,7 +49,7 @@ function AnimatedStat({ number, label, index }: { number: string; label: string;
       <div className="text-4xl md:text-5xl font-heading font-extrabold text-secondary mb-2">
         {count}{suffix}
       </div>
-      <div className="text-primary-foreground/80 font-medium">{label}</div>
+      <div className="text-muted-foreground font-medium">{label}</div>
     </motion.div>
   );
 }
@@ -81,8 +81,7 @@ export default function Home() {
             alt="Chantier de construction"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/45" />
         </motion.div>
 
         <div className="container relative z-10 px-4 max-w-3xl">
@@ -158,7 +157,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Expertise Summary ─────────────────────────────────────────────── */}
-      <section className="py-24 bg-gradient-to-b from-background via-background to-primary/5 relative">
+      <section className="py-24 bg-background relative">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16 max-w-3xl mx-auto"
@@ -211,7 +210,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Recent Projects ───────────────────────────────────────────────── */}
-      <section className="py-24 bg-gradient-to-br from-primary/10 via-primary/5 to-background clip-diagonal">
+      <section className="py-24 bg-muted/30 clip-diagonal">
         <div className="container mx-auto px-4 pb-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <motion.div
@@ -270,7 +269,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Stats / Animated Counters ─────────────────────────────────────── */}
-      <section className="py-20 text-primary-foreground relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f2461 0%, #1F3C88 50%, #1a3580 100%)' }}>
+      <section className="py-20 bg-muted/40 text-foreground border-y border-border relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -285,7 +284,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Testimonials ──────────────────────────────────────────────────── */}
-      <section className="py-24 bg-gradient-to-b from-primary/5 via-background to-background">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -338,7 +337,7 @@ export default function Home() {
       </section>
       {/* ── Partners Carousel — pause on hover ───────────────────────────── */}
       {partners && partners.length > 0 && (
-        <section className="py-16 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(31,60,136,0.07) 0%, rgba(31,60,136,0.03) 100%)' }}>
+        <section className="py-16 overflow-hidden bg-muted/30">
           <motion.div
             className="container mx-auto px-4 mb-8 text-center"
             initial={{ opacity: 0, y: 16 }}
@@ -386,8 +385,8 @@ export default function Home() {
         </section>
       )}
       {/* ── CTA Section ───────────────────────────────────────────────────── */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1d52 0%, #1F3C88 40%, #2d57c7 75%, #1a3474 100%)' }}>
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      <section className="py-20 bg-muted/40 border-y border-border relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
         <motion.div
@@ -397,10 +396,10 @@ export default function Home() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
             Un projet en tête ?
           </h2>
-          <p className="text-primary-foreground/80 text-xl max-w-2xl mx-auto mb-10">
+          <p className="text-muted-foreground text-xl max-w-2xl mx-auto mb-10">
             Contactez notre équipe d'experts pour une étude personnalisée et gratuite de votre chantier.
           </p>
           <Link href="/contact">

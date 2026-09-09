@@ -42,11 +42,10 @@ export default function Contact() {
 
       {/* ── Hero Banner ─────────────────────────────────────────────────────── */}
       <section
-        className="relative pt-36 pb-24 overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #0a1d52 0%, #1F3C88 50%, #2d57c7 100%)' }}
+        className="relative pt-36 pb-24 overflow-hidden bg-muted/30 border-b border-border"
       >
         {/* Dot grid overlay */}
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '36px 36px' }} />
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '36px 36px' }} />
         {/* Glow blobs */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 65%)', transform: 'translate(20%, -30%)' }} />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-8" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 65%)', transform: 'translate(-30%, 30%)' }} />
@@ -62,7 +61,7 @@ export default function Contact() {
             Contactez-nous
           </motion.span>
           <motion.h1
-            className="text-4xl md:text-6xl font-heading font-extrabold text-white mb-5 leading-tight"
+            className="text-4xl md:text-6xl font-heading font-extrabold text-foreground mb-5 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1 }}
@@ -71,7 +70,7 @@ export default function Contact() {
             <span style={{ color: '#F5A623' }}>Votre Projet</span>
           </motion.h1>
           <motion.p
-            className="text-lg text-blue-100 max-w-xl mx-auto"
+            className="text-lg text-muted-foreground max-w-xl mx-auto"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -89,7 +88,7 @@ export default function Contact() {
       </section>
 
       {/* ── Contact Info + Form ─────────────────────────────────────────────── */}
-      <section className="pb-24 pt-8 bg-gradient-to-b from-background via-primary/5 to-background">
+      <section className="pb-24 pt-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
 
@@ -121,14 +120,11 @@ export default function Contact() {
 
               {/* Map placeholder */}
               <ScrollReveal direction="up" delay={0.45}>
-                <div
-                  className="h-56 rounded-2xl overflow-hidden relative"
-                  style={{ background: 'linear-gradient(135deg, rgba(31,60,136,0.08) 0%, rgba(31,60,136,0.04) 100%)', border: '1px solid rgba(31,60,136,0.15)' }}
-                >
+                <div className="h-56 rounded-2xl overflow-hidden relative bg-muted/40 border border-border">
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
-                      style={{ background: 'linear-gradient(135deg, #1F3C88, #2d57c7)' }}
+                      style={{ background: '#F5A623' }}
                     >
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
@@ -142,13 +138,12 @@ export default function Contact() {
             {/* ── Form Side ─────────────────────────────────────────────── */}
             <ScrollReveal direction="right" delay={0.1}>
               <div
-                className="rounded-3xl overflow-hidden shadow-2xl"
-                style={{ background: 'linear-gradient(135deg, #0f2461 0%, #1F3C88 100%)' }}
+                className="rounded-3xl overflow-hidden shadow-2xl bg-card border border-border"
               >
                 {/* Form header */}
-                <div className="px-8 pt-8 pb-6 border-b border-white/10">
-                  <h2 className="text-2xl font-bold text-white">Envoyez-nous un message</h2>
-                  <p className="text-blue-200 text-sm mt-1">Réponse sous 24h ouvrées</p>
+                <div className="px-8 pt-8 pb-6 border-b border-border">
+                  <h2 className="text-2xl font-bold text-foreground">Envoyez-nous un message</h2>
+                  <p className="text-muted-foreground text-sm mt-1">Réponse sous 24h ouvrées</p>
                 </div>
 
                 <div className="px-8 py-8">
@@ -160,16 +155,16 @@ export default function Contact() {
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-blue-100 text-sm font-medium">Nom complet</FormLabel>
+                              <FormLabel className="text-foreground text-sm font-medium">Nom complet</FormLabel>
                               <FormControl>
                                 <Input
                                   placeholder="Jean Dupont"
                                   {...field}
-                                  className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-name"
                                 />
                               </FormControl>
-                              <FormMessage className="text-yellow-300 text-xs" />
+                               <FormMessage className="text-destructive text-xs" />
                             </FormItem>
                           )}
                         />
@@ -178,16 +173,16 @@ export default function Contact() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-blue-100 text-sm font-medium">Email</FormLabel>
+                              <FormLabel className="text-foreground text-sm font-medium">Email</FormLabel>
                               <FormControl>
                                 <Input
                                   placeholder="jean@exemple.fr"
                                   {...field}
-                                  className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-email"
                                 />
                               </FormControl>
-                              <FormMessage className="text-yellow-300 text-xs" />
+                               <FormMessage className="text-destructive text-xs" />
                             </FormItem>
                           )}
                         />
@@ -199,17 +194,17 @@ export default function Contact() {
                           name="phone"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-blue-100 text-sm font-medium">Téléphone</FormLabel>
+                              <FormLabel className="text-foreground text-sm font-medium">Téléphone</FormLabel>
                               <FormControl>
                                 <Input
                                   placeholder="06 12 34 56 78"
                                   {...field}
                                   value={field.value || ""}
-                                  className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-phone"
                                 />
                               </FormControl>
-                              <FormMessage className="text-yellow-300 text-xs" />
+                               <FormMessage className="text-destructive text-xs" />
                             </FormItem>
                           )}
                         />
@@ -218,16 +213,16 @@ export default function Contact() {
                           name="subject"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-blue-100 text-sm font-medium">Sujet</FormLabel>
+                              <FormLabel className="text-foreground text-sm font-medium">Sujet</FormLabel>
                               <FormControl>
                                 <Input
                                   placeholder="Renseignement..."
                                   {...field}
-                                  className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
                                   data-testid="input-subject"
                                 />
                               </FormControl>
-                              <FormMessage className="text-yellow-300 text-xs" />
+                               <FormMessage className="text-destructive text-xs" />
                             </FormItem>
                           )}
                         />
@@ -238,16 +233,16 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-blue-100 text-sm font-medium">Message</FormLabel>
+                            <FormLabel className="text-foreground text-sm font-medium">Message</FormLabel>
                             <FormControl>
                               <Textarea
                                 placeholder="Détaillez votre demande ici..."
-                                className="min-h-[140px] bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-yellow-400 focus:ring-yellow-400/20 resize-none"
+                                 className="min-h-[140px] bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20 resize-none"
                                 {...field}
                                 data-testid="textarea-message"
                               />
                             </FormControl>
-                            <FormMessage className="text-yellow-300 text-xs" />
+                             <FormMessage className="text-destructive text-xs" />
                           </FormItem>
                         )}
                       />

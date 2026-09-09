@@ -6,8 +6,7 @@ export function Loader() {
       role="status"
       aria-live="polite"
       aria-label="Chargement du site BEGEC TP"
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
-      style={{ background: "linear-gradient(135deg, #0a1d52 0%, #1F3C88 60%, #1a3580 100%)" }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background text-foreground"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -15,7 +14,7 @@ export function Loader() {
       {/* Dot grid texture */}
       <div
         className="absolute inset-0 opacity-10"
-        style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "36px 36px" }}
+        style={{ backgroundImage: "radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)", backgroundSize: "36px 36px" }}
       />
 
       {/* Brand mark */}
@@ -25,16 +24,16 @@ export function Loader() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-white">
+        <div className="text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-foreground">
           BEGEC <span style={{ color: "#F5A623" }}>TP</span>
         </div>
-        <div className="text-blue-200 text-xs md:text-sm tracking-[0.3em] uppercase mt-2">
+        <div className="text-muted-foreground text-xs md:text-sm tracking-[0.3em] uppercase mt-2">
           Bâtir l'Avenir
         </div>
       </motion.div>
 
       {/* Progress bar */}
-      <div className="relative z-10 w-48 h-1 rounded-full overflow-hidden bg-white/15">
+      <div className="relative z-10 w-48 h-1 rounded-full overflow-hidden bg-muted">
         <motion.div
           className="h-full rounded-full"
           style={{ background: "linear-gradient(90deg, #F5A623, #ffce6b)" }}
