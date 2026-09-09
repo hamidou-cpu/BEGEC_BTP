@@ -13,6 +13,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { scrollYProgress } = useScroll();
+  const isHeroTop = location === "/" && !isScrolled;
 
   const { data: logoSetting } = useQuery<{ key: string; value: string | null }>({
     queryKey: ["/api/settings/logo"],
@@ -45,7 +46,9 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-400 border-b",
         isScrolled
           ? "bg-background/70 backdrop-blur-lg border-border shadow-lg py-2"
-          : "bg-background border-transparent py-4"
+          : isHeroTop
+            ? "bg-transparent border-transparent py-4"
+            : "bg-background border-transparent py-4"
       )}
     >
       {/* Scroll progress bar */}
@@ -68,7 +71,10 @@ export function Navbar() {
                 alt="BEGEC TP Logo"
               />
             </motion.div>
-            <span className="text-xl font-heading font-extrabold tracking-tight text-primary hidden sm:block">
+            <span className={cn(
+              "text-xl font-heading font-extrabold tracking-tight hidden sm:block",
+              isHeroTop ? "text-white" : "text-primary"
+            )}>
               BEGEC <span className="text-secondary">TP</span>
             </span>
           </div>
@@ -81,7 +87,9 @@ export function Navbar() {
               <span
                 className={cn(
                   "cursor-pointer text-sm font-semibold transition-colors hover:text-primary uppercase tracking-wide relative",
-                  location === link.href ? "text-primary" : "text-muted-foreground"
+                  isHeroTop
+                    ? location === link.href ? "text-white" : "text-white/85 hover:text-white"
+                    : location === link.href ? "text-primary" : "text-muted-foreground"
                 )}
               >
                 {link.label}
