@@ -105,7 +105,7 @@ export function Navbar() {
           ))}
 
           <Link href="/devis">
-            <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
+            <Button className="bg-secondary text-white hover:bg-secondary/90 font-bold">
               Demander un Devis
             </Button>
           </Link>
@@ -132,7 +132,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link href="/devis">
-                  <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold mt-4">
+                  <Button className="w-full bg-secondary text-white hover:bg-secondary/90 font-bold mt-4">
                     Demander un Devis
                   </Button>
                 </Link>

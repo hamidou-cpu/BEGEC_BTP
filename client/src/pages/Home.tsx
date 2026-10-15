@@ -143,7 +143,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 1.05 }}
           >
             <Link href="/devis" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 h-14 shadow-lg shadow-secondary/30">
+              <Button size="lg" className="w-full sm:w-auto bg-secondary text-white hover:bg-secondary/90 font-bold text-lg px-8 h-14 shadow-lg shadow-secondary/30">
                 Demander un devis
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
