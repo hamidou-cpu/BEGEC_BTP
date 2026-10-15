@@ -387,8 +387,8 @@ export default function Home() {
       {/* ── CTA Section ───────────────────────────────────────────────────── */}
       <section className="py-20 bg-muted/40 border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
-        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F27100 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F27100 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
         <motion.div
           className="container relative z-10 mx-auto px-4 text-center"
           initial={{ opacity: 0, y: 24 }}

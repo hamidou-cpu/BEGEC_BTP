@@ -106,7 +106,7 @@ function LoginPage({ onLogin }: { onLogin: () => void }) {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-[#1F3C88] rounded-full flex items-center justify-center mx-auto mb-4">
-            <Shield className="w-8 h-8 text-[#F5A623]" />
+            <Shield className="w-8 h-8 text-[#F27100]" />
           </div>
           <h1 className="text-2xl font-bold text-white">Espace Admin</h1>
           <p className="text-slate-400 mt-1">BEGEC TP — Gestion du site</p>
@@ -154,7 +154,7 @@ function LoginPage({ onLogin }: { onLogin: () => void }) {
                 data-testid="button-login"
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold"
+                className="w-full bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold"
               >
                 {loading ? "Connexion..." : "Se connecter"}
               </Button>
@@ -367,7 +367,7 @@ function ProjectsTab() {
           <h2 className="text-xl font-semibold text-white mb-1">Réalisations & Projets</h2>
           <p className="text-slate-400 text-sm">{projectsList.length} projet(s) dans la galerie</p>
         </div>
-        <Button onClick={openNew} className="bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold">
+        <Button onClick={openNew} className="bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold">
           <Plus className="w-4 h-4 mr-2" /> Ajouter un projet
         </Button>
       </div>
@@ -385,7 +385,7 @@ function ProjectsTab() {
               <div className="relative h-40">
                 <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <Badge className="absolute top-2 left-2 bg-[#F5A623] text-black text-xs font-semibold">
+                <Badge className="absolute top-2 left-2 bg-[#F27100] text-black text-xs font-semibold">
                   {p.category}
                 </Badge>
               </div>
@@ -465,7 +465,7 @@ function ProjectsTab() {
             <Button variant="outline" onClick={() => setOpen(false)}
               className="border-[#1F3C88]/50 text-slate-300">Annuler</Button>
             <Button onClick={() => saveMutation.mutate()} disabled={saveMutation.isPending || !form.title || !form.category || !form.description || !form.imageUrl}
-              className="bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold">
+              className="bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold">
               {saveMutation.isPending ? "Sauvegarde..." : "Sauvegarder"}
             </Button>
           </DialogFooter>
@@ -538,7 +538,7 @@ function TeamTab() {
           <h2 className="text-xl font-semibold text-white mb-1">Équipe BEGEC TP</h2>
           <p className="text-slate-400 text-sm">{members.length} membre(s) dans l'équipe</p>
         </div>
-        <Button onClick={openNew} className="bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold">
+        <Button onClick={openNew} className="bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold">
           <Plus className="w-4 h-4 mr-2" /> Ajouter un membre
         </Button>
       </div>
@@ -555,7 +555,7 @@ function TeamTab() {
                 <img src={m.imageUrl} alt={m.name}
                   className="w-20 h-20 rounded-full object-cover border-2 border-[#1F3C88] mb-3" />
                 <h3 className="text-white font-semibold text-sm">{m.name}</h3>
-                <p className="text-[#F5A623] text-xs mb-2">{m.role}</p>
+                <p className="text-[#F27100] text-xs mb-2">{m.role}</p>
                 {m.bio && <p className="text-slate-400 text-xs mb-3 line-clamp-2">{m.bio}</p>}
                 <div className="flex gap-2 w-full mt-auto pt-2">
                   <Button size="sm" variant="outline" onClick={() => openEdit(m)}
@@ -614,7 +614,7 @@ function TeamTab() {
             <Button variant="outline" onClick={() => setOpen(false)}
               className="border-[#1F3C88]/50 text-slate-300">Annuler</Button>
             <Button onClick={() => saveMutation.mutate()} disabled={saveMutation.isPending || !form.name || !form.role || !form.imageUrl}
-              className="bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold">
+              className="bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold">
               {saveMutation.isPending ? "Sauvegarde..." : "Sauvegarder"}
             </Button>
           </DialogFooter>
@@ -687,7 +687,7 @@ function PartnersTab() {
           <h2 className="text-xl font-semibold text-white mb-1">Partenaires</h2>
           <p className="text-slate-400 text-sm">{partnersList.length} partenaire(s)</p>
         </div>
-        <Button onClick={openNew} className="bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold">
+        <Button onClick={openNew} className="bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold">
           <Plus className="w-4 h-4 mr-2" /> Ajouter un partenaire
         </Button>
       </div>
@@ -752,7 +752,7 @@ function PartnersTab() {
             <Button variant="outline" onClick={() => setOpen(false)}
               className="border-[#1F3C88]/50 text-slate-300">Annuler</Button>
             <Button onClick={() => saveMutation.mutate()} disabled={saveMutation.isPending || !form.name || !form.logoUrl}
-              className="bg-[#F5A623] hover:bg-[#e09b1e] text-black font-semibold">
+              className="bg-[#F27100] hover:bg-[#F27100]/90 text-black font-semibold">
               {saveMutation.isPending ? "Sauvegarde..." : "Sauvegarder"}
             </Button>
           </DialogFooter>
@@ -775,7 +775,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-[#1F3C88] rounded-full flex items-center justify-center">
-              <Shield className="w-4 h-4 text-[#F5A623]" />
+              <Shield className="w-4 h-4 text-[#F27100]" />
             </div>
             <div>
               <h1 className="text-white font-bold text-base leading-none">BEGEC TP</h1>
@@ -802,7 +802,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           {[
             { icon: Briefcase, label: "Projets", count: projectsList.length, color: "text-blue-400" },
             { icon: Users, label: "Membres", count: members.length, color: "text-green-400" },
-            { icon: Handshake, label: "Partenaires", count: partnersList.length, color: "text-yellow-400" },
+            { icon: Handshake, label: "Partenaires", count: partnersList.length, color: "text-secondary" },
             { icon: Image, label: "Médias", count: projectsList.length + members.length, color: "text-purple-400" },
           ].map(({ icon: Icon, label, count, color }) => (
             <Card key={label} className="bg-[#0F1D35] border-[#1F3C88]/40">

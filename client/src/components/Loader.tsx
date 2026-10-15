@@ -25,7 +25,7 @@ export function Loader() {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-foreground">
-          BEGEC <span style={{ color: "#F5A623" }}>TP</span>
+          BEGEC <span style={{ color: "#F27100" }}>TP</span>
         </div>
         <div className="text-muted-foreground text-xs md:text-sm tracking-[0.3em] uppercase mt-2">
           Bâtir l'Avenir
@@ -36,7 +36,7 @@ export function Loader() {
       <div className="relative z-10 w-48 h-1 rounded-full overflow-hidden bg-muted">
         <motion.div
           className="h-full rounded-full"
-          style={{ background: "linear-gradient(90deg, #F5A623, #ffce6b)" }}
+          style={{ background: "linear-gradient(90deg, #F27100, #F27100)" }}
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: 1.1, ease: "easeInOut" }}

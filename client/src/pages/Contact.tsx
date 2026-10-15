@@ -47,13 +47,13 @@ export default function Contact() {
         {/* Dot grid overlay */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '36px 36px' }} />
         {/* Glow blobs */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 65%)', transform: 'translate(20%, -30%)' }} />
-        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-8" style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 65%)', transform: 'translate(-30%, 30%)' }} />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F27100 0%, transparent 65%)', transform: 'translate(20%, -30%)' }} />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-8" style={{ background: 'radial-gradient(circle, #F27100 0%, transparent 65%)', transform: 'translate(-30%, 30%)' }} />
 
         <div className="container relative z-10 mx-auto px-4 text-center">
           <motion.span
             className="inline-block px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase mb-5"
-            style={{ background: 'rgba(245,166,35,0.2)', color: '#F5A623', border: '1px solid rgba(245,166,35,0.4)' }}
+            style={{ background: 'rgba(242,113,0,0.2)', color: '#F27100', border: '1px solid rgba(242,113,0,0.4)' }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -67,7 +67,7 @@ export default function Contact() {
             transition={{ duration: 0.55, delay: 0.1 }}
           >
             Discutons de{" "}
-            <span style={{ color: '#F5A623' }}>Votre Projet</span>
+            <span style={{ color: '#F27100' }}>Votre Projet</span>
           </motion.h1>
           <motion.p
             className="text-lg text-muted-foreground max-w-xl mx-auto"
@@ -124,7 +124,7 @@ export default function Contact() {
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
-                      style={{ background: '#F5A623' }}
+                      style={{ background: '#F27100' }}
                     >
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
@@ -160,7 +160,7 @@ export default function Contact() {
                                 <Input
                                   placeholder="Jean Dupont"
                                   {...field}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-[#F27100] focus:ring-[#F27100]/20"
                                   data-testid="input-name"
                                 />
                               </FormControl>
@@ -178,7 +178,7 @@ export default function Contact() {
                                 <Input
                                   placeholder="jean@exemple.fr"
                                   {...field}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-[#F27100] focus:ring-[#F27100]/20"
                                   data-testid="input-email"
                                 />
                               </FormControl>
@@ -200,7 +200,7 @@ export default function Contact() {
                                   placeholder="06 12 34 56 78"
                                   {...field}
                                   value={field.value || ""}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-[#F27100] focus:ring-[#F27100]/20"
                                   data-testid="input-phone"
                                 />
                               </FormControl>
@@ -218,7 +218,7 @@ export default function Contact() {
                                 <Input
                                   placeholder="Renseignement..."
                                   {...field}
-                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20"
+                                   className="bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-[#F27100] focus:ring-[#F27100]/20"
                                   data-testid="input-subject"
                                 />
                               </FormControl>
@@ -237,7 +237,7 @@ export default function Contact() {
                             <FormControl>
                               <Textarea
                                 placeholder="Détaillez votre demande ici..."
-                                 className="min-h-[140px] bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-yellow-400 focus:ring-yellow-400/20 resize-none"
+                                 className="min-h-[140px] bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-[#F27100] focus:ring-[#F27100]/20 resize-none"
                                 {...field}
                                 data-testid="textarea-message"
                               />
@@ -250,7 +250,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         className="w-full font-bold h-12 text-base gap-2 text-primary-foreground"
-                        style={{ background: 'linear-gradient(135deg, #F5A623, #e8930d)' }}
+                        style={{ background: 'linear-gradient(135deg, #F27100, #F27100)' }}
                         disabled={mutation.isPending}
                         data-testid="button-submit"
                       >

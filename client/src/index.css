@@ -12,13 +12,13 @@
   --primary: 224 63% 33%; /* #1F3C88 - Deep Blue */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 37 91% 55%; /* #F5A623 - Construction Yellow */
+  --secondary: 28 100% 47%; /* #F27100 - Construction Orange */
   --secondary-foreground: 222 47% 11%;
   
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
   
-  --accent: 37 91% 55%;
+  --accent: 28 100% 47%;
   --accent-foreground: 222 47% 11%;
   
   --destructive: 0 84.2% 60.2%;

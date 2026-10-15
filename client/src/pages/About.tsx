@@ -162,7 +162,7 @@ export default function About() {
                   {/* Dot */}
                   <motion.div
                     className="absolute left-4 md:left-1/2 w-5 h-5 rounded-full border-4 border-background md:-translate-x-1/2 z-10"
-                    style={{ background: "#F5A623" }}
+                    style={{ background: "#F27100" }}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
