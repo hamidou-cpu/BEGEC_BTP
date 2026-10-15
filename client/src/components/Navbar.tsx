@@ -117,7 +117,14 @@ export function Navbar() {
         <div className="lg:hidden flex items-center gap-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button
+                variant="outline"
+                size="icon"
+                className={cn(
+                  isHeroTop &&
+                    "bg-secondary text-white border-secondary shadow-lg shadow-black/20 hover:bg-secondary/90 hover:text-white focus-visible:ring-white"
+                )}
+              >
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
