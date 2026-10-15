@@ -42,7 +42,7 @@ export default function Contact() {
 
       {/* ── Hero Banner ─────────────────────────────────────────────────────── */}
       <section
-        className="relative pt-36 pb-24 overflow-hidden bg-muted/30 border-b border-border"
+        className="relative pt-36 pb-24 overflow-hidden bg-background border-b border-border"
       >
         {/* Dot grid overlay */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '36px 36px' }} />

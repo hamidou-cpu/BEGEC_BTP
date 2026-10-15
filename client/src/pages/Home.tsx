@@ -210,7 +210,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Recent Projects ───────────────────────────────────────────────── */}
-      <section className="py-24 bg-muted/30 clip-diagonal">
+      <section className="py-24 bg-background clip-diagonal">
         <div className="container mx-auto px-4 pb-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <motion.div
@@ -269,7 +269,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── Stats / Animated Counters ─────────────────────────────────────── */}
-      <section className="py-20 bg-muted/40 text-foreground border-y border-border relative overflow-hidden">
+      <section className="py-20 bg-background text-foreground border-y border-border relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -337,7 +337,7 @@ export default function Home() {
       </section>
       {/* ── Partners Carousel — pause on hover ───────────────────────────── */}
       {partners && partners.length > 0 && (
-        <section className="py-16 overflow-hidden bg-muted/30">
+        <section className="py-16 overflow-hidden bg-background">
           <motion.div
             className="container mx-auto px-4 mb-8 text-center"
             initial={{ opacity: 0, y: 16 }}
@@ -385,7 +385,7 @@ export default function Home() {
         </section>
       )}
       {/* ── CTA Section ───────────────────────────────────────────────────── */}
-      <section className="py-20 bg-muted/40 border-y border-border relative overflow-hidden">
+      <section className="py-20 bg-background border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(15,23,42,0.5) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F27100 0%, transparent 70%)', transform: 'translate(-30%, -30%)' }} />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #F27100 0%, transparent 70%)', transform: 'translate(30%, 30%)' }} />
