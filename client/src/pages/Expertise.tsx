@@ -80,7 +80,7 @@ export default function Expertise() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <Badge className="bg-secondary text-secondary-foreground mb-4">Nos Services</Badge>
+          <Badge className="bg-secondary text-white mb-4">Nos Services</Badge>
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-primary">
             Domaines d'Intervention
           </h1>

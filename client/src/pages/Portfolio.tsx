@@ -129,7 +129,7 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Badge className="bg-secondary text-secondary-foreground mb-4">Portfolio</Badge>
+          <Badge className="bg-secondary text-white mb-4">Portfolio</Badge>
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-primary">
             Nos Réalisations
           </h1>

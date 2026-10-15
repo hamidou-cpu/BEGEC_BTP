@@ -91,7 +91,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary mb-6 px-4 py-1 text-sm font-bold uppercase tracking-wider">
+            <Badge className="bg-secondary text-white hover:bg-secondary mb-6 px-4 py-1 text-sm font-bold uppercase tracking-wider">
               Expertise & Fiabilité
             </Badge>
           </motion.div>
@@ -252,7 +252,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <Badge className="bg-secondary text-secondary-foreground mb-2">{project.category}</Badge>
+                    <Badge className="bg-secondary text-white mb-2">{project.category}</Badge>
                     <h4 className="text-xl font-bold mb-1">{project.title}</h4>
                     <p className="text-sm text-gray-300 line-clamp-2">{project.description}</p>
                   </div>

@@ -20,7 +20,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <Badge className="bg-secondary text-secondary-foreground mb-4">
+          <Badge className="bg-secondary text-white mb-4">
             À Propos
           </Badge>
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-secondary">
@@ -112,7 +112,7 @@ export default function About() {
         {/* Timeline — Notre Parcours */}
         <div className="mb-24">
           <div className="text-center mb-16">
-            <Badge className="bg-secondary text-secondary-foreground mb-4">
+            <Badge className="bg-secondary text-white mb-4">
               Notre Parcours
             </Badge>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary">
@@ -248,7 +248,7 @@ export default function About() {
         {/* Team Section */}
         <div className="mt-24">
           <div className="text-center mb-12">
-            <Badge className="bg-secondary text-secondary-foreground mb-4">
+            <Badge className="bg-secondary text-white mb-4">
               Notre Équipe
             </Badge>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary">

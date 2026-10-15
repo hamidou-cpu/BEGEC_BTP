@@ -385,7 +385,7 @@ function ProjectsTab() {
               <div className="relative h-40">
                 <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <Badge className="absolute top-2 left-2 bg-[#F27100] text-black text-xs font-semibold">
+                <Badge className="absolute top-2 left-2 bg-[#F27100] text-white text-xs font-semibold">
                   {p.category}
                 </Badge>
               </div>
