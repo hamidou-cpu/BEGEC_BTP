@@ -86,17 +86,19 @@ export function Navbar() {
             <Link key={link.href} href={link.href}>
               <span
                 className={cn(
-                  "cursor-pointer text-sm font-semibold transition-colors hover:text-primary uppercase tracking-wide relative",
-                  isHeroTop
-                    ? location === link.href ? "text-white" : "text-white/85 hover:text-white"
-                    : location === link.href ? "text-primary" : "text-muted-foreground"
+                  "cursor-pointer text-sm font-semibold transition-colors hover:text-secondary uppercase tracking-wide relative",
+                  location === link.href
+                    ? "text-secondary"
+                    : isHeroTop
+                      ? "text-white/85 hover:text-white"
+                      : "text-muted-foreground"
                 )}
               >
                 {link.label}
                 {location === link.href && (
                   <motion.div
                     layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-secondary rounded-full"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -124,8 +126,8 @@ export function Navbar() {
                 {navLinks.map((link) => (
                   <Link key={link.href} href={link.href}>
                     <div className={cn(
-                      "text-lg font-semibold cursor-pointer py-2 hover:text-primary transition-colors border-b border-border/50",
-                      location === link.href ? "text-primary" : "text-foreground"
+                      "text-lg font-semibold cursor-pointer py-2 hover:text-secondary transition-colors border-b border-border/50",
+                      location === link.href ? "text-secondary" : "text-foreground"
                     )}>
                       {link.label}
                     </div>
