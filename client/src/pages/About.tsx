@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Users, Target, Shield } from "lucide-react";
@@ -7,7 +7,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function About() {
   const { data: team, isLoading } = useTeam();
-  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="pt-24 min-h-screen pb-24">
@@ -20,10 +19,10 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <Badge className="bg-secondary text-white mb-4">
+          <Badge className="bg-secondary text-secondary-foreground mb-4">
             À Propos
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-secondary">
+          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-primary">
             Notre Histoire & Nos Valeurs
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
@@ -45,16 +44,10 @@ export default function About() {
           >
             <div className="absolute -inset-4 bg-secondary/20 rounded-2xl transform rotate-3"></div>
             {/* Construction team meeting */}
-            <motion.img
+            <img
               src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
               alt="Construction team meeting"
-              className="relative rounded-2xl shadow-2xl w-full h-[360px] sm:h-[420px] lg:h-[520px] object-cover"
-              animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              className="relative rounded-2xl shadow-2xl w-full object-cover aspect-video"
             />
           </motion.div>
 
@@ -112,7 +105,7 @@ export default function About() {
         {/* Timeline — Notre Parcours */}
         <div className="mb-24">
           <div className="text-center mb-16">
-            <Badge className="bg-secondary text-white mb-4">
+            <Badge className="bg-secondary text-secondary-foreground mb-4">
               Notre Parcours
             </Badge>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary">
@@ -248,7 +241,7 @@ export default function About() {
         {/* Team Section */}
         <div className="mt-24">
           <div className="text-center mb-12">
-            <Badge className="bg-secondary text-white mb-4">
+            <Badge className="bg-secondary text-secondary-foreground mb-4">
               Notre Équipe
             </Badge>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary">
