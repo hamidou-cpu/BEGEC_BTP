@@ -1,33 +1,33 @@
 # Graph Report - site-begec-btp_2  (2026-10-30)
 
 ## Corpus Check
-- 166 files · ~1,054,691 words
+- 166 files · ~1,054,694 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 4, .css 2, .cmd 1)
 
 ## Summary
-- 2128 nodes · 4716 edges · 111 communities (104 shown, 7 thin omitted)
+- 2129 nodes · 4717 edges · 115 communities (105 shown, 10 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 89 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `340cbc77`
+- Built from commit: `67dbe1ed`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - 001 — Smooth Layout Transition and AnimatePresence on Project Filtering
 - dependencies
-- react
+- App.tsx
 - cn
 - package.json
-- sidebar.tsx
+- applyEditing
 - lucide-react
 - use-toast.ts
-- button.tsx
+- react
 - devDependencies
 - live-browser.js
-- connectSSE
+- startVariantObserver
 - compilerOptions
 - el
 - components.json
@@ -39,14 +39,14 @@
 - chart.tsx
 - command.tsx
 - initPageChat
-- react
-- renderDesignVisual
-- drawer.tsx
+- navigation-menu.tsx
+- resumeSession
+- onAnnotDown
 - actOnAgentTarget
 - Project
 - Quote.tsx
 - scripts
-- barPaletteForTheme
+- initGlobalBar
 - Admin.tsx
 - SKILL.md
 - live.md
@@ -54,11 +54,11 @@
 - new-work.md
 - onboard.md
 - The Toolkit
-- showToast
+- injectVariantsFromSource
 - BEGEC TP
 - requirements.md
 - Design System: BEGEC TP
-- captureElementToBlob
+- refreshParamsPanel
 - schema.ts
 - orbit-images.tsx
 - createLiveBrowserSessionState
@@ -71,8 +71,8 @@
 - actOnAgentTarget
 - New visual work
 - optimize.md
-- navigation-menu.tsx
-- api/index.ts
+- handleMouseMove
+- scheduleSteerFocusRecover
 - Impeccable Asset Producer
 - Scan mode (approach C: auto-extract, then confirm descriptive language)
 - critique.md
@@ -84,16 +84,16 @@
 - Hardening Dimensions
 - polish.md
 - quieter.md
-- Expertise.tsx
-- Navbar.tsx
+- syncEditBadgeHitProxies
+- saveSession
 - scheduleAcceptCleanup
-- Home.tsx
+- vite.config.ts
 - Generate Combined Critique Report
 - Init flow
 - Critique de Design : Page d'Accueil (`client/src/pages/Home.tsx`)
-- IStorage
+- DatabaseStorage
 - Responsive Design
-- shared/routes.ts
+- queryClient.ts
 - Common Cognitive Load Violations
 - iOS platform
 - Operate mode depth (and Read notes)
@@ -102,7 +102,7 @@
 - colorize.md
 - Persona-Based Design Testing
 - Extract Flow
-- select.tsx
+- db.ts
 - Generate Report
 - Cognitive Load Assessment
 - Impeccable Finish Reviewer
@@ -120,11 +120,15 @@
 - Conformité Stricte au Système de Design (DESIGN.md)
 - vercel.json
 - Read
-- moving-border.tsx
+- main.tsx
 - Critique de Design : Page d'Accueil (`client/src/pages/Home.tsx`) — Post-Correction
-- InsertContactMessage
+- overrides
 - Testimonial
-- QuoteRequest
+- tailwindcss
+- @radix-ui/react-aspect-ratio
+- @radix-ui/react-collapsible
+- drizzle-kit
+- optionalDependencies
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 231 edges
@@ -153,7 +157,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (111 total, 7 thin omitted)
+## Communities (115 total, 10 thin omitted)
 
 ### Community 0 - "001 — Smooth Layout Transition and AnimatePresence on Project Filtering"
 Cohesion: 0.04
@@ -161,47 +165,47 @@ Nodes (39): 001 — Smooth Layout Transition and AnimatePresence on Project Filt
 
 ### Community 1 - "dependencies"
 Cohesion: 0.03
-Nodes (68): dependencies, class-variance-authority, clsx, cmdk, connect-pg-simple, date-fns, drizzle-orm, drizzle-zod (+60 more)
+Nodes (77): dependencies, autoprefixer, class-variance-authority, clsx, cmdk, connect-pg-simple, date-fns, drizzle-orm (+69 more)
 
-### Community 2 - "react"
-Cohesion: 0.14
-Nodes (15): App(), AppContent(), pageVariants, ScrollToTop(), Footer(), Loader(), Navbar(), useSetting() (+7 more)
+### Community 2 - "App.tsx"
+Cohesion: 0.10
+Nodes (29): App(), AppContent(), pageVariants, ScrollToTop(), Footer(), Loader(), Navbar(), Badge() (+21 more)
 
 ### Community 3 - "cn"
-Cohesion: 0.06
-Nodes (44): Avatar, AvatarFallback, AvatarImage, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuRadioItem (+36 more)
+Cohesion: 0.03
+Nodes (96): Breadcrumb, BreadcrumbEllipsis(), BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator(), ContextMenuCheckboxItem (+88 more)
 
 ### Community 4 - "package.json"
-Cohesion: 0.04
-Nodes (47): @esbuild-kit/esm-loader, license, name, optionalDependencies, bufferutil, overrides, drizzle-kit, type (+39 more)
+Cohesion: 0.05
+Nodes (41): license, name, type, version, autoprefixer, bufferutil, clsx, connect-pg-simple (+33 more)
 
-### Community 5 - "sidebar.tsx"
-Cohesion: 0.07
-Nodes (32): Separator, SidebarContent(), SidebarContext, SidebarContextProps, SidebarFooter(), SidebarGroup(), SidebarGroupAction(), SidebarGroupContent() (+24 more)
+### Community 5 - "applyEditing"
+Cohesion: 0.08
+Nodes (35): addManualContextText(), applyEditing(), buildLocatorForLeaf(), canRestoreManualEditElement(), collectManualContextPieces(), walk(), contextElementForManualEdit(), copyEditContainerContext() (+27 more)
 
 ### Community 6 - "lucide-react"
-Cohesion: 0.11
-Nodes (15): AccordionContent, AccordionItem, AccordionTrigger, Checkbox, InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot (+7 more)
+Cohesion: 0.07
+Nodes (23): AccordionContent, AccordionItem, AccordionTrigger, Checkbox, StickyContentWrapperDemo(), InputOTP, InputOTPGroup, InputOTPSeparator (+15 more)
 
 ### Community 7 - "use-toast.ts"
 Cohesion: 0.12
 Nodes (24): Toast, ToastAction, ToastActionElement, ToastClose, ToastDescription, ToastProps, ToastTitle, toastVariants (+16 more)
 
-### Community 8 - "button.tsx"
-Cohesion: 0.08
-Nodes (30): AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter(), AlertDialogHeader(), AlertDialogOverlay, AlertDialogTitle (+22 more)
+### Community 8 - "react"
+Cohesion: 0.05
+Nodes (42): AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter(), AlertDialogHeader(), AlertDialogOverlay, AlertDialogTitle (+34 more)
 
 ### Community 9 - "devDependencies"
-Cohesion: 0.08
-Nodes (24): devDependencies, autoprefixer, drizzle-kit, esbuild, postcss, @replit/vite-plugin-cartographer, @replit/vite-plugin-dev-banner, @replit/vite-plugin-runtime-error-modal (+16 more)
+Cohesion: 0.13
+Nodes (15): devDependencies, drizzle-kit, @replit/vite-plugin-cartographer, @replit/vite-plugin-dev-banner, @tailwindcss/typography, @tailwindcss/vite, @types/connect-pg-simple, @types/express (+7 more)
 
 ### Community 10 - "live-browser.js"
 Cohesion: 0.03
-Nodes (123): addManualContextText(), applyEditing(), applyGlobalBarLabelState(), applyLiveBarPreference(), applyParamDefaults(), applyParamValue(), applyPlaceholderSizingStyles(), applySavedParamValues() (+115 more)
+Nodes (115): applyGlobalBarLabelState(), applyParamDefaults(), applyParamValue(), applyPlaceholderDimensions(), applySavedParamValues(), averageRgb01(), bufferToBase64(), buildCollapsible() (+107 more)
 
-### Community 11 - "connectSSE"
-Cohesion: 0.06
-Nodes (82): abortSvelteComponentInjection(), applyPlaceholderDimensions(), applySavedSessionMeta(), clampVariantIndex(), closedClipPath(), commitAcceptedVariantToDom(), completeParameterGenerationIfReady(), completeParameterPublication() (+74 more)
+### Community 11 - "startVariantObserver"
+Cohesion: 0.17
+Nodes (25): commitAcceptedVariantToDom(), completeSourceInjection(), ensureInsertPlaceholder(), finalizeInsertSession(), findVariantsWrapper(), handleAccept(), hideShaderOverlay(), isInsertGeneratingSession() (+17 more)
 
 ### Community 12 - "compilerOptions"
 Cohesion: 0.11
@@ -209,15 +213,19 @@ Nodes (18): compilerOptions, allowImportingTsExtensions, baseUrl, esModuleIntero
 
 ### Community 13 - "el"
 Cohesion: 0.07
-Nodes (60): actionLabel(), applyConfigureBarChrome(), bindConfigureCountPillTooltip(), bindConfigureInlineControlHover(), bindConfigureModifierPillHover(), buildConfigureActionControl(), buildConfigureCountControl(), buildConfigureRow() (+52 more)
+Nodes (55): actionLabel(), applyConfigureBarChrome(), bindConfigureCountPillTooltip(), bindConfigureInlineControlHover(), bindConfigureModifierPillHover(), buildConfigureActionControl(), buildConfigureCountControl(), buildConfigureRow() (+47 more)
 
 ### Community 14 - "components.json"
 Cohesion: 0.12
 Nodes (16): aliases, components, hooks, lib, ui, utils, rsc, $schema (+8 more)
 
+### Community 15 - "TeamMember"
+Cohesion: 0.18
+Nodes (3): IStorage, InsertTeamMember, TeamMember
+
 ### Community 16 - "index.ts"
 Cohesion: 0.11
-Nodes (13): esbuild, express, @replit/vite-plugin-runtime-error-modal, vite, @vitejs/plugin-react, allowlist, app, http (+5 more)
+Nodes (19): app, handler(), httpServer, setup(), express, multer, nodemailer, app (+11 more)
 
 ### Community 17 - "modern-screenshot.umd.js"
 Cohesion: 0.09
@@ -228,8 +236,8 @@ Cohesion: 0.17
 Nodes (14): Carousel, CarouselApi, CarouselContent, CarouselContext, CarouselContextProps, CarouselItem, CarouselNext, CarouselOptions (+6 more)
 
 ### Community 19 - "setLiveState"
-Cohesion: 0.11
-Nodes (59): beginNewLiveConfiguration(), cancelEditing(), cancelEditingToPicking(), cancelInsertConfigure(), cleanup(), cleanupAcceptedSession(), clearAnnotations(), clearHandled() (+51 more)
+Cohesion: 0.09
+Nodes (71): abandonForeignSession(), abandonSupersededGo(), abortSvelteComponentInjection(), beginNewLiveConfiguration(), buildInsertPlaceholderSnapshotFromDom(), buildPickedAnchorSnapshot(), cancelEditing(), cancelEditingToPicking() (+63 more)
 
 ### Community 20 - "chart.tsx"
 Cohesion: 0.24
@@ -240,44 +248,44 @@ Cohesion: 0.18
 Nodes (10): Command, CommandDialog(), CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator (+2 more)
 
 ### Community 22 - "initPageChat"
+Cohesion: 0.10
+Nodes (45): armPageChatForTyping(), attachSteerFocusDebug(), buildSteerProcessingDots(), buildSteerQueueHint(), clearSteerAwaitTimer(), collapsePageChat(), configureVoiceContext(), expandPageChat() (+37 more)
+
+### Community 23 - "navigation-menu.tsx"
 Cohesion: 0.09
-Nodes (49): agentHasWorkInFlight(), armPageChatForTyping(), attachSteerFocusDebug(), attachSteerFocusGuard(), buildSteerProcessingDots(), clearSteerAwaitTimer(), clearSteerFocusRecoverTimer(), collapsePageChat() (+41 more)
+Nodes (22): Alert, AlertDescription, AlertTitle, alertVariants, labelVariants, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator (+14 more)
 
-### Community 23 - "react"
-Cohesion: 0.06
-Nodes (32): Alert, AlertDescription, AlertTitle, alertVariants, BadgeProps, HoverCardContent, PopoverContent, RadioGroup (+24 more)
+### Community 24 - "resumeSession"
+Cohesion: 0.16
+Nodes (20): applySavedSessionMeta(), clampVariantIndex(), clearHandled(), findActiveSessionSummary(), findAdoptableServerSession(), findAnyVariantsWrapper(), findInsertAnchorInDom(), isSessionHandled() (+12 more)
 
-### Community 24 - "renderDesignVisual"
-Cohesion: 0.07
-Nodes (41): buildCollapsible(), buildColorModels(), buildDesignHeader(), buildListHtml(), buildRadiiModels(), buildTypographyModels(), copyToClipboard(), cssSafe() (+33 more)
-
-### Community 25 - "drawer.tsx"
-Cohesion: 0.25
-Nodes (7): DrawerContent, DrawerDescription, DrawerFooter(), DrawerHeader(), DrawerOverlay, DrawerTitle, vaul
+### Community 25 - "onAnnotDown"
+Cohesion: 0.20
+Nodes (17): beginEditPin(), buildAnnotationsForCapture(), buildPinElement(), cancelEditingPin(), clampPlaceholderSize(), finalizeEditingPin(), initAnnotOverlay(), localCoords() (+9 more)
 
 ### Community 26 - "actOnAgentTarget"
 Cohesion: 0.18
-Nodes (25): clearStoredManualApplyState(), fetchPendingCount(), handleManualEditActivity(), hidePendingApplyDock(), manualApplyLoadingText(), manualApplyStateKey(), manualEditEventForCurrentPage(), numberOrNull() (+17 more)
+Nodes (26): clearStoredManualApplyState(), fetchPendingCount(), handleManualEditActivity(), hidePendingApplyDock(), manualApplyLoadingText(), manualApplyStateKey(), manualEditEventForCurrentPage(), numberOrNull() (+18 more)
 
 ### Community 27 - "Project"
-Cohesion: 0.17
-Nodes (5): DossierModalProps, ProjectCardProps, DatabaseStorage, InsertProject, Project
+Cohesion: 0.27
+Nodes (4): DossierModalProps, ProjectCardProps, InsertProject, Project
 
 ### Community 28 - "Quote.tsx"
-Cohesion: 0.14
-Nodes (24): CardHeader, CardTitle, FormControl, FormDescription, FormField(), FormFieldContext, FormFieldContextValue, FormItem (+16 more)
+Cohesion: 0.10
+Nodes (33): Direction, ScrollReveal(), ScrollRevealProps, variants, FormControl, FormDescription, FormField(), FormFieldContext (+25 more)
 
 ### Community 29 - "scripts"
-Cohesion: 0.33
-Nodes (6): scripts, build, check, db:push, dev, start
+Cohesion: 0.29
+Nodes (7): scripts, build, build:client, check, db:push, dev, start
 
-### Community 30 - "barPaletteForTheme"
-Cohesion: 0.14
-Nodes (21): agentStatusText(), barPaletteForTheme(), brandMarkSvg(), buildParamsPanel(), clearMountErrorCard(), designPanelCss(), detectPageTheme(), ensureAgentPollTooltip() (+13 more)
+### Community 30 - "initGlobalBar"
+Cohesion: 0.09
+Nodes (38): agentHasWorkInFlight(), agentStatusText(), applyLiveBarPreference(), barPaletteForTheme(), brandMarkSvg(), buildDesignHeader(), designPanelCss(), detectPageTheme() (+30 more)
 
 ### Community 31 - "Admin.tsx"
-Cohesion: 0.18
-Nodes (30): Card, CardContent, CardDescription, CardFooter, DialogContent, DialogFooter(), DialogHeader(), DialogOverlay (+22 more)
+Cohesion: 0.12
+Nodes (42): Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, DialogContent (+34 more)
 
 ### Community 32 - "SKILL.md"
 Cohesion: 0.07
@@ -288,8 +296,8 @@ Cohesion: 0.07
 Nodes (26): Step 1: Parse the request, Step 2: Reuse the page, then start, Step 3: Generate, Step 4: Accept and close, Cleanup, Exit, First-time setup, Handle `accept` (+18 more)
 
 ### Community 34 - "createLiveBrowserDomHelpers"
-Cohesion: 0.10
-Nodes (24): collectEditableTextRows(), visit(), createLiveBrowserDomHelpers(), activeElementDeep(), cloneWithoutChrome(), copyTextViaSelection(), cssId(), liveUiRoot() (+16 more)
+Cohesion: 0.11
+Nodes (23): collectEditableTextRows(), visit(), createLiveBrowserDomHelpers(), activeElementDeep(), cloneWithoutChrome(), copyTextViaSelection(), cssId(), liveUiRoot() (+15 more)
 
 ### Community 35 - "new-work.md"
 Cohesion: 0.10
@@ -303,9 +311,9 @@ Nodes (22): Assess Onboarding Needs, Context Over Ceremony, Contextual Help, Des
 Cohesion: 0.10
 Nodes (20): Animate complex properties, Assess What "Extraordinary" Means Here, For data-heavy interfaces, For functional UI, For performance-critical UI, For visual/marketing surfaces, Implement with Discipline, Interact with the device (+12 more)
 
-### Community 38 - "showToast"
-Cohesion: 0.13
-Nodes (20): abandonForeignSession(), abandonSupersededGo(), captureAndEmit(), checkpointPayload(), compileShader(), discardOrphanedSession(), dismissToast(), handleDiscard() (+12 more)
+### Community 38 - "injectVariantsFromSource"
+Cohesion: 0.29
+Nodes (10): discardOrphanedSession(), injectVariantsFromSource(), isFrameworkComponentPreviewMode(), isJsxSourceFile(), isSvelteComponentManifestPath(), normalizeSessionPath(), probeJsxWrapperForOrphan(), recoverMissedGenerationCompletion() (+2 more)
 
 ### Community 40 - "BEGEC TP"
 Cohesion: 0.33
@@ -315,13 +323,13 @@ Nodes (5): BEGEC TP, Installation et lancement en local, Prérequis, Supabase, �
 Cohesion: 0.07
 Nodes (26): Badges / Chips, Buttons, Cards / Containers, Colors, Components, Design System: BEGEC TP, Do:, Do's and Don'ts (+18 more)
 
-### Community 43 - "captureElementToBlob"
-Cohesion: 0.13
-Nodes (20): averageRgb01(), bufferToBase64(), captureChromeNodes(), captureElementFromRenderedAncestor(), captureElementToBlob(), collectFontCssText(), cssColorToRgb01(), dominantRgb01() (+12 more)
+### Community 43 - "refreshParamsPanel"
+Cohesion: 0.17
+Nodes (17): closedClipPath(), completeParameterGenerationIfReady(), completeParameterPublication(), getMountedSvelteComponentAnchor(), getVisibleVariantEl(), hideParamsPanel(), mountedParameterCount(), openTunePopover() (+9 more)
 
 ### Community 44 - "schema.ts"
 Cohesion: 0.11
-Nodes (25): drizzle-orm, drizzle-zod, multer, nodemailer, pg, zod, db, pool (+17 more)
+Nodes (23): drizzle-zod, zod, storage, api, errorSchemas, ContactMessage, contactMessages, InsertContactMessage (+15 more)
 
 ### Community 45 - "orbit-images.tsx"
 Cohesion: 0.12
@@ -332,8 +340,8 @@ Cohesion: 0.19
 Nodes (17): createLiveBrowserSessionState(), clearHandled(), clearScrollY(), clearSession(), isHandled(), loadSession(), markHandled(), nextCheckpointRevision() (+9 more)
 
 ### Community 47 - "resolveLiveInjectionAnchor"
-Cohesion: 0.16
-Nodes (19): buildSvelteExpressionTextMap(), buildSveltePropValuesFromLiveElement(), buildSveltePropValuesV2(), cloneWithoutElements(), collectTextNodes(), collectVisibleTexts(), cssEscapeIdent(), elementMatchesOriginalMarkup() (+11 more)
+Cohesion: 0.62
+Nodes (7): elementMatchesOriginalMarkup(), findLiveElementForOriginalMarkup(), findLiveElementFromAnchorSnapshot(), isUsableInjectionAnchor(), normalizeElementClassName(), parseOriginalMarkupElement(), resolveLiveInjectionAnchor()
 
 ### Community 48 - "adapt.md"
 Cohesion: 0.11
@@ -348,16 +356,16 @@ Cohesion: 0.12
 Nodes (16): 1. Read the screenshot (if present), 2. Wrap the element, 3. Load the action's reference, 4. Plan three variants: identity first, then mode, then axes, 5. Apply the freeform prompt (if present), 6. Deliver variants, 7. Parameters (composition-sized, 0-4 per variant), 8. Signal done (+8 more)
 
 ### Community 51 - "mountSvelteComponentVariant"
-Cohesion: 0.18
-Nodes (16): applyOriginalAttrsToSvelteAnchor(), commitAcceptedSvelteComponentToDom(), componentModuleCandidates(), cyclingCounterText(), cyclingShownVariant(), describeMountFailure(), detectDevServerBase(), getMountedSvelteComponentAnchor() (+8 more)
+Cohesion: 0.19
+Nodes (17): applyOriginalAttrsToSvelteAnchor(), commitAcceptedSvelteComponentToDom(), componentModuleCandidates(), describeMountFailure(), detectDevServerBase(), findLiveElementForSvelteManifest(), importFirstReachable(), injectSvelteComponentsFromManifest() (+9 more)
 
 ### Community 52 - "Generate Report"
 Cohesion: 0.13
 Nodes (14): 1. Accessibility (A11y), 2. Performance, 3. Theming, 4. Responsive Design, 5. Implementation Integrity (CRITICAL), Audit Health Score, Detailed Findings by Severity, Diagnostic Scan (+6 more)
 
 ### Community 53 - "actOnAgentTarget"
-Cohesion: 0.18
-Nodes (23): actOnAgentTarget(), agentTargetBusyReason(), agentTargetOverlayGone(), agentTargetTaken(), buildPlaceholderResizeHandles(), claimAgentTarget(), claimAndActOnAgentTarget(), cursorForPlaceholderEdge() (+15 more)
+Cohesion: 0.31
+Nodes (16): actOnAgentTarget(), agentTargetBusyReason(), agentTargetOverlayGone(), agentTargetTaken(), claimAgentTarget(), claimAndActOnAgentTarget(), declineAgentTargetBusy(), declineAgentTargetUnresolvable() (+8 more)
 
 ### Community 54 - "New visual work"
 Cohesion: 0.14
@@ -367,13 +375,13 @@ Nodes (14): 1. Decide what is already true, 2. Ask what will change the work, 3.
 Cohesion: 0.14
 Nodes (13): Animation Performance, Assess Performance Issues, Core Web Vitals Optimization, Cumulative Layout Shift (CLS < 0.1), Interaction to Next Paint (INP < 200ms), Largest Contentful Paint (LCP < 2.5s), Loading Performance, Network Optimization (+5 more)
 
-### Community 56 - "navigation-menu.tsx"
-Cohesion: 0.28
-Nodes (8): NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle, NavigationMenuViewport, @radix-ui/react-navigation-menu
+### Community 56 - "handleMouseMove"
+Cohesion: 0.14
+Nodes (15): applyPlaceholderSizingStyles(), createInsertPlaceholder(), cursorForInsertAxis(), detectInsertAxis(), detectInsertAxisFromStyle(), ensureInsertLine(), handleMouseMove(), hideHighlightTagTooltip() (+7 more)
 
-### Community 57 - "api/index.ts"
-Cohesion: 0.36
-Nodes (7): app, handler(), httpServer, setup(), registerRoutes(), requireAdmin(), runSeedData()
+### Community 57 - "scheduleSteerFocusRecover"
+Cohesion: 0.27
+Nodes (10): attachSteerFocusGuard(), clearSteerFocusRecoverTimer(), isInlineEditActive(), isPageEditableActive(), isPageEditableElement(), notePagePointerDown(), pageHasHostTextSelection(), scheduleSteerFocusRecover() (+2 more)
 
 ### Community 58 - "Impeccable Asset Producer"
 Cohesion: 0.15
@@ -419,21 +427,21 @@ Nodes (10): 1. Establish the system, 2. Gather the evidence, 3. Triage, 4. Polis
 Cohesion: 0.18
 Nodes (10): Assess Current State, Color Refinement, Composition Refinement, Motion Reduction, Plan Refinement, Refine the Design, Simplification, Verify Quality (+2 more)
 
-### Community 69 - "Expertise.tsx"
-Cohesion: 0.21
-Nodes (11): Direction, ScrollReveal(), ScrollRevealProps, variants, TabsContent, TabsList, TabsTrigger, engineeringWorkflow (+3 more)
+### Community 69 - "syncEditBadgeHitProxies"
+Cohesion: 0.27
+Nodes (10): bindEditBadgeProxy(), editBadgeProxyTargets(), initEditBadge(), initEditBadgeHitProxies(), positionEditBadge(), proxyMouseEvent(), setImportantStyle(), styleEditBadgeProxy() (+2 more)
 
-### Community 70 - "Navbar.tsx"
-Cohesion: 0.17
-Nodes (10): SheetContent, SheetContentProps, SheetDescription, SheetFooter(), SheetHeader(), SheetOverlay, SheetTitle, sheetVariants (+2 more)
+### Community 70 - "saveSession"
+Cohesion: 0.24
+Nodes (10): buildParamsPanel(), checkpointPayload(), enterRecoveryWaitingForAnchor(), formatRangeValue(), noteParamEdited(), queueCheckpoint(), saveSession(), sendCheckpoint() (+2 more)
 
 ### Community 71 - "scheduleAcceptCleanup"
 Cohesion: 0.31
 Nodes (11): acceptedDomAlreadyClean(), clearHandledWrapperReloadStamp(), deferredRecoverySuperseded(), ensureAcceptedDomClean(), findAcceptedRuntimeWrappers(), handledWrapperReloadKey(), reloadAfterMissingAcceptedDom(), restoreAcceptedDomFromSnapshot() (+3 more)
 
-### Community 72 - "Home.tsx"
-Cohesion: 0.14
-Nodes (27): Badge(), badgeVariants, Button, StickyContentWrapperDemo(), DialogDescription, MovingBorderButton, defaultDemoItems, StickyContentItem (+19 more)
+### Community 72 - "vite.config.ts"
+Cohesion: 0.20
+Nodes (5): esbuild, @replit/vite-plugin-runtime-error-modal, vite, @vitejs/plugin-react, allowlist
 
 ### Community 73 - "Generate Combined Critique Report"
 Cohesion: 0.20
@@ -447,17 +455,17 @@ Nodes (10): Completion gate, Init flow, Step 1: Load current state, Step 2: Expl
 Cohesion: 0.15
 Nodes (12): Alertes par Persona, Critique de Design : Page d'Accueil (`client/src/pages/Home.tsx`), Design Health Score, Impression Générale, Observations Mineures, [P1] Incohérence des rayons de courbure et formes molles, [P1] Violation de la règle des 10% d'orange chantier sur les grands titres, [P2] Encombrement et manipulation tactile de l'Orbit 3D sur mobile (+4 more)
 
-### Community 77 - "IStorage"
-Cohesion: 0.17
-Nodes (3): IStorage, InsertPartner, Partner
+### Community 77 - "DatabaseStorage"
+Cohesion: 0.18
+Nodes (3): DatabaseStorage, InsertPartner, Partner
 
 ### Community 78 - "Responsive Design"
 Cohesion: 0.22
 Nodes (9): Detect Input Method, Not Just Screen Size, Layout Adaptation Patterns, Mobile-First: Write It Right, Picture Element for Art Direction, Responsive Design, Responsive Images: Get It Right, Safe Areas: Handle the Notch, srcset with Width Descriptors (+1 more)
 
-### Community 79 - "shared/routes.ts"
-Cohesion: 0.31
-Nodes (4): useTeam(), @tanstack/react-query, api, errorSchemas
+### Community 79 - "queryClient.ts"
+Cohesion: 0.47
+Nodes (5): apiRequest(), getQueryFn(), queryClient, throwIfResNotOk(), UnauthorizedBehavior
 
 ### Community 80 - "Common Cognitive Load Violations"
 Cohesion: 0.22
@@ -491,9 +499,9 @@ Nodes (8): 1. Impatient Power User: "Alex", 2. Confused First-Timer: "Jordan", 3
 Cohesion: 0.25
 Nodes (7): Extract Flow, Step 1: Discover the Design System, Step 2: Identify Patterns, Step 3: Plan Extraction, Step 4: Extract & Enrich, Step 5: Migrate, Step 6: Document
 
-### Community 88 - "select.tsx"
-Cohesion: 0.38
-Nodes (6): SelectContent, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, @radix-ui/react-select
+### Community 88 - "db.ts"
+Cohesion: 0.40
+Nodes (4): drizzle-orm, pg, db, pool
 
 ### Community 89 - "Generate Report"
 Cohesion: 0.29
@@ -563,18 +571,18 @@ Nodes (4): buildCommand, outputDirectory, rewrites, version
 Cohesion: 0.50
 Nodes (3): Comps, Directions, Read
 
-### Community 106 - "moving-border.tsx"
-Cohesion: 0.67
-Nodes (3): Button(), MovingBorder(), MovingBorderButtonProps
-
 ### Community 107 - "Critique de Design : Page d'Accueil (`client/src/pages/Home.tsx`) — Post-Correction"
 Cohesion: 0.50
 Nodes (3): Critique de Design : Page d'Accueil (`client/src/pages/Home.tsx`) — Post-Correction, Design Health Score, Verdict de Spécificité du Design
 
+### Community 108 - "overrides"
+Cohesion: 0.67
+Nodes (3): @esbuild-kit/esm-loader, overrides, drizzle-kit
+
 ## Knowledge Gaps
 - **32 isolated node(s):** `@jridgewell/trace-mapping`, `@types/multer`, `connect-pg-simple`, `date-fns`, `express-session` (+27 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 791 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 792 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -585,11 +593,11 @@ _Questions this graph is uniquely positioned to answer:_
   _32 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `001 — Smooth Layout Transition and AnimatePresence on Project Filtering` be split into smaller, more focused modules?**
   _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
-- **Why does `init()` connect `setLiveState` to `SKILL.md`, `live.md`, `createLiveBrowserDomHelpers`, `Init flow`, `live-browser.js`, `connectSSE`, `initPageChat`, `actOnAgentTarget`, `barPaletteForTheme`?**
+- **Why does `init()` connect `initGlobalBar` to `SKILL.md`, `live.md`, `syncEditBadgeHitProxies`, `Init flow`, `live-browser.js`, `setLiveState`, `initPageChat`, `resumeSession`, `handleMouseMove`, `scheduleSteerFocusRecover`, `actOnAgentTarget`, `onAnnotDown`?**
   _High betweenness centrality (0.364) - this node is a cross-community bridge._
 - **Should `dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.029411764705882353 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `react` to `react`, `cn`, `package.json`, `sidebar.tsx`, `lucide-react`, `use-toast.ts`, `button.tsx`, `carousel.tsx`, `chart.tsx`, `command.tsx`, `drawer.tsx`, `Quote.tsx`, `Admin.tsx`, `orbit-images.tsx`, `navigation-menu.tsx`, `Expertise.tsx`, `Navbar.tsx`, `Home.tsx`, `select.tsx`, `moving-border.tsx`?**
+  _Cohesion score 0.025974025974025976 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `react` to `App.tsx`, `cn`, `package.json`, `lucide-react`, `use-toast.ts`, `orbit-images.tsx`, `carousel.tsx`, `chart.tsx`, `command.tsx`, `navigation-menu.tsx`, `Quote.tsx`, `Admin.tsx`?**
   _High betweenness centrality (0.314) - this node is a cross-community bridge._
-- **Should `react` be split into smaller, more focused modules?**
-  _Cohesion score 0.1422924901185771 - nodes in this community are weakly interconnected._
+- **Should `App.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.1 - nodes in this community are weakly interconnected._

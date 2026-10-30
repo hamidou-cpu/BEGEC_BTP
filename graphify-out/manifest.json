@@ -444,9 +444,9 @@
     "semantic_hash": "51b0e64c197adc56bd2906e038fe9f5f"
   },
   "package.json": {
-    "mtime": 1793238474.0458632,
-    "seen": 1793238893.4900455,
-    "ast_hash": "18fff7e2d2e5bdce51e8d7efd7710466",
+    "mtime": 1793396877.0504944,
+    "seen": 1793396929.6711555,
+    "ast_hash": "c2ae01565ddbcd99662a38d752b90e10",
     "semantic_hash": ""
   },
   "postcss.config.js": {
@@ -1338,9 +1338,9 @@
     "semantic_hash": ""
   },
   "vercel.json": {
-    "mtime": 1793395226.261151,
-    "seen": 1793395281.8312023,
-    "ast_hash": "a9c5c5fd1971a13aa6cb465241165bd6",
+    "mtime": 1793396890.268291,
+    "seen": 1793396929.672001,
+    "ast_hash": "6bd2e252bc5db355845a8db9b539be39",
     "semantic_hash": ""
   },
   ".impeccable/critique/2026-10-30T17-31-05Z__client-src-pages-home-tsx.md": {
