@@ -474,10 +474,10 @@
     "semantic_hash": ""
   },
   "server/routes.ts": {
-    "mtime": 1792511970.7803385,
-    "seen": 1792693575.2280707,
-    "ast_hash": "43a38f6be333845b73cd2a51ef5b8698",
-    "semantic_hash": "43a38f6be333845b73cd2a51ef5b8698"
+    "mtime": 1793395202.1772158,
+    "seen": 1793395281.830876,
+    "ast_hash": "05c678ccf508ec588f4083e720eef2f9",
+    "semantic_hash": ""
   },
   "server/static.ts": {
     "mtime": 1770391208.0,
@@ -522,10 +522,10 @@
     "semantic_hash": ""
   },
   "tsconfig.json": {
-    "mtime": 1770391208.0,
-    "seen": 1792693575.2284007,
-    "ast_hash": "1e0fa60a1abb0b4bfeed3e2613a5bfff",
-    "semantic_hash": "1e0fa60a1abb0b4bfeed3e2613a5bfff"
+    "mtime": 1793395211.3749604,
+    "seen": 1793395281.8311996,
+    "ast_hash": "c1c9d12ece4d2815ca45cbac3e689333",
+    "semantic_hash": ""
   },
   "vite.config.ts": {
     "mtime": 1770391208.0,
@@ -1329,6 +1329,24 @@
     "mtime": 1793378826.818167,
     "seen": 1793381439.0863063,
     "ast_hash": "d017c7866ddca07f6caf3ba174610356",
+    "semantic_hash": ""
+  },
+  "api/index.ts": {
+    "mtime": 1793395218.8635616,
+    "seen": 1793395281.8259425,
+    "ast_hash": "a68dcf3cd1aa6825eebab6dca41a4e07",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1793395226.261151,
+    "seen": 1793395281.8312023,
+    "ast_hash": "a9c5c5fd1971a13aa6cb465241165bd6",
+    "semantic_hash": ""
+  },
+  ".impeccable/critique/2026-10-30T17-31-05Z__client-src-pages-home-tsx.md": {
+    "mtime": 1793381465.451643,
+    "seen": 1793395281.838889,
+    "ast_hash": "6283820f4396e8f75292da6cb5fc5ad7",
     "semantic_hash": ""
   }
 }

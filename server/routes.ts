@@ -16,7 +16,9 @@ const ADMIN_PASS = "BEP123";
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "begec-admin-secret-token-2024";
 
 // Configure multer for file uploads
-const uploadsDir = path.join(process.cwd(), "uploads");
+const uploadsDir = process.env.VERCEL
+  ? path.join("/tmp", "uploads")
+  : path.join(process.cwd(), "uploads");
 try {
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
