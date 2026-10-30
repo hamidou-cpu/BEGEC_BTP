@@ -4,6 +4,7 @@ import { insertContactSchema, type InsertContactMessage } from "@shared/routes";
 import { useContact } from "@/hooks/use-contact";
 import { useSetting } from "@/hooks/use-settings";
 import { Button } from "@/components/ui/button";
+import { MovingBorderButton } from "@/components/ui/moving-border";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -247,10 +248,12 @@ export default function Contact() {
                         )}
                       />
 
-                      <Button
+                      <MovingBorderButton
                         type="submit"
-                        className="w-full font-bold h-12 text-base gap-2 text-primary-foreground"
-                        style={{ background: 'linear-gradient(135deg, #F27100, #F27100)' }}
+                        variant="secondary"
+                        borderRadius="0.75rem"
+                        containerClassName="w-full h-13 shadow-lg shadow-secondary/25"
+                        className="w-full font-bold text-base"
                         disabled={mutation.isPending}
                         data-testid="button-submit"
                       >
@@ -262,7 +265,7 @@ export default function Contact() {
                             Envoyer le message
                           </>
                         )}
-                      </Button>
+                      </MovingBorderButton>
                     </form>
                   </Form>
                 </div>

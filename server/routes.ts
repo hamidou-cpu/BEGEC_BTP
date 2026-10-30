@@ -5,6 +5,7 @@ import { api } from "@shared/routes";
 import { z } from "zod";
 import { projects, testimonials, teamMembers, partners } from "@shared/schema";
 import { db } from "./db";
+// @ts-ignore
 import nodemailer from "nodemailer";
 import multer from "multer";
 import path from "path";
@@ -12,7 +13,7 @@ import fs from "fs";
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "BEP123";
-const ADMIN_TOKEN = "begec-admin-secret-token-2024";
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "begec-admin-secret-token-2024";
 
 // Configure multer for file uploads
 const uploadsDir = path.join(process.cwd(), "uploads");
@@ -169,7 +170,7 @@ export async function registerRoutes(
   app.put("/api/admin/settings/:key", requireAdmin, async (req, res) => {
     try {
       const { value } = req.body;
-      await storage.setSetting(req.params.key, value);
+      await storage.setSetting(req.params.key as string, value);
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ message: "Erreur serveur" });
@@ -359,56 +360,56 @@ async function runSeedData() {
 
   const existingTeam = await storage.getTeamMembers();
   if (existingTeam.length === 0) {
-  await db.insert(teamMembers).values([
-    {
-      name: "Lancinet DABO",
-      role: "Administrateur Général",
-      bio: "Visionnaire et leader stratégique de BEGEC TP.",
-      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Abdourahmane Bella KEITA",
-      role: "Directeur Général",
-      bio: "Expert en gestion opérationnelle et développement.",
-      imageUrl: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Moustapha KABA",
-      role: "Directeur Admin. Financier",
-      bio: "Garant de la stabilité financière et administrative.",
-      imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Hassan Aboufiras",
-      role: "Coordinateur des projets",
-      bio: "Maître d'œuvre de la coordination inter-projets.",
-      imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Ibrahima Pépé TRAORE",
-      role: "Directeur Technique",
-      bio: "Expert technique supervisant l'excellence métier.",
-      imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Sidate DIAW",
-      role: "Directeur de la logistique",
-      bio: "Expert en flux et gestion du matériel.",
-      imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Moribinet SYLLA",
-      role: "Directeur RH",
-      bio: "En charge du capital humain de l'entreprise.",
-      imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Manuel Antonio Ferreira Cabral",
-      role: "Dir. D'exploitation de la production",
-      bio: "Superviseur de la production sur le terrain.",
-      imageUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80"
-    }
-  ]);
+    await db.insert(teamMembers).values([
+      {
+        name: "Lancinet DABO",
+        role: "Administrateur Général",
+        bio: "Visionnaire et leader stratégique de BEGEC TP.",
+        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Abdourahmane Bella KEITA",
+        role: "Directeur Général",
+        bio: "Expert en gestion opérationnelle et développement.",
+        imageUrl: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Moustapha KABA",
+        role: "Directeur Admin. Financier",
+        bio: "Garant de la stabilité financière et administrative.",
+        imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Hassan Aboufiras",
+        role: "Coordinateur des projets",
+        bio: "Maître d'œuvre de la coordination inter-projets.",
+        imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Ibrahima Pépé TRAORE",
+        role: "Directeur Technique",
+        bio: "Expert technique supervisant l'excellence métier.",
+        imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Sidate DIAW",
+        role: "Directeur de la logistique",
+        bio: "Expert en flux et gestion du matériel.",
+        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Moribinet SYLLA",
+        role: "Directeur RH",
+        bio: "En charge du capital humain de l'entreprise.",
+        imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Manuel Antonio Ferreira Cabral",
+        role: "Dir. D'exploitation de la production",
+        bio: "Superviseur de la production sur le terrain.",
+        imageUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80"
+      }
+    ]);
   }
 
   const existingPartners = await storage.getPartners();

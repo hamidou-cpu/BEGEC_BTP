@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-30T16:47:30Z",
+  "title": "Design System: BEGEC TP",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Bleu Technique BTP",
+        "canonical": "#1f3c88",
+        "tonalRamp": ["#0c1836", "#142657", "#1f3c88", "#2d54bd", "#577be0", "#8ba6ea", "#c3d3f5", "#f0f4fd"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Orange Chantier & Sécurité",
+        "canonical": "#f27100",
+        "tonalRamp": ["#4d2300", "#803c00", "#b35300", "#f27100", "#ff8f33", "#ffb166", "#ffd499", "#fff2e5"]
+      },
+      "neutral-dark": {
+        "role": "neutral",
+        "displayName": "Bleu Nuit Ardoise",
+        "canonical": "#0f172a",
+        "tonalRamp": ["#030712", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#f8fafc"]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Blanc Pur",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#334155", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"]
+      },
+      "neutral-muted": {
+        "role": "neutral",
+        "displayName": "Gris Technique Givré",
+        "canonical": "#f1f5f9",
+        "tonalRamp": ["#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titres majeurs d'impact, bannières architecturales et grands compteurs métriques."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titres de sections principales (Expertises, À propos, Portefeuille de réalisations)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Titres de cartes projets, intitulés d'expertises et têtes de colonnes."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Corps de texte éditorial, explications techniques et argumentaires de chantiers."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges de qualification, métadonnées, catégories et sous-titres en majuscules."
+      }
+    },
+    "shadows": [
+      {
+        "name": "subtle-surface",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Ombre minimale au repos sur les cartes et blocs d'information."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "purpose": "Élévation lors du survol d'éléments cliquables ou cartes interactives."
+      },
+      {
+        "name": "overlay-depth",
+        "value": "0 20px 25px -5px rgb(0 0 0 / 0.15)",
+        "purpose": "Modales, volets de navigation latérale et dialogues d'interaction."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-cubic",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Courbe d'accélération fluide pour les apparitions de volets et transitions d'état."
+      },
+      {
+        "name": "transition-fast",
+        "value": "all 200ms ease-in-out",
+        "purpose": "Transitions instantanées au survol des boutons, badges et hyperliens."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Bouton d'action principal institutionnel pour la validation d'étapes et accès direct.",
+      "html": "<button class=\"ds-btn-primary\"><span>Consulter nos Réalisations</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: #1f3c88; color: #ffffff; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: all 200ms ease-in-out; text-decoration: none; } .ds-btn-primary:hover { background-color: #172d66; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }"
+    },
+    {
+      "name": "Secondary Accent Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bouton d'appel à l'action haute visibilité en orange chantier pour demandes d'études et devis.",
+      "html": "<button class=\"ds-btn-secondary\"><span>Demander un Devis sous 48h</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: #f27100; color: #ffffff; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border-radius: 6px; border: none; cursor: pointer; transition: all 200ms ease-in-out; text-decoration: none; } .ds-btn-secondary:hover { background-color: #d96500; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }"
+    },
+    {
+      "name": "Technical Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Étiquette technique en majuscules pour catégories d'expertises, certifications et préfectures.",
+      "html": "<span class=\"ds-badge-tech\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z\"/></svg><span>TOPOGRAPHIE CERTIFIÉE</span></span>",
+      "css": ".ds-badge-tech { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background-color: rgba(31, 60, 136, 0.08); color: #1f3c88; border: 1px solid rgba(31, 60, 136, 0.2); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }"
+    },
+    {
+      "name": "Industrial Slate Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Panneau technique sombre pour la mise en valeur des actifs lourds, parcs d'engins et centrales.",
+      "html": "<div class=\"ds-card-slate\"><div class=\"ds-card-stripe\"></div><div class=\"ds-card-header\"><span class=\"ds-card-label\">CAPACITÉS MATÉRIELLES</span><h4 class=\"ds-card-title\">Centrale d'enrobage Kouriya</h4></div><p class=\"ds-card-body\">Production autonome d'enrobé bitumineux à chaud haute cadence pour grands axes routiers.</p></div>",
+      "css": ".ds-card-slate { position: relative; background-color: #0f172a; color: #ffffff; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; overflow: hidden; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3); font-family: 'Inter', sans-serif; } .ds-card-stripe { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f27100, #1f3c88); } .ds-card-label { font-size: 11px; font-weight: 700; color: #f27100; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 6px; } .ds-card-title { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; color: #ffffff; } .ds-card-body { font-size: 14px; color: #94a3b8; line-height: 1.5; margin: 0; }"
+    },
+    {
+      "name": "Technical Form Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Champ de saisie pour formulaires de devis et prises de contact techniques.",
+      "html": "<div class=\"ds-input-group\"><label class=\"ds-input-label\">Localisation du chantier</label><input type=\"text\" class=\"ds-input\" placeholder=\"Ex: Coyah, Route Nationale 1\" /></div>",
+      "css": ".ds-input-group { display: flex; flex-direction: column; gap: 6px; font-family: 'Inter', sans-serif; } .ds-input-label { font-size: 13px; font-weight: 600; color: #0f172a; } .ds-input { padding: 10px 14px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px; color: #0f172a; outline: none; transition: border-color 150ms ease, box-shadow 150ms ease; } .ds-input:focus { border-color: #1f3c88; box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.15); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Le Mastodonte d'Ingénierie Guinéenne",
+    "overview": "Le système de design de BEGEC-TRAVAUX-GIE incarne la puissance industrielle, la rigueur technique et la solidité opérationnelle d'un acteur majeur des travaux publics et du génie civil en République de Guinée. L'interface traduit la réalité du terrain : la précision millimétrique de la topographie, la masse des engins lourds, l'autonomie des centrales d'enrobage et de concassage à Kouriya, et l'exigence statutaire requise pour négocier avec les ministères et multinationales minières.",
+    "keyCharacteristics": [
+      "Clarté architecturale : Grilles géométriques structurées, typographie hiérarchisée et lecture immédiate des métriques clés.",
+      "Rigueur industrielle : Contrastes francs, finitions nettes de 1px, panels sombres statutaires pour les données matérielles.",
+      "Signalétique fonctionnelle : Usage discipliné de l'orange sécurité pour orienter la décision et l'action sans saturer l'œil.",
+      "Densité équilibrée : Rythme vertical aéré permettant d'absorber la complexité technique sans alourdir l'expérience."
+    ],
+    "rules": [
+      {
+        "name": "The 10% Safety Orange Rule",
+        "body": "L'orange de chantier (#f27100) ne doit jamais occuper plus de 10% de la surface d'un écran. Sa force réside dans sa rareté : s'il recouvre un arrière-plan entier, il perd sa fonction de signal d'alerte et d'appel à l'action.",
+        "section": "colors"
+      },
+      {
+        "name": "The High-Contrast Legibility Rule",
+        "body": "Tout texte sur fond blanc, gris clair ou ardoise foncé doit satisfaire strictement au ratio de contraste WCAG AA (minimum 4.5:1). Aucun texte gris pâle sur fond clair n'est toléré.",
+        "section": "colors"
+      },
+      {
+        "name": "The Uppercase Micro-Label Rule",
+        "body": "Toute catégorie, étiquette de statut ou sur-titre contextuel est systématiquement rédigé en majuscules avec un espacement de lettres élargi (tracking-wider ou tracking-widest).",
+        "section": "typography"
+      },
+      {
+        "name": "The Big Numbers Doctrine",
+        "body": "Les statistiques d'actifs (années d'expérience, engins, préfectures) sont toujours présentées avec des chiffres surdimensionnés (3xl à 5xl) en couleur secondaire ou primaire, accompagnés d'un libellé court et explicite.",
+        "section": "typography"
+      },
+      {
+        "name": "The Technical Breathing Rule",
+        "body": "Ne jamais condenser des données techniques complexes sans séparateur clair ou espacement d'au moins 24px. Une mise en page aérée renforce le sentiment de rigueur et de maîtrise.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-Resting Rule",
+        "body": "Les conteneurs et cartes sont plats au repos. La surélévation ne se manifeste qu'en réponse à une interaction utilisateur ou pour une superposition modale.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Solid Angles Rule",
+        "body": "Les arrondis excessifs (rounded-3xl ou formes organiques molles) sont formellement proscrits. Les structures du BTP s'expriment par des angles affirmés et des arêtes nettes.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do toujours utiliser le bleu nuit #0F172A ou le blanc pur #FFFFFF comme fonds structurels dominants.",
+      "Do réserver l'orange chantier #F27100 aux éléments d'interaction ou d'alerte prioritaires (CTA secondaire, badges phares, chiffres clés).",
+      "Do afficher systématiquement des métriques vérifiées et contextuelles (ex: 'Station de concassage', '+100 engins', 'devis sous 48h') plutôt que des promesses vagues.",
+      "Do concevoir tous les tableaux, fiches chantiers et formulaires de devis pour une utilisation mobile fluide sur chantier.",
+      "Do associer chaque titre de section à son étiquette contextuelle en majuscules (ex: Gros Œuvre & Modernisation, CAPACITÉS MATÉRIELLES).",
+      "Do maintenir des bordures de délimitation nettes de 1px sur les cartes et conteneurs pour préserver la rigueur technique.",
+      "Do vérifier le contraste WCAG AA sur chaque texte ou badge coloré."
+    ],
+    "donts": [
+      "Don't utiliser de dégradés multicolores fantaisistes ou d'effets néon déconnectés de l'univers du génie civil.",
+      "Don't arrondir excessivement les cartes ou conteneurs majeurs (pas de rounded-3xl ni de formes molles non industrielles).",
+      "Don't diluer la lisibilité des textes avec des gris trop clairs sur fond blanc (respecter impérativement le contraste WCAG AA).",
+      "Don't ajouter de fausses promesses ou avis clients inventés : seuls les projets réels documentés et les chiffres réels de l'entreprise sont admissibles.",
+      "Don't surcharger l'écran d'animations distrayantes : les mouvements doivent être techniques, calmes, au service de la lecture (transitions fluides, défilement maîtrisé, compteurs métriques).",
+      "Don't utiliser l'orange de chantier sur de grands aplats d'arrière-plan de section complète."
+    ]
+  }
+}

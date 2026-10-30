@@ -1,0 +1,17 @@
+{
+  "1": "dependencies",
+  "3": "cn",
+  "4": "package.json",
+  "5": "sidebar.tsx",
+  "7": "use-toast.ts",
+  "8": "button.tsx",
+  "9": "devDependencies",
+  "12": "compilerOptions",
+  "14": "components.json",
+  "16": "index.ts",
+  "20": "chart.tsx",
+  "21": "command.tsx",
+  "25": "drawer.tsx",
+  "29": "scripts",
+  "39": "postcss.config.js"
+}

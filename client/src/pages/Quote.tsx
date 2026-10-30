@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertQuoteSchema, type InsertQuoteRequest } from "@shared/routes";
 import { useQuote } from "@/hooks/use-quotes";
 import { Button } from "@/components/ui/button";
+import { MovingBorderButton } from "@/components/ui/moving-border";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -20,11 +21,24 @@ export default function Quote() {
   const [currentStep, setCurrentStep] = useState(0);
   const mutation = useQuote();
 
+  const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+  const queryService = searchParams.get("service") || "";
+  let initialProjectType = "";
+  if (queryService.toLowerCase().includes("bâtiment") || queryService.toLowerCase().includes("batiment")) {
+    initialProjectType = "Bâtiment";
+  } else if (queryService.toLowerCase().includes("pont") || queryService.toLowerCase().includes("chauss")) {
+    initialProjectType = "Ponts et Chaussées";
+  } else if (queryService.toLowerCase().includes("terrassement")) {
+    initialProjectType = "Terrassement";
+  } else if (queryService.toLowerCase().includes("assainissement") || queryService.toLowerCase().includes("eau")) {
+    initialProjectType = "Assainissement";
+  }
+
   const form = useForm<InsertQuoteRequest>({
     resolver: zodResolver(insertQuoteSchema),
     defaultValues: {
       name: "", email: "", phone: "",
-      projectType: "", description: "",
+      projectType: initialProjectType, description: "",
       location: "", estimatedStartDate: "",
     },
     mode: "onChange",
@@ -174,10 +188,10 @@ export default function Quote() {
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
+                                  <SelectItem value="Bâtiment">Construction et Rénovation de Bâtiments</SelectItem>
+                                  <SelectItem value="Ponts et Chaussées">Construction de Ponts et Chaussées</SelectItem>
                                   <SelectItem value="Terrassement">Terrassement</SelectItem>
-                                  <SelectItem value="VRD">VRD & Assainissement</SelectItem>
-                                  <SelectItem value="Aménagement">Aménagement Extérieur</SelectItem>
-                                  <SelectItem value="Génie Civil">Génie Civil</SelectItem>
+                                  <SelectItem value="Assainissement">Construction Réseaux d'Assainissement et d'Eau Potable</SelectItem>
                                   <SelectItem value="Autre">Autre</SelectItem>
                                 </SelectContent>
                               </Select>
@@ -267,14 +281,30 @@ export default function Quote() {
                     </Button>
 
                     {currentStep < 2 ? (
-                      <Button type="button" onClick={nextStep} className="bg-primary hover:bg-primary/90">
+                      <MovingBorderButton
+                        type="button"
+                        variant="primary"
+                        size="default"
+                        borderRadius="0.75rem"
+                        containerClassName="h-11 shadow-md shadow-primary/20"
+                        className="font-bold px-6 text-sm"
+                        onClick={nextStep}
+                      >
                         Suivant
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
+                        <ChevronRight className="w-4 h-4 ml-1" />
+                      </MovingBorderButton>
                     ) : (
-                      <Button type="submit" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold" disabled={mutation.isPending}>
-                        {mutation.isPending ? "Envoi..." : "Envoyer la demande"}
-                      </Button>
+                      <MovingBorderButton
+                        type="submit"
+                        variant="secondary"
+                        size="default"
+                        borderRadius="0.75rem"
+                        containerClassName="h-12 shadow-lg shadow-secondary/30"
+                        className="font-bold px-7 text-base"
+                        disabled={mutation.isPending}
+                      >
+                        {mutation.isPending ? "Envoi en cours..." : "Transmettre ma demande"}
+                      </MovingBorderButton>
                     )}
                   </div>
                 </form>

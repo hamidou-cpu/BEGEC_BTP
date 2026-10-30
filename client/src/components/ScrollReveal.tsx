@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 
 type Direction = "up" | "down" | "left" | "right" | "fade" | "scale";
 
@@ -11,13 +11,13 @@ interface ScrollRevealProps {
   className?: string;
 }
 
-const variants: Record<Direction, { hidden: object; visible: object }> = {
-  up:    { hidden: { opacity: 0, y: 48 },        visible: { opacity: 1, y: 0 } },
-  down:  { hidden: { opacity: 0, y: -48 },       visible: { opacity: 1, y: 0 } },
-  left:  { hidden: { opacity: 0, x: -56 },       visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: 56 },        visible: { opacity: 1, x: 0 } },
-  fade:  { hidden: { opacity: 0 },               visible: { opacity: 1 } },
-  scale: { hidden: { opacity: 0, scale: 0.88 },  visible: { opacity: 1, scale: 1 } },
+const variants: Record<Direction, Variants> = {
+  up: { hidden: { opacity: 0, y: 48 }, visible: { opacity: 1, y: 0 } },
+  down: { hidden: { opacity: 0, y: -48 }, visible: { opacity: 1, y: 0 } },
+  left: { hidden: { opacity: 0, x: -56 }, visible: { opacity: 1, x: 0 } },
+  right: { hidden: { opacity: 0, x: 56 }, visible: { opacity: 1, x: 0 } },
+  fade: { hidden: { opacity: 0 }, visible: { opacity: 1 } },
+  scale: { hidden: { opacity: 0, scale: 0.88 }, visible: { opacity: 1, scale: 1 } },
 };
 
 export function ScrollReveal({

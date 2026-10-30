@@ -57,6 +57,15 @@ function AppContent() {
   const [location] = useLocation();
   const isAdmin = location.startsWith("/admin");
 
+  // Remonte systématiquement en haut de la page lors d'un changement de route
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const timeout = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+    return () => clearTimeout(timeout);
+  }, [location]);
+
   if (isAdmin) {
     return (
       <>
