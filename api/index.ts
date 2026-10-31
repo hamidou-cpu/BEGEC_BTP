@@ -8,17 +8,6 @@ const httpServer = createServer(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Restore original URL if Vercel rewrite changed it to /api/index
-app.use((req, _res, next) => {
-  const matchedPath = req.headers["x-matched-path"] as string | undefined;
-  if (req.url === "/api/index" || req.url === "/api" || req.url === "/") {
-    if (matchedPath && matchedPath.startsWith("/api") && matchedPath !== "/api/index") {
-      req.url = matchedPath;
-    }
-  }
-  next();
-});
-
 let isInitialized = false;
 let initPromise: Promise<void> | null = null;
 
@@ -47,10 +36,5 @@ async function setup() {
 
 export default async function handler(req: Request, res: Response) {
   await setup();
-  return new Promise<void>((resolve, reject) => {
-    res.on("finish", () => resolve());
-    res.on("close", () => resolve());
-    res.on("error", (err) => reject(err));
-    app(req, res);
-  });
+  return app(req, res);
 }
