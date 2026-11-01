@@ -98,10 +98,17 @@ if (!process.env.DATABASE_URL) {
     "DATABASE_URL must be set. Did you forget to provision a database?"
   );
 }
+var connectionString = process.env.DATABASE_URL;
+if (process.env.VERCEL && connectionString.includes("pooler.supabase.com:5432")) {
+  connectionString = connectionString.replace(":5432", ":6543");
+}
 var useSsl = true;
 var pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: useSsl ? { rejectUnauthorized: false } : void 0
+  connectionString,
+  ssl: useSsl ? { rejectUnauthorized: false } : void 0,
+  max: process.env.VERCEL ? 2 : 10,
+  idleTimeoutMillis: 5e3,
+  connectionTimeoutMillis: 5e3
 });
 var db = drizzle(pool, { schema: schema_exports });
 
