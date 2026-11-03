@@ -38,3 +38,14 @@ Pour toute modification, création ou intervention UI/Frontend (HTML, TSX, CSS, 
 ## 3. Base de Connaissances Graphify
 
 - Après modification de fichiers de code, exécuter `graphify update .` pour maintenir le graphe de connaissances à jour.
+
+---
+
+## 4. Synchronisation et Push Systématique sur GitHub (Obligatoire)
+
+- Après toute modification, ajout, correction ou intervention validée :
+  1. Exécuter `graphify update .` si des fichiers de code ont été modifiés.
+  2. Indexer et commiter les changements avec un message de commit clair et conventionnel (`git add` + `git commit`).
+  3. **Pousser obligatoirement et immédiatement les modifications sur GitHub (`git push origin <branche>`)** avant de clore l'intervention ou de rendre la réponse finale à l'utilisateur.
+  4. L'agent ne doit jamais laisser de travail validé non commité ou non poussé sur le dépôt distant sans directive contraire explicite de l'utilisateur.
+
