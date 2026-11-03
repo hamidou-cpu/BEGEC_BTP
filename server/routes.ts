@@ -27,18 +27,8 @@ try {
   console.warn("Could not create uploads directory:", e);
 }
 
-const uploadStorage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, uploadsDir);
-  },
-  filename: (_req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
-
 const upload = multer({
-  storage: uploadStorage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
   fileFilter: (_req, file, cb) => {
     const allowed = /jpeg|jpg|png|gif|webp|svg/;
@@ -62,9 +52,20 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Serve uploaded files statically
+  // Serve uploaded files statically or redirect to Supabase Storage
   const { default: express } = await import("express");
   app.use("/uploads", express.static(uploadsDir));
+  app.get("/uploads/:filename", (req, res) => {
+    const filename = req.params.filename;
+    const localFile = path.join(uploadsDir, filename);
+    if (fs.existsSync(localFile)) {
+      return res.sendFile(localFile);
+    }
+    if (process.env.SUPABASE_URL) {
+      return res.redirect(302, `${process.env.SUPABASE_URL}/storage/v1/object/public/uploads/${filename}`);
+    }
+    res.status(404).send("Fichier non trouvé");
+  });
 
   // Email transporter
   const transporter = nodemailer.createTransport({
@@ -159,12 +160,51 @@ export async function registerRoutes(
     }
   });
 
-  // Upload image
-  app.post("/api/admin/upload", requireAdmin, upload.single("file"), (req, res) => {
+  // Upload image (persistent Supabase Storage + local fallback)
+  app.post("/api/admin/upload", requireAdmin, upload.single("file"), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ message: "Aucun fichier reçu" });
     }
-    const url = `/uploads/${req.file.filename}`;
+
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const filename = uniqueSuffix + path.extname(req.file.originalname);
+
+    // 1. Upload to Supabase Storage if configured
+    if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
+      try {
+        const uploadUrl = `${process.env.SUPABASE_URL}/storage/v1/object/uploads/${filename}`;
+        const uploadRes = await fetch(uploadUrl, {
+          method: "POST",
+          headers: {
+            apikey: process.env.SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`,
+            "Content-Type": req.file.mimetype || "application/octet-stream",
+          },
+          body: req.file.buffer,
+        });
+
+        if (uploadRes.ok) {
+          const publicUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/uploads/${filename}`;
+          return res.json({ url: publicUrl });
+        } else {
+          console.error("Supabase upload failed:", uploadRes.status, await uploadRes.text());
+        }
+      } catch (err) {
+        console.error("Supabase upload error:", err);
+      }
+    }
+
+    // 2. Local fallback
+    try {
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(uploadsDir, filename), req.file.buffer);
+    } catch (e) {
+      console.warn("Could not save to local disk:", e);
+    }
+
+    const url = `/uploads/${filename}`;
     res.json({ url });
   });
 
