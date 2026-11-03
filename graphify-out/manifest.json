@@ -474,9 +474,9 @@
     "semantic_hash": ""
   },
   "server/routes.ts": {
-    "mtime": 1793667803.6224382,
-    "seen": 1793667882.104486,
-    "ast_hash": "462e1bb95ac2db8adc3c021f6df2f329",
+    "mtime": 1793668504.0407746,
+    "seen": 1793668544.995279,
+    "ast_hash": "dc699a7d257cbde62571e50d322976e6",
     "semantic_hash": ""
   },
   "server/static.ts": {
@@ -1344,8 +1344,8 @@
     "semantic_hash": ""
   },
   "api/index.js": {
-    "mtime": 1793668150.6898859,
-    "seen": 1793668189.7375846,
+    "mtime": 1793668534.7877398,
+    "seen": 1793668544.9880757,
     "ast_hash": "90cc687faac10dcc40fb07425de45e0f",
     "semantic_hash": ""
   },

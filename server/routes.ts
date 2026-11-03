@@ -180,7 +180,7 @@ export async function registerRoutes(
             Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`,
             "Content-Type": req.file.mimetype || "application/octet-stream",
           },
-          body: req.file.buffer,
+          body: req.file.buffer as unknown as BodyInit,
         });
 
         if (uploadRes.ok) {
