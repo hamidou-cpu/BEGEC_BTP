@@ -1,8 +1,8 @@
 {
   "client/src/App.tsx": {
-    "mtime": 1793120062.6793103,
-    "seen": 1793120149.2346978,
-    "ast_hash": "39ad1c75cfafcf489560633fe5b69499",
+    "mtime": 1793669692.7398963,
+    "seen": 1793670238.9096482,
+    "ast_hash": "014f4c6f56330c95ec0a67664b588a1a",
     "semantic_hash": ""
   },
   "client/src/components/Footer.tsx": {
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "client/src/pages/Home.tsx": {
-    "mtime": 1793381392.1392105,
-    "seen": 1793381439.0776453,
-    "ast_hash": "5a30681f45a9a8b9fbbec9ca92598694",
+    "mtime": 1793670173.0777273,
+    "seen": 1793670238.9261131,
+    "ast_hash": "15c21d8fc5c20314c4de7c0d27583b63",
     "semantic_hash": ""
   },
   "client/src/pages/Portfolio.tsx": {
@@ -900,9 +900,9 @@
     "semantic_hash": ""
   },
   "client/src/components/ui/sticky-content-wrapper.tsx": {
-    "mtime": 1793239740.8521562,
-    "seen": 1793239793.9976628,
-    "ast_hash": "1a8ee2a6a05f6a935e72b8ef069e0364",
+    "mtime": 1793670097.850641,
+    "seen": 1793670238.9198673,
+    "ast_hash": "ae6d7a0b0c0874b0877867cf7ae4e949",
     "semantic_hash": ""
   },
   "plans/001-project-grid-filter-transitions.md": {
@@ -1344,8 +1344,8 @@
     "semantic_hash": ""
   },
   "api/index.js": {
-    "mtime": 1793668534.7877398,
-    "seen": 1793668544.9880757,
+    "mtime": 1793670215.7590685,
+    "seen": 1793670238.9096408,
     "ast_hash": "90cc687faac10dcc40fb07425de45e0f",
     "semantic_hash": ""
   },

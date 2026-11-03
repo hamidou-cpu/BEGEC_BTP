@@ -229,7 +229,7 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground w-full max-w-full overflow-x-hidden">
       {/* ── 1. Hero Section Monumentale & Asymétrique ─────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden py-24 md:py-32">
         {/* Fond avec Parallaxe et Gradient Technique */}
@@ -280,17 +280,17 @@ export default function Home() {
               </p>
 
               {/* Actions & Call to action */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 mb-10 w-full max-w-full">
                 <Link href="/devis" className="w-full sm:w-auto">
                   <MovingBorderButton
                     variant="secondary"
                     size="lg"
                     borderRadius="0.375rem"
-                    containerClassName="w-full sm:w-auto h-14"
-                    className="font-bold text-base md:text-lg px-8"
+                    containerClassName="w-full sm:w-auto h-auto min-h-14"
+                    className="font-bold text-base md:text-lg px-6 sm:px-8 py-3.5 text-center whitespace-normal"
                   >
                     Demander une étude & devis
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className="ml-2 w-5 h-5 shrink-0" />
                   </MovingBorderButton>
                 </Link>
 
@@ -299,8 +299,8 @@ export default function Home() {
                     variant="glass"
                     size="lg"
                     borderRadius="0.375rem"
-                    containerClassName="w-full sm:w-auto h-14"
-                    className="font-bold text-base md:text-lg px-7"
+                    containerClassName="w-full sm:w-auto h-auto min-h-14"
+                    className="font-bold text-base md:text-lg px-6 sm:px-7 py-3.5 text-center whitespace-normal"
                   >
                     Voir nos chantiers livrés
                   </MovingBorderButton>
@@ -409,7 +409,7 @@ export default function Home() {
       </section>
 
       {/* ── 3. Pôles d'Expertise & Savoir-Faire Opérationnel (Défilement Immersif) ── */}
-      <section className="py-20 bg-background relative border-b border-border">
+      <section className="py-20 bg-background relative border-b border-border overflow-hidden">
         <div className="container mx-auto px-4 mb-4">
           <motion.div
             className="text-center max-w-3xl mx-auto"
@@ -433,18 +433,18 @@ export default function Home() {
         {/* Composant Sticky Content Wrapper synchronisé avec GSAP ScrollTrigger */}
         <StickyContentWrapper items={stickyExpertisesItems} />
 
-        <div className="text-center mt-12">
-          <Link href="/expertises">
-            <Button className="bg-secondary text-white hover:bg-secondary/90 font-bold text-base md:text-lg px-8 h-14 shadow-lg shadow-secondary/30 group">
-              Consulter l'ensemble de nos procédés techniques et parcs d'engins
-              <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+        <div className="text-center mt-12 px-4 max-w-full">
+          <Link href="/expertises" className="inline-block w-full sm:w-auto max-w-full">
+            <Button className="w-full sm:w-auto max-w-full whitespace-normal h-auto py-4 px-6 md:px-8 bg-secondary text-white hover:bg-secondary/90 font-bold text-sm sm:text-base md:text-lg shadow-lg shadow-secondary/30 group text-center leading-snug">
+              <span>Consulter l'ensemble de nos procédés techniques et parcs d'engins</span>
+              <ArrowRight className="ml-2 w-5 h-5 shrink-0 transition-transform group-hover:translate-x-1 inline-block" />
             </Button>
           </Link>
         </div>
       </section>
 
       {/* ── 5. Réalisations & Chantiers Livrés (avec Filtre Catégorie) ──────── */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
             <motion.div
@@ -539,9 +539,9 @@ export default function Home() {
             </div>
           )}
 
-          <div className="text-center mt-12">
-            <Link href="/realisations">
-              <Button size="lg" variant="outline" className="font-bold border-2 border-border hover:border-secondary">
+          <div className="text-center mt-12 px-4 max-w-full">
+            <Link href="/realisations" className="inline-block w-full sm:w-auto max-w-full">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto max-w-full whitespace-normal h-auto py-3.5 px-6 font-bold border-2 border-border hover:border-secondary text-sm sm:text-base text-center">
                 Voir l'ensemble du portfolio ({projects?.length || 0} projets)
               </Button>
             </Link>
@@ -550,7 +550,7 @@ export default function Home() {
       </section>
 
       {/* ── 6. Planificateur Rapide de Chantier (Touchpoint Interactif) ────── */}
-      <section className="py-16 bg-muted/50 border-y border-border">
+      <section className="py-16 bg-muted/50 border-y border-border overflow-hidden">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="bg-background rounded-xl p-8 md:p-10 border border-border shadow-md">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
@@ -566,16 +566,16 @@ export default function Home() {
                   Sélectionnez vos besoins pour orienter immédiatement votre demande technique.
                 </p>
               </div>
-              <Link href={`/devis?service=${encodeURIComponent(quickService)}&volume=${encodeURIComponent(quickVolume)}`}>
+              <Link href={`/devis?service=${encodeURIComponent(quickService)}&volume=${encodeURIComponent(quickVolume)}`} className="w-full sm:w-auto">
                 <MovingBorderButton
                   variant="secondary"
                   size="default"
                   borderRadius="0.375rem"
-                  containerClassName="h-12 shadow-md shadow-secondary/20"
-                  className="font-bold px-6 text-sm md:text-base"
+                  containerClassName="w-full sm:w-auto h-auto min-h-12 shadow-md shadow-secondary/20"
+                  className="font-bold px-6 py-3 text-sm md:text-base whitespace-normal text-center"
                 >
                   Lancer mon devis technique
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  <ArrowRight className="ml-2 w-4 h-4 shrink-0" />
                 </MovingBorderButton>
               </Link>
             </div>
@@ -688,9 +688,9 @@ export default function Home() {
             itemBorder="1px solid hsl(var(--border))"
             itemPadding="18px"
             objectFit="contain"
-            className="w-full max-w-5xl mx-auto"
+            className="w-full max-w-5xl mx-auto overflow-hidden"
             centerContent={
-              <div className="bg-background/90 backdrop-blur-xl border-2 border-border shadow-2xl rounded-xl p-6 md:p-8 max-w-[320px] sm:max-w-[360px] text-center select-none relative overflow-hidden pointer-events-auto">
+              <div className="bg-background/90 backdrop-blur-xl border-2 border-border shadow-2xl rounded-xl p-4 sm:p-6 md:p-8 w-[88vw] max-w-[320px] sm:max-w-[360px] text-center select-none relative overflow-hidden pointer-events-auto">
                 <div className="absolute top-0 right-0 w-28 h-28 bg-secondary/10 rounded-full blur-xl pointer-events-none" />
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 text-secondary text-xs font-bold uppercase tracking-wider mb-3">
                   <Building2 className="w-3.5 h-3.5" />
@@ -861,27 +861,27 @@ export default function Home() {
             Faites appel à notre bureau d'études pour un chiffrage précis de vos projets de bâtiment, ponts et chaussées, terrassement ou réseaux d'assainissement et eau potable.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/devis">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4 w-full max-w-full">
+            <Link href="/devis" className="w-full sm:w-auto">
               <MovingBorderButton
                 variant="secondary"
                 size="lg"
                 borderRadius="0.375rem"
-                containerClassName="w-full sm:w-auto h-15 shadow-xl shadow-secondary/30"
-                className="font-bold text-lg px-9"
+                containerClassName="w-full sm:w-auto h-auto min-h-15 shadow-xl shadow-secondary/30"
+                className="font-bold text-base sm:text-lg px-6 sm:px-9 py-3.5 text-center whitespace-normal"
               >
                 Demander un devis détaillé
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-2 w-5 h-5 shrink-0" />
               </MovingBorderButton>
             </Link>
 
-            <Link href="/contact">
+            <Link href="/contact" className="w-full sm:w-auto">
               <MovingBorderButton
                 variant="dark"
                 size="lg"
                 borderRadius="0.375rem"
-                containerClassName="w-full sm:w-auto h-15"
-                className="font-bold text-lg px-8 border-2 border-border/80 hover:border-secondary/60"
+                containerClassName="w-full sm:w-auto h-auto min-h-15"
+                className="font-bold text-base sm:text-lg px-6 sm:px-8 py-3.5 border-2 border-border/80 hover:border-secondary/60 text-center whitespace-normal"
               >
                 Prendre rendez-vous avec un ingénieur
               </MovingBorderButton>
